@@ -1,0 +1,32 @@
+@import '@/styles/app/constant-globals';
+
+.header {
+    height: $top-bar-height;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 16px;
+
+    .header__search-container {
+        .header__search {
+            width: 400px;
+            height: 2rem;
+            border: 1px solid black;
+            border-radius: 16px;
+        }
+
+        .header__search-menu-container {
+            ul {
+                display: flex;
+                justify-content: space-between;
+                margin: 0.5rem 1rem 0 1rem;
+
+                li + li {
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
+
+    .header__user-container {}
+}
