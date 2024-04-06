@@ -1,0 +1,33 @@
+@import "constant-globals";
+
+$welcome-fragment-height: calc(100vh - $top-bar-height);
+
+.welcome-fragment {
+    display: flex;
+
+    .welcome-fragment__text {
+        width: 40vw;
+        height: $welcome-fragment-height;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .welcome-fragment__text-container {
+            width: 80%;
+
+            p {
+                margin: 3rem 0;
+            }
+        }
+    }
+
+    .welcome-fragment__image {
+        width: 60vw;
+        height: $welcome-fragment-height;
+
+        // FIXME: Delete when you add an image to html structure
+        background-color: aquamarine;
+        border-radius: 0 0 0 40%;
+    }
+}
