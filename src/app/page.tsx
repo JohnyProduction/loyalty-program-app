@@ -1,4 +1,5 @@
 import { TopBar } from '@/components/common/top-bar';
+import { Footer } from '@/components/common/footer';
 
 export default function MainPage() {
     return (
@@ -10,7 +11,7 @@ export default function MainPage() {
             <div>TODO 2 Browse Products</div>
             <>TODO LINE</>
             <div>TODO 3 Products</div>
-            <>TODO Footer</>
+            <Footer />
         </main>
     );
 }
