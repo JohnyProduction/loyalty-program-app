@@ -31,3 +31,15 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
         border-radius: 0 0 0 40%;
     }
 }
+
+.browse-products {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+    .browse-products__container {
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+    }
+}
