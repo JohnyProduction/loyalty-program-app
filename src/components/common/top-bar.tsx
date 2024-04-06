@@ -5,7 +5,9 @@ export function TopBar() {
         <header className={styles['header']}>
             <span></span>
             <div className={styles['header__search-container']}>
-                <div className={styles['header__search']}>Search</div>
+                <div className={styles['header__search']}>
+                    <div>Search</div>
+                </div>
                 <div className={styles['header__search-menu-container']}>
                     <ul>
                         <li>Menu item 1</li>
@@ -14,7 +16,10 @@ export function TopBar() {
                     </ul>
                 </div>
             </div>
-            <div className={styles['header__user-container']}>Y</div>
+            <div className={styles['header__user-container']}>
+                <p>1000 PKT</p>
+                <div className={styles['header__user-profile']}>user profile</div>
+            </div>
         </header>
     );
 }

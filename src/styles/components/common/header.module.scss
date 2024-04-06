@@ -7,12 +7,21 @@
     align-items: center;
     margin: 0 16px;
 
+    > * {
+        width: 33%;
+    }
+
     .header__search-container {
         .header__search {
-            width: 400px;
-            height: 2rem;
-            border: 1px solid black;
-            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+
+            div {
+                width: 400px;
+                height: 2rem;
+                border: 1px solid black;
+                border-radius: 16px;
+            }
         }
 
         .header__search-menu-container {
@@ -28,5 +37,16 @@
         }
     }
 
-    .header__user-container {}
+    .header__user-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .header__user-profile {
+            margin-left: 0.5rem;
+            background-color: #D9D9D9;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+    }
 }
