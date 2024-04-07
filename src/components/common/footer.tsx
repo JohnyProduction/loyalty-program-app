@@ -1,14 +1,15 @@
-import { FooterFragment, FooterFragmentProps } from '@/components/common/footer-fragment';
+import { FooterFragment, FooterFragmentDataType } from '@/components/common/footer-fragment';
+import styles from '@/styles/components/common/footer.module.scss';
 
 export function Footer() {
-    const footerFragmentData: FooterFragmentProps[] = [
-        {
-            header: 'Nazwa firmy',
-            description: 'Leading digital agency with solid design and development expertise. We build readymade websites, mobile applications, and elaborate online business services.'
-        },
+    const company = {
+        name: 'Nazwa firmy',
+        description: 'Leading digital agency with solid design and development expertise. We build readymade websites, mobile applications, and elaborate online business services.'
+    };
+    const footerFragmentData: FooterFragmentDataType[] = [
         {
             header: 'What we do',
-            description: [
+            paragraphs: [
                 'Web Design',
                 'App Design',
                 'Social Media Manage',
@@ -17,7 +18,7 @@ export function Footer() {
         },
         {
             header: 'My account',
-            description: [
+            paragraphs: [
                 'About Us',
                 'Career',
                 'Become Investor'
@@ -25,7 +26,7 @@ export function Footer() {
         },
         {
             header: 'Support',
-            description: [
+            paragraphs: [
                 'FAQ',
                 'Policy',
                 'Business'
@@ -33,7 +34,7 @@ export function Footer() {
         },
         {
             header: 'Contact',
-            description: [
+            paragraphs: [
                 'WhatsApp',
                 'Support 24'
             ]
@@ -41,10 +42,16 @@ export function Footer() {
     ];
 
     return (
-        <footer>
-            {footerFragmentData.map(fragment => {
-                return <FooterFragment header={fragment.header} description={fragment.description} />;
-            })}
+        <footer className={styles['footer']}>
+            <div>
+                <h3>{company.name}</h3>
+                <p>{company.description}</p>
+            </div>
+            <div className={styles['footer-fragment__container']}>
+                {footerFragmentData.map(fragment => {
+                    return <FooterFragment footerFragmentData={fragment} />;
+                })}
+            </div>
         </footer>
     );
 }

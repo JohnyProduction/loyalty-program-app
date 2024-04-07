@@ -55,6 +55,7 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
         .other-products__container {
             width: 95vw;
             margin: 0 auto;
+            display: flex;
 
             >:first-child {
                 margin-right: 32px;

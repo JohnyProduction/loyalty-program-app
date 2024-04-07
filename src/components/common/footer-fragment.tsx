@@ -1,17 +1,21 @@
-export interface FooterFragmentProps {
+import styles from '@/styles/components/common/footer.module.scss';
+
+export type FooterFragmentDataType = {
     header: string;
-    description: string | string[];
+    paragraphs: string[];
+};
+
+export interface FooterFragmentProps {
+    footerFragmentData: FooterFragmentDataType
 }
 
-export function FooterFragment({ header, description }: FooterFragmentProps) {
+export function FooterFragment({ footerFragmentData }: FooterFragmentProps) {
     return (
-        <div>
-            <h3>{header}</h3>
-            {
-                Array.isArray(description) ?
-                    <ul>{description.map(el => <li key={el}>{el}</li>)}</ul> :
-                    <p>{description}</p>
-            }
+        <div className={styles['footer-fragment__item']}>
+            <h3>{footerFragmentData.header}</h3>
+            <ul>
+                {footerFragmentData.paragraphs.map(el => <li key={el}>{el}</li>)}
+            </ul>
         </div>
     );
 }
