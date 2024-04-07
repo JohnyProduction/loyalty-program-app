@@ -38,15 +38,27 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
         margin: 5rem 0;
     }
 
-    > div:first-of-type {
+    > div {
         display: flex;
         align-items: center;
-        //height: 100vh;
 
         .browse-products__container {
             display: flex;
             justify-content: space-around;
             width: 100vw;
+        }
+    }
+
+    .other-products__container {
+        width: 95vw;
+        margin: 0 auto;
+
+        >:first-child {
+            margin-right: 32px;
+        }
+
+        >:last-child {
+            margin-left: 32px;
         }
     }
 }

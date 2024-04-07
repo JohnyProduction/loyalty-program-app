@@ -11,7 +11,6 @@ export default function MainPage() {
                 <WelcomeFragment />
             </div>
             <BrowseProducts />
-            <div>TODO 3 Products</div>
             <Footer />
         </main>
     );
