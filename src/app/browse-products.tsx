@@ -47,8 +47,11 @@ export function BrowseProducts() {
                 </div>
             </div>
             <BreakLine />
-            <div className={styles['other-products__container']}>
-                {otherProducts.map(product => <Product product={product} key={product.name} />)}
+            <div className={styles['other-products']}>
+                <div className={styles['other-products__container']}>
+                    {otherProducts.map(product => <Product product={product} key={product.name} />)}
+                </div>
+                <div className={styles['other-products__pagination-container']}>X</div>
             </div>
             <></>
         </div>

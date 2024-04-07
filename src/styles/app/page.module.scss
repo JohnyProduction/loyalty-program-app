@@ -49,16 +49,24 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
         }
     }
 
-    .other-products__container {
-        width: 95vw;
-        margin: 0 auto;
+    .other-products {
+        flex-direction: column;
 
-        >:first-child {
-            margin-right: 32px;
+        .other-products__container {
+            width: 95vw;
+            margin: 0 auto;
+
+            >:first-child {
+                margin-right: 32px;
+            }
+
+            >:last-child {
+                margin-left: 32px;
+            }
         }
 
-        >:last-child {
-            margin-left: 32px;
+        .other-products__pagination-container {
+            margin: 1rem 0;
         }
     }
 }
