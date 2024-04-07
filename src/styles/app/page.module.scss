@@ -33,13 +33,20 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
 }
 
 .browse-products {
-    display: flex;
-    align-items: center;
-    height: 100vh;
+    .browse-products__header {
+        text-align: center;
+        margin: 5rem 0;
+    }
 
-    .browse-products__container {
+    > div:first-of-type {
         display: flex;
-        justify-content: space-around;
-        width: 100vw;
+        align-items: center;
+        //height: 100vh;
+
+        .browse-products__container {
+            display: flex;
+            justify-content: space-around;
+            width: 100vw;
+        }
     }
 }
