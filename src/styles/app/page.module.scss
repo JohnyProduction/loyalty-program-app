@@ -2,6 +2,10 @@
 
 $welcome-fragment-height: calc(100vh - $top-bar-height);
 
+.main-page {
+    background-color: #F1F1F1;
+}
+
 .welcome-fragment {
     display: flex;
 

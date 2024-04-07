@@ -51,7 +51,8 @@ export function BrowseProducts() {
                 <div className={styles['other-products__container']}>
                     {otherProducts.map(product => <Product product={product} key={product.name} />)}
                 </div>
-                <div className={styles['other-products__pagination-container']}>X</div>
+                {/* // TODO Pagination */}
+                <div className={styles['other-products__pagination-container']}>X pagination X</div>
             </div>
             <></>
         </div>
