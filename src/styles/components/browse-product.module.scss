@@ -1,0 +1,19 @@
+.browse-product {
+    flex-grow: 1;
+
+    .browse-product__image-container {
+        display: flex;
+        justify-content: center;
+
+        .browse-product__image {
+            width: 30vw;
+            height: 60vh;
+            background-color: antiquewhite;
+        }
+    }
+
+    .browse-product__name {
+        text-align: center;
+        margin-top: 2rem;
+    }
+}

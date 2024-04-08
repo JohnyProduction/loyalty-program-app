@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -19,6 +17,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Development
+
+To add a new version, you need to:
+
+- create your feature/changes/fix/hotfix branch, eg. `feature/main-page`
+- change version included in `package.json` according to semantic versioning.
+- add a new record to `CHANGELOG.md`.
+- create your pull request and merge into `master` branch using `squash and merge` method. 
 
 ## Learn More
 
