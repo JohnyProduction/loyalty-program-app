@@ -51,7 +51,8 @@ export default function LoginPage() {
                             <button type="submit">Zaloguj</button>
                         </form>
                     </div>
-                    <button onClick={() => checkLoggedInStatus()}>Test</button>
+                    {//--><button onClick={() => checkLoggedInStatus()}>Test</button>
+                    }
                 </div>
             </main>
         </>
@@ -76,7 +77,7 @@ export default function LoginPage() {
             throw new Error('Failed to log in');
             console.log('Error logging in:', error);
         }
-    }
+    }/*
     function checkLoggedInStatus() {
         try {
             const response =  fetch('https://lojback.ne-quid-nimis.pl/api/Login/IsLoggedIn', {
@@ -89,14 +90,9 @@ export default function LoginPage() {
                 mode: 'cors'
             });
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch data');
-            }
-
-            
             console.log('Logged in status:', response);
         } catch (error) {
             console.error('Error checking logged in status:', error);
         }
-    }
+    }*/
 }
