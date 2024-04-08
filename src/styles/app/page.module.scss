@@ -30,8 +30,9 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
         width: 60vw;
         height: $welcome-fragment-height;
 
-        // FIXME: Delete when you add an image to html structure
-        background-color: aquamarine;
+        background-image: url('/pages/main/benefits-for-you.jpg');
+        background-size: cover;
+        background-position: center;
         border-radius: 0 0 0 40%;
     }
 }

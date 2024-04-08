@@ -6,9 +6,9 @@ import { Product } from '@/app/product';
 
 export function BrowseProducts() {
     const products: ProductType[] = [
-        { name: 'Sport', imageUrl: '' },
-        { name: 'Life', imageUrl: '' },
-        { name: 'Health', imageUrl: '' }
+        { name: 'Sport', imageUrl: '/pages/main/sport-category.jpg' },
+        { name: 'Life', imageUrl: '/pages/main/life-category.jpg' },
+        { name: 'Health', imageUrl: '/pages/main/health-category.jpg' }
     ];
 
     const otherProducts: OtherProductType[] = [
