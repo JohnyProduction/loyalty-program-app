@@ -20,7 +20,7 @@ export function Product({ product }: ProductProps) {
                     <div className={styles['product__info-address']}>{product.address}</div>
                 </div>
                 <div>
-                    <button>od {product.priceFrom} {product.currency}</button>
+                    <span>od {product.priceFrom} {product.currency}</span>
                     <p className={styles['product__info-summary']}>Za całość zapłać punktami</p>
                 </div>
             </div>
