@@ -5,11 +5,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 16px;
+    //margin: 0 16px;
     background-color: #FFFFFF;
 
     > * {
         width: 33%;
+    }
+
+    :first-child {
+        margin-left: 16px;
+    }
+
+    :last-child {
+        margin-right: 16px;
     }
 
     .header__search-container {
@@ -22,6 +30,12 @@
                 height: 2rem;
                 border: 1px solid black;
                 border-radius: 16px;
+
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right: 16px;
+                color: gray;
             }
         }
 

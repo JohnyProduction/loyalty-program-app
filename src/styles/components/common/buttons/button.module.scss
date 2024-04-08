@@ -1,0 +1,31 @@
+.button {
+    background-color: #2639ED;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    border: 2px solid #2639ED;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 4px gray;
+    transition: 618ms;
+
+    >a {
+        padding: 1rem 2rem;
+    }
+
+    &[data-size="normal"] {
+        font-size: 1.5rem;
+    }
+
+    &[data-size="big"] {
+        font-size: 2rem;
+    }
+
+    &:hover {
+        box-shadow: 0 4px 8px gray;
+        transition: 382ms;
+
+        background-color: white;
+        color: #2639ED;
+    }
+}

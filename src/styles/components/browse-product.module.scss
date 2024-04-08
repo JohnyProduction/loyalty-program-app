@@ -8,7 +8,15 @@
         .browse-product__image {
             width: 30vw;
             height: 60vh;
-            background-color: antiquewhite;
+            overflow: hidden;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: auto;
+                max-height: 100%;
+            }
         }
     }
 
