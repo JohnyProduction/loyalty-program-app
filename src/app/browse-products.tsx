@@ -97,14 +97,12 @@ export function BrowseProducts() {
             <BreakLine />
             <div className={styles['other-products']}>
                 <OtherProducts products={filterProducts(otherProducts)} />
-                <div className={styles['other-products__pagination-container']}>
-                    <ProductPagination
-                        setPage={setPage}
-                        page={page}
-                        productCount={otherProducts.length}
-                        productsPerPage={productsPerPage}
-                    />
-                </div>
+                <ProductPagination
+                    setPage={setPage}
+                    page={page}
+                    productCount={otherProducts.length}
+                    productsPerPage={productsPerPage}
+                />
             </div>
             <></>
         </div>

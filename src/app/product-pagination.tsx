@@ -20,7 +20,7 @@ export function ProductPagination({ productCount, productsPerPage, page, setPage
     };
 
     return (
-        <>
+        <div className={styles['other-products__pagination-container']}>
             {pageTags.map((tag, idx) => {
                 return <input
                     className={styles['product-pagination__paginator']}
@@ -32,7 +32,7 @@ export function ProductPagination({ productCount, productsPerPage, page, setPage
                     checked={idx === page - 1}
                 />;
             })}
-        </>
+        </div>
     )
     ;
 }
