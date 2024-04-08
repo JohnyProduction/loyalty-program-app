@@ -4,9 +4,9 @@ import styles from '@/styles/app/page.module.scss';
 import { BrowseProduct } from '@/app/browse-product';
 import { OtherProductType, ProductType } from '@/types/main-page-types';
 import { BreakLine } from '@/components/common/break-line';
-import { Product } from '@/app/product';
 import { useState } from 'react';
 import { ProductPagination } from '@/app/product-pagination';
+import { OtherProducts } from '@/app/other-products';
 
 export function BrowseProducts() {
     const [page, setPage] = useState<number>(1);
@@ -75,6 +75,14 @@ export function BrowseProducts() {
             address: 'al. Pokoju 16',
             priceFrom: 49,
             currency: 'zł'
+        },
+        {
+            name: 'Masaż fizjoterapeutyczny 7',
+            imageUrl: '/pages/main/massage.jpg',
+            location: 'Kraków, w. Małopolskie',
+            address: 'al. Pokoju 16',
+            priceFrom: 49,
+            currency: 'zł'
         }
     ];
 
@@ -88,9 +96,7 @@ export function BrowseProducts() {
             </div>
             <BreakLine />
             <div className={styles['other-products']}>
-                <div className={styles['other-products__container']}>
-                    {filterProducts(otherProducts).map(product => <Product product={product} key={product.name} />)}
-                </div>
+                <OtherProducts products={filterProducts(otherProducts)} />
                 <div className={styles['other-products__pagination-container']}>
                     <ProductPagination
                         setPage={setPage}

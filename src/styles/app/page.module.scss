@@ -62,6 +62,12 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
             margin: 0 auto;
             display: flex;
 
+            >* {
+                flex-grow: 1;
+                height: 60vh;
+                width: 30%;
+            }
+
             >:first-child {
                 margin-right: 32px;
             }
