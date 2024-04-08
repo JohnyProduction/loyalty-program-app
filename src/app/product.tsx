@@ -9,7 +9,9 @@ export function Product({ product }: ProductProps) {
     return (
         <div className={styles['product']}>
             <div className={styles['product__image-container']}>
-                <div className={styles['product__image']}></div>
+                <div className={styles['product__image']}>
+                    <img src={product.imageUrl} alt={product.name} />
+                </div>
             </div>
             <div className={styles['product__info-container']}>
                 <div>

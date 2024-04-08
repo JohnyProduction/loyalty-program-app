@@ -14,23 +14,23 @@ export function BrowseProducts() {
     const otherProducts: OtherProductType[] = [
         {
             name: 'Masaż fizjoterapeutyczny',
-            imageUrl: '',
+            imageUrl: '/pages/main/massage.jpg',
             location: 'Kraków, w. Małopolskie',
             address: 'al. Pokoju 16',
             priceFrom: 49,
             currency: 'zł'
         },
         {
-            name: 'Masaż fizjoterapeutyczny',
-            imageUrl: '',
+            name: 'Masaż fizjoterapeutyczny 2',
+            imageUrl: '/pages/main/massage.jpg',
             location: 'Kraków, w. Małopolskie',
             address: 'al. Pokoju 16',
             priceFrom: 49,
             currency: 'zł'
         },
         {
-            name: 'Masaż fizjoterapeutyczny',
-            imageUrl: '',
+            name: 'Masaż fizjoterapeutyczny 3',
+            imageUrl: '/pages/main/massage.jpg',
             location: 'Kraków, w. Małopolskie',
             address: 'al. Pokoju 16',
             priceFrom: 49,
