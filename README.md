@@ -25,7 +25,7 @@ To add a new version, you need to:
 - create your feature/changes/fix/hotfix branch, eg. `feature/main-page`
 - change version included in `package.json` according to semantic versioning.
 - add a new record to `CHANGELOG.md`.
-- create your pull request and merge into `master` branch. 
+- create your pull request and merge into `master` branch using `squash and merge` method. 
 
 ## Learn More
 
