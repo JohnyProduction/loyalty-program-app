@@ -7,10 +7,8 @@ import styles from '@/styles/app/page.module.scss';
 export default function MainPage() {
     return (
         <main className={styles['main-page']}>
-            <div>
-                <TopBar />
-                <WelcomeFragment />
-            </div>
+            <TopBar />
+            <WelcomeFragment />
             <BrowseProducts />
             <Footer />
         </main>
