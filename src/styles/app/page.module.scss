@@ -29,6 +29,7 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
     .welcome-fragment__image {
         width: 60vw;
         height: $welcome-fragment-height;
+        margin-right: -$page-box-margin;
 
         background-image: url('/pages/main/benefits-for-you.jpg');
         background-size: cover;
@@ -59,7 +60,6 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
 
         .other-products__container {
             width: 95vw;
-            margin: 0 auto;
             display: flex;
 
             >* {
