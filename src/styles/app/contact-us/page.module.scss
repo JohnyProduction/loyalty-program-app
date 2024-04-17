@@ -1,0 +1,26 @@
+@import "@/styles/app/constant-globals";
+
+.contact-us-page {
+    background-color: #F1F1F1;
+
+    .contact-us-page__form-container {
+        display: flex;
+        justify-content: space-around;
+        $additional-margin: 2rem;
+
+        padding-left: calc($additional-margin);
+        padding-top: calc($page-box-margin + $additional-margin);
+
+        .contact-us-page__form-container__text-container {
+            width: 25%;
+
+            > p {
+                margin: 1rem 0 10rem 0;
+            }
+        }
+
+        .contact-us-page__form-container__form-container {
+            width: 33%;
+        }
+    }
+}
