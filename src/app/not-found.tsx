@@ -7,7 +7,7 @@ export default function NotFoundPage() {
             <img src="/pages/not-found.png" alt="Not found image" />
             <div className={styles['not-found-page__navigation']}>
                 <p className={styles['not-found-page__text']}>Opps! Page not found!</p>
-                <Button label={'Back to home'} link="/" size={'small'} />
+                <Button label={'Back to home'} link="/" size="small" />
             </div>
         </div>
     );
