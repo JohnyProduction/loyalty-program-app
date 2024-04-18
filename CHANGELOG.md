@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Product id page.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputCounter` and `RectangularButton` components.
+- [Marek Kurańda](https://github.com/mjkuranda): `bg-color` as new property for all buttons.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Other product container` as a separate component.

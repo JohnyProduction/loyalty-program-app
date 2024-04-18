@@ -6,11 +6,12 @@ export interface ButtonProps {
     link: string;
     size?: 'small' | 'normal' | 'big';
     btype?: 'normal' | 'oblong' | 'rectangular';
+    bgcolor?: 'blue' | 'orange';
 }
 
-export function Button({ label, link, size = 'normal', btype = 'normal' }: ButtonProps) {
+export function Button({ label, link, size = 'normal', btype = 'normal', bgcolor = 'blue' }: ButtonProps) {
     return (
-        <button className={styles['button']} data-size={size} data-btype={btype}>
+        <button className={styles['button']} data-size={size} data-btype={btype} data-bgcolor={bgcolor}>
             <Link href={link}>
                 {label}
             </Link>

@@ -41,7 +41,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     <p className={styles['product-cost']}>100 PKT</p>
                     <div className={styles['transaction-box']}>
                         <InputCounter />
-                        <RectangularButton label={'Buy now'} link={'/'} size={'small'} />
+                        <RectangularButton label={'Buy now'} link={'/'} size="small" bgcolor="orange" />
                     </div>
                 </div>
             </div>
