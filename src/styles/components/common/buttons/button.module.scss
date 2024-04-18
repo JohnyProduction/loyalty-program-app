@@ -39,4 +39,15 @@
             padding: .5rem 2rem;
         }
     }
+
+    // Rectangular type
+    &[data-btype="rectangular"] {
+        padding: .5rem 1rem;
+        border-radius: 0;
+        box-shadow: unset;
+
+        >a {
+            padding: .5rem 2rem;
+        }
+    }
 }

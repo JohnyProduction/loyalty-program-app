@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2024-04-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Product id page.
-- [Marek Kurańda](https://github.com/mjkuranda): `InputCounter` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputCounter` and `RectangularButton` components.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Other product container` as a separate component.

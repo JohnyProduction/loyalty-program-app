@@ -5,7 +5,7 @@ export interface ButtonProps {
     label: string;
     link: string;
     size?: 'small' | 'normal' | 'big';
-    btype?: 'normal' | 'oblong';
+    btype?: 'normal' | 'oblong' | 'rectangular';
 }
 
 export function Button({ label, link, size = 'normal', btype = 'normal' }: ButtonProps) {

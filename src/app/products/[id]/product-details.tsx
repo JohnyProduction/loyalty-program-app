@@ -1,5 +1,6 @@
 import styles from '@/styles/app/products/[id]/page.module.scss';
 import { InputCounter } from '@/components/common/inputs/input-counter';
+import { RectangularButton } from '@/components/common/buttons/rectangular-button';
 
 interface ProductDetailsProps {
     productId: string;
@@ -40,7 +41,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     <p className={styles['product-cost']}>100 PKT</p>
                     <div className={styles['transaction-box']}>
                         <InputCounter />
-                        <div>Buy now</div>
+                        <RectangularButton label={'Buy now'} link={'/'} size={'small'} />
                     </div>
                 </div>
             </div>
