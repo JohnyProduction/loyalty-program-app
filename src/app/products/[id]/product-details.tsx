@@ -35,8 +35,12 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     </div>
                 </div>
                 <hr />
-                <div>
-                    100 PKT
+                <div className={styles['details-transaction']}>
+                    <p className={styles['product-cost']}>100 PKT</p>
+                    <div className={styles['transaction-box']}>
+                        <div>SWITCH</div>
+                        <div>Buy now</div>
+                    </div>
                 </div>
             </div>
         </div>
