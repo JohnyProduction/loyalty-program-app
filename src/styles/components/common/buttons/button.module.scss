@@ -1,8 +1,9 @@
+$blue: #2639ED;
+$orange: #E73C17;
+
 .button {
-    background-color: #2639ED;
     border-radius: 50px;
     padding: 1rem 2rem;
-    border: 2px solid #2639ED;
     text-decoration: none;
     color: white;
     font-weight: 700;
@@ -13,6 +14,12 @@
         padding: 1rem 2rem;
     }
 
+    &:hover {
+        box-shadow: 0 4px 8px gray;
+        transition: 382ms;
+    }
+
+    // Size
     &[data-size="normal"] {
         font-size: 1.5rem;
     }
@@ -21,18 +28,42 @@
         font-size: 2rem;
     }
 
-    &:hover {
-        box-shadow: 0 4px 8px gray;
-        transition: 382ms;
+    // Color
+    &[data-bgcolor="blue"] {
+        background-color: $blue;
+        border: 2px solid $blue;
 
-        background-color: white;
-        color: #2639ED;
+        &:hover {
+            background-color: white;
+            color: $blue;
+        }
+    }
+
+    &[data-bgcolor="orange"] {
+        background-color: $orange;
+        border: 2px solid $orange;
+
+        &:hover {
+            background-color: white;
+            color: $orange;
+        }
     }
 
     // Oblong type
     &[data-btype="oblong"] {
         padding: .5rem 2rem;
         border-radius: 10px;
+        box-shadow: unset;
+
+        >a {
+            padding: .5rem 2rem;
+        }
+    }
+
+    // Rectangular type
+    &[data-btype="rectangular"] {
+        padding: .5rem 1rem;
+        border-radius: 0;
         box-shadow: unset;
 
         >a {

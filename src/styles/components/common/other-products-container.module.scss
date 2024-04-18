@@ -1,0 +1,18 @@
+.other-products__container {
+    width: 95vw;
+    display: flex;
+
+    >* {
+        flex-grow: 1;
+        height: 60vh;
+        width: 30%;
+    }
+
+    >:first-child {
+        margin-right: 32px;
+    }
+
+    >:last-child {
+        margin-left: 32px;
+    }
+}
