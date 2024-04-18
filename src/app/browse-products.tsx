@@ -6,7 +6,7 @@ import { OtherProductType, ProductType } from '@/types/main-page-types';
 import { BreakLine } from '@/components/common/break-line';
 import { useState } from 'react';
 import { ProductPagination } from '@/app/product-pagination';
-import { OtherProducts } from '@/app/other-products';
+import { OtherProducts } from '@/components/common/other-products';
 
 export function BrowseProducts() {
     const [page, setPage] = useState<number>(1);
