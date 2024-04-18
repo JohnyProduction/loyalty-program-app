@@ -1,4 +1,4 @@
-import styles from '@/styles/app/page.module.scss';
+import styles from '@/styles/app/products/[id]/page.module.scss';
 import { TopBar } from '@/components/common/top-bar';
 import { PageBox } from '@/app/page-box';
 import { Footer } from '@/components/common/footer';

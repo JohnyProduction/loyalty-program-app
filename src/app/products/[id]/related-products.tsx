@@ -6,7 +6,7 @@ interface RelatedProductsProps {
 
 export function RelatedProducts({ productId }: RelatedProductsProps) {
     return (
-        <div className={styles['product-container__related-product-container']}>
+        <div className={styles['related-product-container']}>
             {productId}
         </div>
     );
