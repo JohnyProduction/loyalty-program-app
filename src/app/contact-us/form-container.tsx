@@ -6,6 +6,7 @@ export function FormContainer() {
         <div className={styles['contact-us-page__form-container__form-container']}>
             Form container
             <InputString label={'Full name'} name={'full-name'} />
+            <InputString label={'Email'} name={'email'} />
         </div>
     );
 }
