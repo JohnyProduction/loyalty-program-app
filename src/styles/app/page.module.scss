@@ -58,25 +58,6 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
     .other-products {
         flex-direction: column;
 
-        .other-products__container {
-            width: 95vw;
-            display: flex;
-
-            >* {
-                flex-grow: 1;
-                height: 60vh;
-                width: 30%;
-            }
-
-            >:first-child {
-                margin-right: 32px;
-            }
-
-            >:last-child {
-                margin-left: 32px;
-            }
-        }
-
         .other-products__pagination-container {
             margin: 1rem 0;
 

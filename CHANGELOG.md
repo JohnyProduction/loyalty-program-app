@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2024-04-18
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Product id page.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputCounter` and `RectangularButton` components.
+- [Marek Kurańda](https://github.com/mjkuranda): `bg-color` as new property for all buttons.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `Other product container` as a separate component.
+
 ## [0.5.0] - 2024-04-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Contact us form page.

@@ -1,0 +1,22 @@
+.input-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid #F1F1F1;
+        background-color: transparent;
+    }
+
+    > :nth-child(2) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    > button {
+        cursor: pointer;
+    }
+}
