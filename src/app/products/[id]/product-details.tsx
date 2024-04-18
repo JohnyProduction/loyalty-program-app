@@ -15,7 +15,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     <div className={styles['details-information__container']}>
                         <div>
                             <p className={styles['details-information__brand']}>Brand: Empik</p>
-                            <p className={styles['details-information__product-id']}>ID produktu: 1111</p>
+                            <p className={styles['details-information__product-id']}>ID produktu: {productId}</p>
                             <p className={styles['details-information__product-name']}>Karta podarunkowa Empik</p>
                         </div>
                     </div>
