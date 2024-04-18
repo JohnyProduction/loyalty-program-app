@@ -72,7 +72,7 @@
                 .transaction-box {
                     display: flex;
 
-                    :nth-child(2) {
+                    > :nth-child(2) {
                         margin-left: 1rem;
                     }
                 }
