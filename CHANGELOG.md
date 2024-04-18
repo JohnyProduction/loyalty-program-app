@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Product id page.
 
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `Other product container` as a separate component.
+
 ## [0.5.0] - 2024-04-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Contact us form page.
