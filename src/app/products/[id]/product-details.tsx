@@ -19,9 +19,18 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     </div>
                     <div className={styles['details-information__container']}>
                         <div>
-                            <div>sklep internetowy</div>
-                            <div>ważna do 25.03.2025</div>
-                            <div>www.empik.pl</div>
+                            <div className={styles['details-information__information-box']}>
+                                <img src="/pages/products/location-pin.png" alt="Location pin" />
+                                <p>sklep internetowy</p>
+                            </div>
+                            <div className={styles['details-information__information-box']}>
+                                <img src="/pages/products/calendar.png" alt="Calendar" />
+                                <p>ważna do 25.03.2025</p>
+                            </div>
+                            <div className={styles['details-information__information-box']}>
+                                <img src="/pages/products/web.png" alt="Web" />
+                                <p>www.empik.pl</p>
+                            </div>
                         </div>
                     </div>
                 </div>

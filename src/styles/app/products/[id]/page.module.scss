@@ -22,6 +22,7 @@
                 > hr {
                     width: 100%;
                     border-color: #F1F1F133;
+                    margin: 1rem 0;
                 }
 
                 .details-information {
@@ -35,6 +36,20 @@
 
                         :nth-child(n+2) {
                             margin-top: 8px;
+                        }
+
+                        .details-information__information-box {
+                            display: flex;
+                            align-items: center;
+
+                            p {
+                                margin: 0;
+                                font-weight: 500;
+                            }
+
+                            img {
+                                width: 1.5rem;
+                            }
                         }
                     }
 
