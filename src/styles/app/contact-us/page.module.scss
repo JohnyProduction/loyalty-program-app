@@ -2,6 +2,7 @@
 
 .contact-us-page {
     background-color: #F1F1F1;
+    min-height: 100vh;
 
     .contact-us-page__form-container {
         display: flex;
@@ -21,6 +22,16 @@
 
         .contact-us-page__form-container__form-container {
             width: 33%;
+
+            > :nth-child(n+1) {
+                margin-top: 1.5rem;
+            }
+
+            .contact-us-page__form-container__navigation-box {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
         }
     }
 }
