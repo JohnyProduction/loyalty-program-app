@@ -8,7 +8,7 @@ export async function apiErrorFactory(res: Response): Promise<Error> {
     return new ApiError(status, message);
 }
 
-// TODO: finally return messages according to text
+// this might need an update in accordance with bugs encountered during the development
 function getApiErrorMessage(status: number, url: string, text: string): string {
     const [, apiEndpoint] = url.split('api/');
 
