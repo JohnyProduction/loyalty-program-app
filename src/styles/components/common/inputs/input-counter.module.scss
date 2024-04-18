@@ -1,5 +1,7 @@
 .input-counter {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     > * {
         width: 2rem;
@@ -13,7 +15,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     > button {
         cursor: pointer;
     }
