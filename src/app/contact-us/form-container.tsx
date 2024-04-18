@@ -1,7 +1,7 @@
 import styles from '@/styles/app/contact-us/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputTextarea } from '@/components/common/inputs/input-textarea';
-import { Button } from '@/components/common/buttons/button';
+import { OblongButton } from '@/components/common/buttons/oblong-button';
 
 export function FormContainer() {
     return (
@@ -10,7 +10,7 @@ export function FormContainer() {
             <InputString label={'Full name'} name={'full-name'} />
             <InputString label={'Email'} name={'email'} />
             <InputTextarea label={'Message'} name={'message'} />
-            <Button label={'Submit'} link={'/'} size="small" />
+            <OblongButton label={'Submit'} link={'/'} size="small" />
         </div>
     );
 }

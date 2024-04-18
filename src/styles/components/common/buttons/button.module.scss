@@ -28,4 +28,11 @@
         background-color: white;
         color: #2639ED;
     }
+
+    // Oblong type
+    &[data-btype="oblong"] {
+        padding: .5rem 2rem;
+        border-radius: 10px;
+        box-shadow: unset;
+    }
 }
