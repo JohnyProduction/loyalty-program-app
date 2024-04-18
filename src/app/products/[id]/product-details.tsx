@@ -1,4 +1,5 @@
 import styles from '@/styles/app/products/[id]/page.module.scss';
+import { InputCounter } from '@/components/common/inputs/input-counter';
 
 interface ProductDetailsProps {
     productId: string;
@@ -38,7 +39,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 <div className={styles['details-transaction']}>
                     <p className={styles['product-cost']}>100 PKT</p>
                     <div className={styles['transaction-box']}>
-                        <div>SWITCH</div>
+                        <InputCounter />
                         <div>Buy now</div>
                     </div>
                 </div>
