@@ -4,17 +4,21 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
+```
+or
+```bash
 yarn dev
-# or
+```
+or
+```bash
 pnpm dev
-# or
+```
+or
+```bash
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
@@ -23,7 +27,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 To add a new version, you need to:
 
 - create your feature/changes/fix/hotfix branch, eg. `feature/main-page`
-- change version included in `package.json` according to semantic versioning.
+- change version included in `package.json` according to [semantic versioning](https://semver.org/).
 - add a new record to `CHANGELOG.md`.
 - create your pull request and merge into `master` branch using `squash and merge` method. 
 
