@@ -1,6 +1,6 @@
 import { OtherProductType } from '@/types/main-page-types';
 import { Product } from '@/app/product';
-import styles from '@/styles/app/page.module.scss';
+import styles from '@/styles/components/common/other-products-container.module.scss';
 
 interface OtherProductsProps {
     products: OtherProductType[];

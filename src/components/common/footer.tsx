@@ -49,7 +49,7 @@ export function Footer() {
             </div>
             <div className={styles['footer-fragment__container']}>
                 {footerFragmentData.map(fragment => {
-                    return <FooterFragment footerFragmentData={fragment} />;
+                    return <FooterFragment footerFragmentData={fragment} key={Math.random()} />;
                 })}
             </div>
         </footer>

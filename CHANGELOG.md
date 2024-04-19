@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2024-04-18
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Product id page.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputCounter` and `RectangularButton` components.
+- [Marek Kurańda](https://github.com/mjkuranda): `bg-color` as new property for all buttons.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `Other product container` as a separate component.
+
+## [0.5.0] - 2024-04-18
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Contact us form page.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputString`, `InputTextarea` and `OblongButton` components.
+
+## [0.4.0] - 2024-04-17
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Not found page.
+
+## [0.3.0] - 2024-04-17
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `PageBox` component to insert horizontal margin for page.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Application name to `Loyalty Application` and description.
+
 ## [0.2.0] - 2024-04-08
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `Button` common components with sizes: `small`, `normal` and `big`.
