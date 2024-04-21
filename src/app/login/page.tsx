@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { TopBar } from '@/components/common/top-bar';
 import styles from '@/styles/app/login/page.module.scss';
-
+import { Login } from '../api/api';
 export default function LoginPage() {
     const [loginValue, setLoginValue] = useState<string>('');
     const [passValue, setPassValue] = useState<string>('');
@@ -16,9 +16,8 @@ export default function LoginPage() {
         } else {
             userData.username = loginValue;
             userData.password = passValue;
-            fetchUserLogIn();
+            Login.loginEnd(userData);
             event.preventDefault();
-            //document.write('Submitted value:', loginValue, passValue);
         }
 
     };
@@ -51,48 +50,8 @@ export default function LoginPage() {
                             <button type="submit">Zaloguj</button>
                         </form>
                     </div>
-                    {//--><button onClick={() => checkLoggedInStatus()}>Test</button>
-                    }
                 </div>
             </main>
         </>
     );
-    async function fetchUserLogIn() {
-        try {
-            const response = await fetch('https://lojback.ne-quid-nimis.pl/api/Login/Login', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-                credentials: 'include',
-                mode: 'cors'
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to log in');
-            }
-        } catch (error) {
-            throw new Error('Failed to log in');
-            console.log('Error logging in:', error);
-        }
-    }/*
-    function checkLoggedInStatus() {
-        try {
-            const response =  fetch('https://lojback.ne-quid-nimis.pl/api/Login/IsLoggedIn', {
-                method: 'GET',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-                mode: 'cors'
-            });
-
-            console.log('Logged in status:', response);
-        } catch (error) {
-            console.error('Error checking logged in status:', error);
-        }
-    }*/
 }
