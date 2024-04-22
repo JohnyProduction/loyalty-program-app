@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { TopBar } from '@/components/common/top-bar';
 import styles from '@/styles/app/add-user/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
+import { InputSelect } from '@/components/common/inputs/input-select';
 import { User } from '../api/api';
 import { AccountTypes } from '@/types/login-types';
 export default function AddUserPage() {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
+    const [role, setRole] = useState('');
     const newUser={
         username: '',
         password: '',
@@ -23,6 +25,9 @@ export default function AddUserPage() {
     };
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+    };
+    const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRole(event.target.value);
     };
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (username.trim() !== '' || password.trim() !== '' || email.trim() !== '') {
@@ -41,13 +46,13 @@ export default function AddUserPage() {
             <main className={styles['main-page']}>
                 <div className={styles['addUser-page__container']}>
                     <form onSubmit={handleSubmit}>
-                        <div>
-                            <h3>Panel dodawania menadżerów</h3>
+                        <div className={styles['addUser-page__custom-inputs']}>
+                            <h3>Panel dodawania użytkowników</h3>
                             <InputString label='Nazwa użytkownika' name='username' value={username} onChange={handleUsernameChange} />
                             <InputString label='Hasło użytkownika' name='password' value={password} onChange={handlePasswordChange} />
                             <InputString label='Email użytkownika' name='email' value={email} onChange={handleEmailChange} />
+                            <button type="submit">Dodaj</button>
                         </div>
-                        <button type="submit">Dodaj</button>
                     </form>
                 </div>
             </main>

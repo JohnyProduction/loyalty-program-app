@@ -13,23 +13,31 @@
     width:  auto; 
     height:  auto; 
     margin:  auto auto; 
-    background:  #ffffff; 
+    h3{
+      margin-bottom: 10px;
+    }
   }
   .addUser-page__custom-inputs{
-    display: flex;
-	  align-items: center;
-	  position: relative;
-	  max-width: 100%;
-    input{
+    button{
+      margin-top: 10px;
+      background-color: #196BCA;
+      color: #fff;
+      font-family: Arial;
       font-size: 18px;
-	    padding: 5px 10px;
-	    width: 100%;
-	    outline: none;
-	    background: #FFFFFF;
-	    color: #000000;
-	    border: 1px solid #ABB1EB;
-	    border-radius: 3px;
-	    transition: .3s ease;
-    }
+      font-weight: 800;
+      font-style: normal;
+      text-decoration: none;
+      padding: 4px;
+      border: 0px solid #000;
+      border-radius: 5px;
+      display: inline-block;
+     }
+     button:hover{
+      cursor: pointer;
+      background-color: #1866c0;
+     }
+     button:active{
+      transform: scale(0.95);
+     }
 
   }
