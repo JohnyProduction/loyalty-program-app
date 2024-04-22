@@ -1,6 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 import * as LoginTypes from '../../types/login-types';
 import * as UserTypes from '../../types/user-types';
+import * as OrganizationTypes from '../../types/organization-types';
 import { apiErrorFactory } from './api-error-factory';
 
 const API_BASE_URL = 'https://lojback.ne-quid-nimis.pl/api';
@@ -201,6 +202,67 @@ export const User = {
             method: 'PUT',
             credentials: 'include',
             body: JSON.stringify(password),
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    }
+};
+export const Organization = {
+    /** Retrieves organizations with types [Access: Administrator] */
+    async getOrganizationsEnd(): Promise<OrganizationTypes.OrganizationModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Organization/GetOrganizations`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    /** Adds new organization to the system [Access: Administrator]
+     * 
+     * organization - Object of OrganizationModel schema with organization data
+     */
+    async addOrganizationEnd(organization: OrganizationTypes.OrganizationModel): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Organization/AddOrganization`, {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(organization),
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    },
+    /** Deletes a given organization from the system [Access: Administrator]
+     * 
+     * organization - Targeted organization name
+     */
+    async deleteOrganizationEnd(organization: string): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Organization/DeleteOrganization`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            body: JSON.stringify(organization),
             headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
         })
             .then(async (response) => {
