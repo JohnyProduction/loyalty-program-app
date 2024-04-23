@@ -1,34 +1,29 @@
 'use client';
-import React, { useState } from 'react';
 import { TopBar } from '@/components/common/top-bar';
 import styles from '@/styles/app/add-user/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect } from '@/components/common/inputs/input-select';
 import { User } from '../api/api';
 import { AccountTypes } from '@/types/login-types';
+import { useAddUser } from '@/hooks/use-add-user';
 export default function AddUserPage() {
-    const [ username, setUsername ] = useState('');
-    const [ password, setPassword ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [role, setRole] = useState('');
+    const { username, password, email, handleUsernameChange, handlePasswordChange, handleEmailChange } = useAddUser();
     const newUser={
         username: '',
         password: '',
         accountType: AccountTypes.ADMINISTRATOR,
         email: ''
     };
-    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(event.target.value);
-    };
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-    };
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
-    };
-    const handleRoleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRole(event.target.value);
-    };
+    /*
+    interface OptionType {
+        label: string;
+        value: string;
+      }
+    const accountTypeOptions: OptionType[] = Object.keys(AccountTypes).map(key => ({
+        label: key,
+        value: AccountTypes[key as keyof typeof AccountTypes]
+    }));
+*/
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         if (username.trim() !== '' || password.trim() !== '' || email.trim() !== '') {
             newUser.username = username;
@@ -51,6 +46,7 @@ export default function AddUserPage() {
                             <InputString label='Nazwa użytkownika' name='username' value={username} onChange={handleUsernameChange} />
                             <InputString label='Hasło użytkownika' name='password' value={password} onChange={handlePasswordChange} />
                             <InputString label='Email użytkownika' name='email' value={email} onChange={handleEmailChange} />
+                            {/*<InputSelect label='Rola użytkownika' name='role' value={role} options={accountTypeOptions} onChange={handleRoleChange} /> */}
                             <button type="submit">Dodaj</button>
                         </div>
                     </form>
