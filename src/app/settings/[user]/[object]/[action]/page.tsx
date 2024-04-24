@@ -3,6 +3,7 @@ import { TopBar } from '@/components/common/top-bar';
 import { Footer } from '@/components/common/footer';
 import { LinkContainer } from '@/app/settings/[user]/[object]/[action]/link-container';
 import { CreatorContainer } from '@/app/settings/[user]/[object]/[action]/creator-container';
+import { PageBox } from '@/app/page-box';
 
 interface SettingsPageProps {
     params: Record<string, any>;
@@ -14,10 +15,12 @@ export default function SettingsPage({ params }: SettingsPageProps) {
     return (
         <main className={styles['settings-page']}>
             <TopBar />
-            <div className={styles['content-box']}>
-                <LinkContainer />
-                <CreatorContainer />
-            </div>
+            <PageBox>
+                <div className={styles['content-box']}>
+                    <LinkContainer user={user} object={object} action={action} />
+                    <CreatorContainer user={user} object={object} action={action} />
+                </div>
+            </PageBox>
             <Footer />
         </main>
     );
