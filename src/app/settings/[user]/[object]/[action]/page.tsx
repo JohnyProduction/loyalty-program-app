@@ -6,7 +6,6 @@ import { CreatorContainer } from '@/app/settings/[user]/[object]/[action]/creato
 import { PageBox } from '@/app/page-box';
 import { redirect } from 'next/navigation';
 import { areValidParams } from '@/utils/setting-utils';
-import { toastError } from '@/utils/toast-utils';
 
 interface SettingsPageProps {
     params: Record<string, any>;
