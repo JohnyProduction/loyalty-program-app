@@ -1,3 +1,5 @@
+import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
+
 interface SettingsPageProps {
     params: Record<string, any>;
 }
@@ -8,6 +10,8 @@ export default function SettingsPage({ params }: SettingsPageProps) {
     console.log(user, object, action);
 
     return (
-        <>Settings</>
+        <main className={styles['settings-page']}>
+            <>Settings</>
+        </main>
     );
 }
