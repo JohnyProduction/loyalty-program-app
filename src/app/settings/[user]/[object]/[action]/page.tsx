@@ -4,6 +4,9 @@ import { Footer } from '@/components/common/footer';
 import { LinkContainer } from '@/app/settings/[user]/[object]/[action]/link-container';
 import { CreatorContainer } from '@/app/settings/[user]/[object]/[action]/creator-container';
 import { PageBox } from '@/app/page-box';
+import { redirect } from 'next/navigation';
+import { areValidParams } from '@/utils/setting-utils';
+import { toastError } from '@/utils/toast-utils';
 
 interface SettingsPageProps {
     params: Record<string, any>;
@@ -11,6 +14,10 @@ interface SettingsPageProps {
 
 export default function SettingsPage({ params }: SettingsPageProps) {
     const { user, object, action } = params;
+
+    if (!areValidParams(user, object, action)) {
+        redirect('/');
+    }
 
     return (
         <main className={styles['settings-page']}>
