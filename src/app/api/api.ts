@@ -86,6 +86,23 @@ export const Login = {
     }
 };
 export const User = {
+    /** Retrieves information about the current user [Access: Logged in users] */
+    async getCurrentUserEnd(): Promise<UserTypes.UserDbModelOrg> {
+        const res = await fetch(`${API_BASE_URL}/User/GetCurrentUser`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
     /** Registers new user (with manager privileges) [Access: Manager]
      * 
      * user - Object with user data
