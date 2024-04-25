@@ -1,12 +1,18 @@
+'use client';
+
 import styles from '@/styles/app/products/[id]/page.module.scss';
 import { InputCounter } from '@/components/common/inputs/input-counter';
 import { RectangularButton } from '@/components/common/buttons/rectangular-button';
+import Link from 'next/link';
+import { useCounter } from '@/hooks/use-counter';
 
 interface ProductDetailsProps {
     productId: string;
 }
 
 export function ProductDetails({ productId }: ProductDetailsProps) {
+    const counterProps = useCounter(0);
+
     return (
         <div className={styles['product-details']}>
             <div className={styles['image-container']}></div>
@@ -31,7 +37,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                             </div>
                             <div className={styles['details-information__information-box']}>
                                 <img src="/pages/products/web.png" alt="Web" />
-                                <p>www.empik.pl</p>
+                                <p><Link href={'https://www.empik.pl'}>www.empik.pl</Link></p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +46,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 <div className={styles['details-transaction']}>
                     <p className={styles['product-cost']}>100 PKT</p>
                     <div className={styles['transaction-box']}>
-                        <InputCounter />
+                        <InputCounter {...counterProps} />
                         <RectangularButton label={'Buy now'} link={'/'} size="small" bgcolor="orange" />
                     </div>
                 </div>

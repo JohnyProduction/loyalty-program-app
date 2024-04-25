@@ -1,11 +1,11 @@
 'use client';
 
-import { useCounter } from '@/hooks/use-counter';
 import styles from '@/styles/components/common/inputs/input-counter.module.scss';
+import { CounterProps } from '@/types/product-types';
 
-export function InputCounter() {
-    const { count, increase, decrease } = useCounter(0);
+interface InputCounterProps extends CounterProps {}
 
+export function InputCounter({ count, decrease, increase }: InputCounterProps) {
     return (
         <div className={styles['input-counter']}>
             <button onClick={decrease}>-</button>
