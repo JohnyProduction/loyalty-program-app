@@ -295,7 +295,8 @@ export const Organization = {
     }
 };
 export const Categories = {
-    async getCategoriesEnd(): Promise<CategoriesTypes.CategoryModel> {
+    /** Retrieves list of every category in the system [Access: Logged in users] */
+    async getCategoriesEnd(): Promise<CategoriesTypes.CategoryModel[]> {
         const res = await fetch(`${API_BASE_URL}/Categories/GetCategories`, {
             mode: 'cors',
             method: 'GET',
@@ -311,6 +312,10 @@ export const Categories = {
 
         return res.json();
     },
+    /** Adds new offer category to the system [Access: Administrator]
+     * 
+     * category - New category
+     */
     async addCategoryEnd(category: string): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Categories/AddCategory`, {
             mode: 'cors',
@@ -328,6 +333,10 @@ export const Categories = {
 
         return res.text();
     },
+    /** Deletes a given category from the system [Access: Administrator]
+     * 
+     * category - Targeted category
+     */
     async deleteCategoryEnd(category: string): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Categories/DeleteCategory`, {
             mode: 'cors',
@@ -345,6 +354,10 @@ export const Categories = {
 
         return res.text();
     },
+    /** Retrieves category image with the given name [Access: Logged in users]
+     * 
+     * category - Targeted category
+     */
     async getCategoryImageEnd(category: string): Promise<AttachmentTypes.FileModel> {
         const res = await fetch(`${API_BASE_URL}/Categories/GetCategoryImage/${category}`, {
             mode: 'cors',
@@ -366,6 +379,12 @@ export const Categories = {
             type: file.type
         };
     },
+    /** Saves image for a given category [Access: Administrator]
+     * 
+     * category - Targeted category
+     * 
+     * image - Form file with the image
+     */
     async setCategoryImageEnd(category: string, image: FormData): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Categories/SetCategoryImage/${category}`, {
             mode: 'cors',
@@ -383,6 +402,10 @@ export const Categories = {
     
         return res.text();
     },
+    /** Deletes image from a given category [Access: Administrator]
+     * 
+     * category - Targeted category
+     */
     async deleteCategoryImageEnd(category: string): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Categories/DeleteCategoryImage/${category}`, {
             mode: 'cors',
