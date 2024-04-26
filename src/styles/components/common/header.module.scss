@@ -10,15 +10,6 @@
     > * {
         width: 33%;
     }
-
-    :first-child {
-        margin-left: 16px;
-    }
-
-    :last-child {
-        margin-right: 16px;
-    }
-
     .header__search-container {
         .header__search {
             display: flex;
@@ -52,15 +43,55 @@
     }
 
     .header__user-container {
+        margin-right: 30px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
 
         .header__user-profile {
             margin-left: 0.5rem;
-            background-color: #D9D9D9;
+            background-color: #f6f0f0c7;
             padding: 1rem;
             border-radius: 8px;
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                a {
+                    display: block;
+                    padding: 20px 40px;
+                    text-decoration: none;
+                    color: #333;
+                    transition: background-color 0.3s;
+                }
+                a:hover {
+                    background-color: #f0f0f0;
+                }
+                ul {
+                   
+                    display: none;
+                    position: absolute;
+                    background-color: #fff;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border: 1px solid #ccc;
+                    li {
+                        
+                        a {
+                            display: block;
+                            padding: 10px 20px;
+                            text-decoration: none;
+                            color: #333;
+                           transition: background-color 0.3s;
+                        }
+                        a:hover {
+                            background-color: #f0f0f0;
+                        }
+                    }
+                }
+                li:hover ul {
+                    display: block;
+                }
+            }
         }
     }
 }

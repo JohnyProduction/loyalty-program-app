@@ -4,12 +4,21 @@ import { useEffect, useState } from 'react';
 import { Login, User } from '@/app/api/api';
 export function TopBar() {
 
-    let userData;
-    let isLogged=true;
+    const [username, setUsername] = useState('');
+    const [credits, setCredits] = useState('');
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        //isLogged = Login.isLoggedInEnd();
-        userData = User.getCurrentUserEnd();
+        User.getCurrentUserEnd().then(user => {
+            setIsLogged(true);
+            setUsername(user.login);
+            setCredits(user.credits.toString());
+        })
+            .catch(error => {
+                if (error instanceof Response && error.status === 401) {
+                    setIsLogged(false);
+                }
+            });
     }, []);
 
     return (
@@ -29,22 +38,21 @@ export function TopBar() {
             </div>
             <div className={styles['header__user-container']}>
                 {isLogged ?
-                    <><p>{userData.credits} PKT</p>
+                    <><p>{credits} PKT</p>
                         <div className={styles['header__user-profile']}>
                             <ul>
-                                <li> {/*userData.login*/}</li>
                                 <li>
+                                    <a href="#">{username}</a>
                                     <ul>
-                                        <li>Settings</li>
-                                        <span></span>
-                                        <li>Logout</li>
+                                        <li><a href='#'>Settings</a></li>
+                                        <li onClick={() => Login.logoutEnd().then(() => {window.location.reload();})}><a href='#'>Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                     </>
                     :
-                    <> <div className={styles['header__user-profile']}>Sign in</div></>
+                    <> <div className={styles['header__user-profile']}><a href='/login'>Sign in</a></div></>
                 }
             </div>
         </header>

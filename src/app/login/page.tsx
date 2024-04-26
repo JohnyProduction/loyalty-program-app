@@ -16,10 +16,14 @@ export default function LoginPage() {
         } else {
             userData.username = loginValue;
             userData.password = passValue;
-            Login.loginEnd(userData);
+            Login.loginEnd(userData).then(() => {
+                window.location.href = "http://localhost:3000/";
+                window.location.reload();
+            }).catch(error => {
+                console.error("Error during login:", error);
+            });
             event.preventDefault();
         }
-
     };
     const handleLoginChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLoginValue(event.target.value);
