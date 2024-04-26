@@ -2,6 +2,8 @@
 import * as LoginTypes from '../../types/login-types';
 import * as UserTypes from '../../types/user-types';
 import * as OrganizationTypes from '../../types/organization-types';
+import * as CategoriesTypes from '../../types/categories-types';
+import * as AttachmentTypes from '../../types/attachment-types';
 import { apiErrorFactory } from './api-error-factory';
 
 const API_BASE_URL = 'https://lojback.ne-quid-nimis.pl/api';
@@ -281,6 +283,112 @@ export const Organization = {
             credentials: 'include',
             body: JSON.stringify(organization),
             headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    }
+};
+export const Categories = {
+    async getCategoriesEnd(): Promise<CategoriesTypes.CategoryModel> {
+        const res = await fetch(`${API_BASE_URL}/Categories/GetCategories`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    async addCategoryEnd(category: string): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Categories/AddCategory`, {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(category),
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    },
+    async deleteCategoryEnd(category: string): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Categories/DeleteCategory`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            body: JSON.stringify(category),
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    },
+    async getCategoryImageEnd(category: string): Promise<AttachmentTypes.FileModel> {
+        const res = await fetch(`${API_BASE_URL}/Categories/GetCategoryImage/${category}`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        const file = await res.blob();
+
+        return {
+            blob: file,
+            type: file.type
+        };
+    },
+    async setCategoryImageEnd(category: string, image: FormData): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Categories/SetCategoryImage/${category}`, {
+            mode: 'cors',
+            method: 'PUT',
+            credentials: 'include',
+            headers: { 'accept': '*/*' },
+            body: image
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+    
+                return response;
+            });
+    
+        return res.text();
+    },
+    async deleteCategoryImageEnd(category: string): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Categories/DeleteCategoryImage/${category}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'accept': '*/*', }
         })
             .then(async (response) => {
                 if (!response.ok)
