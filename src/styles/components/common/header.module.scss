@@ -47,8 +47,15 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        p{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 0;
+        }
 
         .header__user-profile {
+            text-decoration: none;
             margin-left: 0.5rem;
             background-color: #f6f0f0c7;
             padding: 1rem;
