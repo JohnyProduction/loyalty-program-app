@@ -44,7 +44,7 @@ export function TopBar() {
                                 <li>
                                     <a href="#">{username}</a>
                                     <ul>
-                                        <li><a href='#'>Settings</a></li>
+                                        <li><a href='/settings/admin/users/add'>Settings</a></li>
                                         <li onClick={() => Login.logoutEnd().then(() => {window.location.reload();})}><a href='#'>Logout</a></li>
                                     </ul>
                                 </li>

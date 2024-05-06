@@ -1,0 +1,27 @@
+.settings-page {
+    .content-box {
+        display: flex;
+
+        .link-container {
+            width: 30%;
+            min-height: 100vh;
+        }
+
+        .creator-container {
+            width: 70%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+
+            .creator-form {
+                width: 50%;
+
+                .navigation-box {
+                    margin-top: 1rem;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}

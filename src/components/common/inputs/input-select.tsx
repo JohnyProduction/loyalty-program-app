@@ -2,7 +2,7 @@
 
 import styles from '@/styles/components/common/inputs/input-select.module.scss';
 
-interface OptionType {
+export interface OptionType {
     id: number;
     value: string;
     label: string;
