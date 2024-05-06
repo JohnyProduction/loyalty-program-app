@@ -4,6 +4,7 @@ import { AddCreditsCreator } from '@/app/settings/[user]/[object]/[action]/add-c
 import { AddOrganizationsCreator } from '@/app/settings/[user]/[object]/[action]/add-organizations-creator';
 import { AddManagerUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-manager-users-creator';
 import { ChangePasswordCreator } from '@/app/settings/[user]/[object]/[action]/change-password-creator';
+import { ChangeEmailCreator } from '@/app/settings/[user]/[object]/[action]/change-email-creator';
 
 interface CreatorContainerProps {
     user: string;
@@ -39,6 +40,10 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
 
         if (user === 'worker' && object === 'password' && action === 'change') {
             return <ChangePasswordCreator />;
+        }
+
+        if (user === 'worker' && object === 'email' && action === 'change') {
+            return <ChangeEmailCreator />;
         }
 
         return <>Unknown creator.</>;
