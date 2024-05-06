@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2024-04-27
+### Added
+- [Jan Pękala](https://github.com/JohnyProduction): connect the login page to the home page.
+- [Jan Pękala](https://github.com/JohnyProduction): add submenu for logged user
+
+## [0.13.0] - 2024-04-26
+### Added
+- [Kamil Wojciechowski](https://github.com/kmlwoj): Endpoints for managing categories.
+
+## [0.12.0] - 2024-04-24
+### Added
+- [Kamil Wojciechowski](https://github.com/kmlwoj): Endpoint for getting current user data.
+
 ## [0.11.1] - 2024-04-24
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Small fixes.

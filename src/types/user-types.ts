@@ -13,3 +13,6 @@ export type UserDbModel = {
     credits: number,
     latestUpdate: Date //might need a change to string
 };
+export type UserDbModelOrg = UserDbModel & {
+    organization: string
+};

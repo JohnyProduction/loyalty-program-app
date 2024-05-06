@@ -1,6 +1,6 @@
 {
   "name": "loyality-app",
-  "version": "0.11.1",
+  "version": "0.13.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +13,7 @@
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-router-dom": "^6.23.0",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {

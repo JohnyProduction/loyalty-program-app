@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { TopBar } from '@/components/common/top-bar';
 import styles from '@/styles/app/login/page.module.scss';
+import { useRouter } from 'next/navigation';
 import { Login } from '../api/api';
 export default function LoginPage() {
     const [loginValue, setLoginValue] = useState<string>('');
     const [passValue, setPassValue] = useState<string>('');
+    const router = useRouter();
     const userData = {
         username: '',
         password: ''
@@ -16,10 +18,11 @@ export default function LoginPage() {
         } else {
             userData.username = loginValue;
             userData.password = passValue;
-            Login.loginEnd(userData);
+            Login.loginEnd(userData).then(() => {
+                router.push('/');
+            });
             event.preventDefault();
         }
-
     };
     const handleLoginChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLoginValue(event.target.value);
@@ -40,11 +43,11 @@ export default function LoginPage() {
                             <h4>System <span>lojalnościowy</span></h4>
                             <p>Witaj ponownie! Zaloguj się aby poznać nowości w naszej ofercie:</p>
                             <div className={styles['login-page__floating-labels']}>
-                                <input placeholder="Login" type="text" name="login" value={loginValue} onChange={handleLoginChange} />
+                                <input placeholder="Login" type="text" name="login" value={loginValue} onChange={handleLoginChange} required />
                                 <label htmlFor="login">Login:</label>
                             </div>
                             <div className={styles['login-page__floating-labels']}>
-                                <input placeholder="Password" type="password" name="password" value={passValue} onChange={handlePassChange} />
+                                <input placeholder="Password" type="password" name="password" value={passValue} onChange={handlePassChange} required />
                                 <label htmlFor="password">Hasło:</label>
                             </div>
                             <button type="submit">Zaloguj</button>
