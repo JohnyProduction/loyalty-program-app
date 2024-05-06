@@ -7,7 +7,7 @@ export function areValidParams(user: string, object: string, action: string): bo
     }
 
     if (user === 'manager') {
-        const isValidObject = ['workers', 'managers', 'credits', 'password'].includes(object);
+        const isValidObject = ['users', 'credits', 'password'].includes(object);
         const isValidAction = ['add', 'change'].includes(action);
 
         return isValidObject && isValidAction;

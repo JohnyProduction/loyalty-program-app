@@ -21,8 +21,7 @@ export function LinkContainer({ user, object, action }: LinkContainerProps) {
         {
             user: 'manager',
             links: [
-                { label: 'add workers', path: '/workers/add' },
-                { label: 'add managers', path: '/managers/add' },
+                { label: 'add users', path: '/users/add' },
                 { label: 'add credits', path: '/credits/add' },
                 { label: 'change password', path: '/password/change' },
             ]

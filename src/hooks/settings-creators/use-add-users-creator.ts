@@ -8,7 +8,7 @@ export function useAddUsersCreator() {
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
-    const [role, setRole] = useState<AccountTypes>(AccountTypes.ADMINISTRATOR);
+    const [role, setRole] = useState<AccountTypes>(AccountTypes.WORKER);
 
     const onChangeUsername = (e: any) => {
         setUsername(e.target.value);

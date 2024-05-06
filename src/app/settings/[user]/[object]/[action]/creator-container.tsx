@@ -2,6 +2,7 @@ import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.s
 import { AddUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-users-creator';
 import { AddCreditsCreator } from '@/app/settings/[user]/[object]/[action]/add-credits-creator';
 import { AddOrganizationsCreator } from '@/app/settings/[user]/[object]/[action]/add-organizations-creator';
+import { AddManagerUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-manager-users-creator';
 
 interface CreatorContainerProps {
     user: string;
@@ -21,6 +22,14 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
 
         if (user === 'admin' && object === 'organizations' && action === 'add') {
             return <AddOrganizationsCreator />;
+        }
+
+        if (user === 'manager' && object === 'users' && action === 'add') {
+            return <AddManagerUsersCreator />;
+        }
+
+        if (user === 'manager' && object === 'credits' && action === 'add') {
+            return <AddCreditsCreator />;
         }
 
         return <>Unknown creator.</>;
