@@ -1,6 +1,7 @@
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { AddUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-users-creator';
 import { AddCreditsCreator } from '@/app/settings/[user]/[object]/[action]/add-credits-creator';
+import { AddOrganizationsCreator } from '@/app/settings/[user]/[object]/[action]/add-organizations-creator';
 
 interface CreatorContainerProps {
     user: string;
@@ -16,6 +17,10 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
 
         if (user === 'admin' && object === 'credits' && action === 'add') {
             return <AddCreditsCreator />;
+        }
+
+        if (user === 'admin' && object === 'organizations' && action === 'add') {
+            return <AddOrganizationsCreator />;
         }
 
         return <>Unknown creator.</>;
