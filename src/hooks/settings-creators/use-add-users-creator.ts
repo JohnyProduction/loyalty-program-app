@@ -1,18 +1,29 @@
 'use client';
 
 import { useState } from 'react';
+import { AccountTypes } from '@/types/login-types';
 
 export function useAddUsersCreator() {
-    const [fullName, setFullName] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
-    const [role, setRole] = useState<string>('');
+    const [organization, setOrganization] = useState<string>('');
+    const [role, setRole] = useState<AccountTypes>(AccountTypes.ADMINISTRATOR);
 
-    const onChangeFullName = (e: any) => {
-        setFullName(e.target.value);
+    const onChangeUsername = (e: any) => {
+        setUsername(e.target.value);
+    };
+
+    const onChangePassword = (e: any) => {
+        setPassword(e.target.value);
     };
 
     const onChangeEmail = (e: any) => {
         setEmail(e.target.value);
+    };
+
+    const onChangeOrganization = (e: any) => {
+        setOrganization(e.target.value);
     };
 
     const onChangeRole = (e: any) => {
@@ -20,8 +31,10 @@ export function useAddUsersCreator() {
     };
 
     return {
-        fullName, onChangeFullName,
+        username, onChangeUsername,
+        password, onChangePassword,
         email, onChangeEmail,
+        organization, onChangeOrganization,
         role, onChangeRole
     };
 }
