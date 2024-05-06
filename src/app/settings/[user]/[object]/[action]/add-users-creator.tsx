@@ -4,8 +4,8 @@ import { InputString } from '@/components/common/inputs/input-string';
 import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { AccountTypes } from '@/types/login-types';
-import styles from '@/styles/app/contact-us/page.module.scss';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
+import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 
 export function AddUsersCreator() {
     const { fullName, onChangeFullName, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator();
@@ -19,11 +19,11 @@ export function AddUsersCreator() {
     };
 
     return (
-        <form>
+        <form className={styles['creator-form']}>
             <InputString label={'Full name'} name={'full-name'} value={fullName} onChange={onChangeFullName} />
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} />
-            <div className={styles['contact-us-page__form-container__navigation-box']}>
+            <div className={styles['navigation-box']}>
                 <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
