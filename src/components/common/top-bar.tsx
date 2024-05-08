@@ -1,25 +1,34 @@
 'use client';
+
 import styles from '@/styles/components/common/header.module.scss';
 import { useEffect, useState } from 'react';
-import { Login, User } from '@/app/api/api';
-export function TopBar() {
+import { Login } from '@/app/api/api';
+import { deleteProfile, getProfile } from '@/utils/user-utils';
+import { useRouter } from 'next/navigation';
+import { UserDbModel } from '@/types/user-types';
+import { toastSuccess } from '@/utils/toast-utils';
 
-    const [username, setUsername] = useState('');
-    const [credits, setCredits] = useState('');
-    const [isLogged, setIsLogged] = useState(false);
+export function TopBar() {
+    const router = useRouter();
+    const [user, setUser] = useState<UserDbModel>();
 
     useEffect(() => {
-        User.getCurrentUserEnd().then(user => {
-            setIsLogged(true);
-            setUsername(user.login);
-            setCredits(user.credits.toString());
-        })
-            .catch(error => {
-                if (error instanceof Response && error.status === 401) {
-                    setIsLogged(false);
-                }
-            });
-    }, []);
+        const profile = getProfile() as UserDbModel;
+
+        setUser(profile);
+    }, [localStorage.getItem('user')]);
+
+    const onLogOut = async () => {
+        deleteProfile();
+
+        try {
+            await Login.logoutEnd();
+        } catch (e) { /* empty */ } finally {
+            router.push('/login');
+            router.refresh();
+            toastSuccess('Logged out succeed!');
+        }
+    };
 
     return (
         <header className={styles['header']}>
@@ -37,22 +46,23 @@ export function TopBar() {
                 </div>
             </div>
             <div className={styles['header__user-container']}>
-                {isLogged ?
-                    <><p>{credits} PKT</p>
+                {user ?
+                    <>
+                        <p>{user?.credits} PKT</p>
                         <div className={styles['header__user-profile']}>
                             <ul>
                                 <li>
-                                    <a href="#">{username}</a>
+                                    <a href="#">{user?.login}</a>
                                     <ul>
-                                        <li><a href='/settings/admin/users/add'>Settings</a></li>
-                                        <li onClick={() => Login.logoutEnd().then(() => {window.location.reload();})}><a href='#'>Logout</a></li>
+                                        <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
+                                        <li onClick={onLogOut}><a href='#'>Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                     </>
                     :
-                    <> <div className={styles['header__user-profile']}><a href='/login'>Sign in</a></div></>
+                    <div className={styles['header__user-profile']}><a href='/login'>Sign in</a></div>
                 }
             </div>
         </header>

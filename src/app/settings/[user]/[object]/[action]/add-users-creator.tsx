@@ -3,7 +3,7 @@
 import { InputString } from '@/components/common/inputs/input-string';
 import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
-import { AccountTypes } from '@/types/login-types';
+import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { useEffect, useState } from 'react';
@@ -14,9 +14,9 @@ export function AddUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, role, onChangeRole } = useAddUsersCreator();
     const [organizationOptions, setOrganizationOptions] = useState<OptionType[]>([]);
     const roleOptions: OptionType[] = [
-        { id: 1, label: AccountTypes.ADMINISTRATOR, value: AccountTypes.ADMINISTRATOR },
-        { id: 2, label: AccountTypes.MANAGER, value: AccountTypes.MANAGER },
-        { id: 3, label: AccountTypes.WORKER, value: AccountTypes.WORKER }
+        { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
+        { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
+        { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
 
     useEffect(() => {

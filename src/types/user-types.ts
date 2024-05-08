@@ -1,15 +1,15 @@
-import { AccountTypes } from './login-types';
+import { AccountType } from './login-types';
 
 export type UserModel = {
     username: string,
     password: string,
-    accountType: AccountTypes,
+    accountType: AccountType,
     email: string
 };
 export type UserDbModel = {
     login: string,
     email: string,
-    type: AccountTypes,
+    type: AccountType,
     credits: number,
     latestUpdate: Date //might need a change to string
 };

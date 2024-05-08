@@ -1,19 +1,21 @@
+import { AccountType } from '@/types/login-types';
+
 export function areValidParams(user: string, object: string, action: string): boolean {
-    if (user === 'admin') {
-        const isValidObject = ['users', 'credits', 'organizations'].includes(object);
-        const isValidAction = ['add'].includes(action);
+    if (user === AccountType.ADMINISTRATOR) {
+        const isValidObject = ['users', 'credits', 'organizations', 'password', 'email'].includes(object);
+        const isValidAction = ['add', 'change'].includes(action);
 
         return isValidObject && isValidAction;
     }
 
-    if (user === 'manager') {
+    if (user === AccountType.MANAGER) {
         const isValidObject = ['users', 'credits', 'password'].includes(object);
         const isValidAction = ['add', 'change'].includes(action);
 
         return isValidObject && isValidAction;
     }
 
-    if (user === 'worker') {
+    if (user === AccountType.WORKER) {
         const isValidObject = ['password', 'email'].includes(object);
         const isValidAction = ['change'].includes(action);
 

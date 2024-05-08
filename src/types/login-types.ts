@@ -5,12 +5,12 @@ export type LoginModel = {
 export type AdminUserModel = {
     username: string,
     password: string,
-    accountType: AccountTypes,
+    accountType: AccountType,
     email: string,
     organizationName: string
 };
 
-export enum AccountTypes {
+export enum AccountType {
     ADMINISTRATOR = 'Administrator',
     MANAGER = 'Manager',
     WORKER = 'Worker'

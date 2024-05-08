@@ -5,15 +5,15 @@ import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
-import { AccountTypes } from '@/types/login-types';
+import { AccountType } from '@/types/login-types';
 import { User } from '@/app/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 
 export function AddManagerUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator();
     const roleOptions: OptionType[] = [
-        { id: 2, label: AccountTypes.MANAGER, value: AccountTypes.MANAGER },
-        { id: 3, label: AccountTypes.WORKER, value: AccountTypes.WORKER }
+        { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
+        { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
 
     const onSubmit = () => {

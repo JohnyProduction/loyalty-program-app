@@ -1,6 +1,11 @@
+'use client';
+
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
-import { LinkDataType } from '@/types/setting-types';
+import { LinkDataType, LinkRecord } from '@/types/setting-types';
 import { LinkComponent } from '@/app/settings/[user]/[object]/[action]/link-component';
+import { AccountType } from '@/types/login-types';
+import { getProfile } from '@/utils/user-utils';
+import { UserDbModel } from '@/types/user-types';
 
 interface LinkContainerProps {
     user: string;
@@ -9,52 +14,46 @@ interface LinkContainerProps {
 }
 
 export function LinkContainer({ user, object, action }: LinkContainerProps) {
-    const data: LinkDataType[] = [
-        {
-            user: 'admin',
-            links: [
-                { label: 'add admin users', path: '/users/add' },
-                { label: 'add credits', path: '/credits/add' },
-                { label: 'add organizations', path: '/organizations/add' },
-            ]
-        },
-        {
-            user: 'manager',
-            links: [
-                { label: 'add users', path: '/users/add' },
-                { label: 'add credits', path: '/credits/add' },
-                { label: 'change password', path: '/password/change' },
-            ]
-        },
-        {
-            user: 'worker',
-            links: [
-                { label: 'change password', path: '/password/change' },
-                { label: 'change email', path: '/email/change' }
-            ]
-        }
-    ];
+    const data: LinkDataType = {
+        [AccountType.ADMINISTRATOR]: [
+            { label: 'add users', path: '/users/add' },
+            { label: 'add credits', path: '/credits/add' },
+            { label: 'add organizations', path: '/organizations/add' },
+            { label: 'change password', path: '/password/change' },
+            { label: 'change email', path: '/email/change' }
+        ],
+        [AccountType.MANAGER]: [
+            { label: 'add users', path: '/users/add' },
+            { label: 'add credits', path: '/credits/add' },
+            { label: 'change password', path: '/password/change' },
+            { label: 'change email', path: '/email/change' }
+        ],
+        [AccountType.WORKER]: [
+            { label: 'change password', path: '/password/change' },
+            { label: 'change email', path: '/email/change' }
+        ]
+    };
+
+    const renderLinks = () => {
+        const profile: UserDbModel = getProfile() as UserDbModel;
+        const accountType = profile.type;
+
+        const links: LinkRecord[] = data[accountType];
+
+        return (
+            <ul>
+                {links.map(link => {
+                    const { label, path } = link;
+
+                    return <LinkComponent key={path} label={label} path={path} user={user} />;
+                })}
+            </ul>
+        );
+    };
 
     return (
         <div className={styles['link-container']}>
-            <ul>
-                {data.map(dataLink => {
-                    const { user, links } = dataLink;
-
-                    return (
-                        <li key={user}>
-                            <p>{user}</p>
-                            <ul>
-                                {links.map(link => {
-                                    const { label, path } = link;
-
-                                    return <LinkComponent key={path} label={label} path={path} user={user} />;
-                                })}
-                            </ul>
-                        </li>
-                    );
-                })}
-            </ul>
+            {renderLinks()}
         </div>
     );
 }
