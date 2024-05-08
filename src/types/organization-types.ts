@@ -3,6 +3,7 @@ export enum OrgTypes {
     SHOP = 'Shop',
     SWAGGER = 'Swagger'
 }
+
 export type OrganizationModel = {
     name: string,
     type: OrgTypes

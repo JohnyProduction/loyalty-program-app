@@ -25,6 +25,10 @@ export function getProfile(): UserDbModel | null {
     return JSON.parse(userJson);
 }
 
+export function updateProfile(user: UserDbModel) {
+    createProfile(user);
+}
+
 export function isLoggedIn(): boolean {
     return Boolean(getProfile());
 }
