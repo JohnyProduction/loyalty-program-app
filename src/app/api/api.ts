@@ -11,11 +11,11 @@ const API_BASE_URL = 'https://lojback.ne-quid-nimis.pl/api';
 
 export const Login = {
     /** Logs in a given user [Access: Everyone]
-     * 
+     *
      * userLoginData - Object with user login and password
      */
     async loginEnd(userLoginData: LoginTypes.LoginModel): Promise<Response> {
-        const res = await fetch(`${API_BASE_URL}/Login/Login`, {
+        return await fetch(`${API_BASE_URL}/Login/Login`, {
             mode: 'cors',
             method: 'POST',
             credentials: 'include',
@@ -28,11 +28,9 @@ export const Login = {
 
                 return response;
             });
-
-        return res;
     },
     /** Registers new user (with administrator privileges) [Access: Administrator]
-     * 
+     *
      * user - Object with user data
      */
     async registerForAdminEnd(user: LoginTypes.AdminUserModel): Promise<string> {
@@ -106,7 +104,7 @@ export const User = {
         return res.json();
     },
     /** Registers new user (with manager privileges) [Access: Manager]
-     * 
+     *
      * user - Object with user data
      */
     async addUserEnd(user: UserTypes.UserModel): Promise<string> {
@@ -127,7 +125,7 @@ export const User = {
         return res.text();
     },
     /** Retrieves list of users from a given organization [Access: Manager, Administrator]
-     * 
+     *
      * organization - Targeted organization only for administration (null will get the user's organization)
      */
     async getUsersEnd(organization?: string): Promise<UserTypes.UserDbModel[]> {
@@ -147,7 +145,7 @@ export const User = {
         return res.json();
     },
     /** Edits email of a given user [Access: Logged in users]
-     * 
+     *
      * user - Object of UserDbModel type with new mail
      */
     async editUserMailEnd(user: UserTypes.UserDbModel): Promise<string> {
@@ -168,7 +166,7 @@ export const User = {
         return res.text();
     },
     /** Deletes a given user [Access: Manager, Administrator]
-     * 
+     *
      * user - Data of user
      */
     async deleteUserEnd(user: UserTypes.UserDbModel): Promise<string> {
@@ -189,9 +187,9 @@ export const User = {
         return res.text();
     },
     /** Changes targeted user's credits [Access: Manager, Administrator]
-     * 
+     *
      * login - Targeted user
-     * 
+     *
      * amount - Desired amount for credit change
      */
     async changeCreditsEnd(login: string, amount: number): Promise<string> {
@@ -212,7 +210,7 @@ export const User = {
         return res.text();
     },
     /** Changes password of currently logged in user [Access: Logged in users]
-     * 
+     *
      * password - Desired new password
      */
     async setPasswordEnd(password: string): Promise<string> {
@@ -252,7 +250,7 @@ export const Organization = {
         return res.json();
     },
     /** Adds new organization to the system [Access: Administrator]
-     * 
+     *
      * organization - Object of OrganizationModel schema with organization data
      */
     async addOrganizationEnd(organization: OrganizationTypes.OrganizationModel): Promise<string> {
@@ -273,7 +271,7 @@ export const Organization = {
         return res.text();
     },
     /** Deletes a given organization from the system [Access: Administrator]
-     * 
+     *
      * organization - Targeted organization name
      */
     async deleteOrganizationEnd(organization: string): Promise<string> {
@@ -313,7 +311,7 @@ export const Categories = {
         return res.json();
     },
     /** Adds new offer category to the system [Access: Administrator]
-     * 
+     *
      * category - New category
      */
     async addCategoryEnd(category: string): Promise<string> {
@@ -334,7 +332,7 @@ export const Categories = {
         return res.text();
     },
     /** Deletes a given category from the system [Access: Administrator]
-     * 
+     *
      * category - Targeted category
      */
     async deleteCategoryEnd(category: string): Promise<string> {
@@ -355,7 +353,7 @@ export const Categories = {
         return res.text();
     },
     /** Retrieves category image with the given name [Access: Logged in users]
-     * 
+     *
      * category - Targeted category
      */
     async getCategoryImageEnd(category: string): Promise<AttachmentTypes.FileModel> {
@@ -380,9 +378,9 @@ export const Categories = {
         };
     },
     /** Saves image for a given category [Access: Administrator]
-     * 
+     *
      * category - Targeted category
-     * 
+     *
      * image - Form file with the image
      */
     async setCategoryImageEnd(category: string, image: FormData): Promise<string> {
@@ -396,14 +394,14 @@ export const Categories = {
             .then(async (response) => {
                 if (!response.ok)
                     throw await apiErrorFactory(response);
-    
+
                 return response;
             });
-    
+
         return res.text();
     },
     /** Deletes image from a given category [Access: Administrator]
-     * 
+     *
      * category - Targeted category
      */
     async deleteCategoryImageEnd(category: string): Promise<string> {

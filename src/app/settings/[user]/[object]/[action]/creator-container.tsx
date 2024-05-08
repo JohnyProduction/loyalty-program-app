@@ -27,6 +27,14 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
             return <AddOrganizationsCreator />;
         }
 
+        if (user === AccountType.ADMINISTRATOR && object === 'password' && action === 'change') {
+            return <ChangePasswordCreator />;
+        }
+
+        if (user === AccountType.ADMINISTRATOR && object === 'email' && action === 'change') {
+            return <ChangeEmailCreator />;
+        }
+
         if (user === AccountType.MANAGER && object === 'users' && action === 'add') {
             return <AddManagerUsersCreator />;
         }

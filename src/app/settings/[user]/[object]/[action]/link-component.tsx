@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 interface LinkComponentProps {
@@ -8,10 +10,8 @@ interface LinkComponentProps {
 
 export function LinkComponent({ label, path, user }: LinkComponentProps) {
     return (
-        <li>
-            <Link href={`/settings/${user}${path}`}>
-                {label}
-            </Link>
-        </li>
+        <Link href={`/settings/${user}${path}`}>
+            <li>{label}</li>
+        </Link>
     );
 }

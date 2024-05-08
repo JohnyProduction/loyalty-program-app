@@ -5,6 +5,34 @@
         .link-container {
             width: 30%;
             min-height: 100vh;
+
+            ul {
+                margin: 0;
+                padding: 0;
+
+                a {
+                    li {
+                        transition: 382ms;
+                        background-color: white;
+                        color: grey;
+
+                        padding: 1rem;
+                        border: 1px solid grey;
+                    }
+                }
+
+                a:hover {
+                    li {
+                        transition: 618ms;
+                        background-color: grey;
+                        color: white;
+                    }
+                }
+
+                a + a > li {
+                    margin-top: 1px;
+                }
+            }
         }
 
         .creator-container {

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): User profile management.
 
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Login system.
+
 ## [0.15.0] - 2024-05-06
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Redirecting to settings page.
