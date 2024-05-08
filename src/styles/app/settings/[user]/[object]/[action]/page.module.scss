@@ -1,14 +1,20 @@
 .settings-page {
+    .sub-settings-header {
+        text-align: center;
+        text-transform: capitalize;
+        margin: 2rem 0;
+    }
+
     .content-box {
         display: flex;
+        margin-bottom: 2rem;
 
         .link-container {
             width: 30%;
-            min-height: 100vh;
 
             ul {
                 margin: 0;
-                padding: 0;
+                padding: 4px;
 
                 a {
                     li {
@@ -37,7 +43,6 @@
 
         .creator-container {
             width: 70%;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
 

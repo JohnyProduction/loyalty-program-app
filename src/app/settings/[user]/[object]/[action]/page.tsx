@@ -6,6 +6,7 @@ import { CreatorContainer } from '@/app/settings/[user]/[object]/[action]/creato
 import { PageBox } from '@/app/page-box';
 import { redirect } from 'next/navigation';
 import { areValidParams } from '@/utils/setting-utils';
+import { SubSettingsHeader } from '@/app/settings/[user]/[object]/[action]/sub-settings-header';
 
 interface SettingsPageProps {
     params: Record<string, any>;
@@ -22,6 +23,7 @@ export default function SettingsPage({ params }: SettingsPageProps) {
         <main className={styles['settings-page']}>
             <TopBar />
             <PageBox>
+                <SubSettingsHeader object={object} action={action} />
                 <div className={styles['content-box']}>
                     <LinkContainer user={user} object={object} action={action} />
                     <CreatorContainer user={user} object={object} action={action} />
