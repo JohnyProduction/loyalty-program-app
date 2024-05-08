@@ -423,6 +423,10 @@ export const Categories = {
     }
 };
 export const Offer = {
+    /** Retrieves offers from a given organization [Access: Logged in users]
+     * 
+     * organization - Targeted organization
+     */
     async getOffersEnd(organization: string): Promise<OfferTypes.OfferModel[]> {
         const res = await fetch(`${API_BASE_URL}/Offer/GetOffers/${organization}`, {
             mode: 'cors',
@@ -439,6 +443,10 @@ export const Offer = {
 
         return res.json();
     },
+    /** Adds new offer to the system [Access: Administrator]
+     * 
+     * offer - New offer
+     */
     async addOfferEnd(offer: OfferTypes.OfferModel): Promise<number> {
         const res = await fetch(`${API_BASE_URL}/Offer/AddOffer`, {
             mode: 'cors',
@@ -456,6 +464,10 @@ export const Offer = {
 
         return parseInt(await res.text());
     },
+    /** Changes details of an offer [Access: Administrator]
+     * 
+     * offer - Offer object
+     */
     async changeOfferEnd(offer: OfferTypes.OfferModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/ChangeOffer`, {
             mode: 'cors',
@@ -473,6 +485,10 @@ export const Offer = {
 
         return res.text();
     },
+    /** Deletes targeted offer [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     */
     async deleteOfferEnd(ID: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/DeleteOffer/${ID}`, {
             mode: 'cors',
@@ -489,6 +505,12 @@ export const Offer = {
 
         return res.text();
     },
+    /** Sets offer discount details [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     * 
+     * discount - Object with discount details (null means clear discount)
+     */
     async setOfferDiscountEnd(ID: number, discount?: OfferTypes.DiscountModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/SetOfferDiscount/${ID}`, {
             mode: 'cors',
@@ -506,6 +528,10 @@ export const Offer = {
 
         return res.text();
     },
+    /** Retrieves offer image with the given ID [Access: Logged in users]
+     * 
+     * ID - Offer ID
+     */
     async getOfferImageEnd(ID: number): Promise<AttachmentTypes.FileModel> {
         const res = await fetch(`${API_BASE_URL}/Offer/GetOfferImage/${ID}`, {
             mode: 'cors',
@@ -527,6 +553,12 @@ export const Offer = {
             type: file.type
         };
     },
+    /** Saves image for a given offer [Access: Administrator]
+     * 
+     * file - Form file with the offer image
+     * 
+     * ID - Targeted offer ID
+     */
     async setOfferImageEnd(ID: string, image: FormData): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/SetOfferImage/${ID}`, {
             mode: 'cors',
@@ -544,6 +576,10 @@ export const Offer = {
 
         return res.text();
     },
+    /** Deletes image from a given offer [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     */
     async deleteOfferImageEnd(ID: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/DeleteOfferImage/${ID}`, {
             mode: 'cors',
@@ -560,6 +596,10 @@ export const Offer = {
 
         return res.text();
     },
+    /** Retrieves list of every code assigned to an offer [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     */
     async checkOfferCodesEnd(ID: number): Promise<OfferTypes.CodeModel[]> {
         const res = await fetch(`${API_BASE_URL}/Offer/GetOfferCodes/${ID}`, {
             mode: 'cors',
@@ -576,6 +616,12 @@ export const Offer = {
 
         return res.json();
     },
+    /** Adds codes to a specified offer [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     * 
+     * codes - Array of codes of NewCodeModel schema
+     */
     async addCodesEnd(ID: number, codes: OfferTypes.NewCodeModel[]): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/AddCodes/${ID}`, {
             mode: 'cors',
@@ -593,6 +639,12 @@ export const Offer = {
 
         return res.text();
     },
+    /** Adds codes from a file to a specified offer [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     * 
+     * fileCodes - File with codes formatted in JSON with NewCodeModel schema
+     */
     async addCodesFromFileEnd(ID: number, fileCodes: FormData): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/AddCodesFromFile/${ID}`, {
             mode: 'cors',
@@ -610,6 +662,12 @@ export const Offer = {
 
         return res.text();
     },
+    /** Changes current state of a given code [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     * 
+     * code - Targeted code
+     */
     async changeCodeStateEnd(ID: number, code?: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/ChangeCodeState/${ID}`, {
             mode: 'cors',
@@ -627,6 +685,12 @@ export const Offer = {
 
         return res.text();
     },
+    /** Removes a given code that is not already redeemed [Access: Administrator]
+     * 
+     * ID - Targeted offer ID
+     * 
+     * code - Targeted code
+     */
     async deleteCodeEnd(ID: number, code?: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/DeleteCode/${ID}`, {
             mode: 'cors',
