@@ -5,6 +5,7 @@ import { AddOrganizationsCreator } from '@/app/settings/[user]/[object]/[action]
 import { AddManagerUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-manager-users-creator';
 import { ChangePasswordCreator } from '@/app/settings/[user]/[object]/[action]/change-password-creator';
 import { ChangeEmailCreator } from '@/app/settings/[user]/[object]/[action]/change-email-creator';
+import { AccountType } from '@/types/login-types';
 
 interface CreatorContainerProps {
     user: string;
@@ -14,35 +15,35 @@ interface CreatorContainerProps {
 
 export function CreatorContainer({ user, object, action }: CreatorContainerProps) {
     const renderContainer = (user: string, object: string, action: string) => {
-        if (user === 'admin' && object === 'users' && action === 'add') {
+        if (user === AccountType.ADMINISTRATOR && object === 'users' && action === 'add') {
             return <AddUsersCreator />;
         }
 
-        if (user === 'admin' && object === 'credits' && action === 'add') {
+        if (user === AccountType.ADMINISTRATOR && object === 'credits' && action === 'add') {
             return <AddCreditsCreator />;
         }
 
-        if (user === 'admin' && object === 'organizations' && action === 'add') {
+        if (user === AccountType.ADMINISTRATOR && object === 'organizations' && action === 'add') {
             return <AddOrganizationsCreator />;
         }
 
-        if (user === 'manager' && object === 'users' && action === 'add') {
+        if (user === AccountType.MANAGER && object === 'users' && action === 'add') {
             return <AddManagerUsersCreator />;
         }
 
-        if (user === 'manager' && object === 'credits' && action === 'add') {
+        if (user === AccountType.MANAGER && object === 'credits' && action === 'add') {
             return <AddCreditsCreator />;
         }
 
-        if (user === 'manager' && object === 'password' && action === 'change') {
+        if (user === AccountType.MANAGER && object === 'password' && action === 'change') {
             return <ChangePasswordCreator />;
         }
 
-        if (user === 'worker' && object === 'password' && action === 'change') {
+        if (user === AccountType.WORKER && object === 'password' && action === 'change') {
             return <ChangePasswordCreator />;
         }
 
-        if (user === 'worker' && object === 'email' && action === 'change') {
+        if (user === AccountType.WORKER && object === 'email' && action === 'change') {
             return <ChangeEmailCreator />;
         }
 

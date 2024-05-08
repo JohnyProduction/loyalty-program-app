@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { AccountTypes } from '@/types/login-types';
+import { AccountType } from '@/types/login-types';
 
 export function useAddUsersCreator() {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
-    const [role, setRole] = useState<AccountTypes>(AccountTypes.WORKER);
+    const [role, setRole] = useState<AccountType>(AccountType.WORKER);
 
     const onChangeUsername = (e: any) => {
         setUsername(e.target.value);
