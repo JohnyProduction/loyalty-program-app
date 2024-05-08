@@ -42,5 +42,9 @@ function getApiErrorMessage(status: number, url: string, text: string): string {
         return 'Przestarzały refreshToken, bądź użytkownik wylogowany.';
     }
 
+    if (status === 404) {
+        return text;
+    }
+
     return 'Wystąpił nieznany błąd.';
 }

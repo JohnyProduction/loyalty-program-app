@@ -2,27 +2,15 @@
 
 import styles from '@/styles/components/common/header.module.scss';
 import { useEffect, useState } from 'react';
-import { Login, User } from '@/app/api/api';
-import { createProfile, deleteProfile, getProfile } from '@/utils/user-utils';
-import { redirect, useRouter } from 'next/navigation';
+import { Login } from '@/app/api/api';
+import { deleteProfile, getProfile } from '@/utils/user-utils';
+import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
+import { toastSuccess } from '@/utils/toast-utils';
 
 export function TopBar() {
     const router = useRouter();
     const [user, setUser] = useState<UserDbModel>();
-
-    useEffect(() => {
-        User.getCurrentUserEnd()
-            .then(user => {
-                createProfile(user);
-            })
-            .catch(error => {
-                if (error instanceof Response && error.status === 401) {
-                    deleteProfile();
-                    redirect('/login');
-                }
-            });
-    }, []);
 
     useEffect(() => {
         const profile = getProfile() as UserDbModel;
@@ -38,6 +26,7 @@ export function TopBar() {
         } catch (e) { /* empty */ } finally {
             router.push('/login');
             router.refresh();
+            toastSuccess('Logged out succeed!');
         }
     };
 

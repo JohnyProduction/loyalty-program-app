@@ -5,39 +5,29 @@ import styles from '@/styles/app/login/page.module.scss';
 import { Login, User } from '../api/api';
 import { useRouter } from 'next/navigation';
 import { createProfile } from '@/utils/user-utils';
+import { toastError, toastSuccess } from '@/utils/toast-utils';
 
 export default function LoginPage() {
     const [loginValue, setLoginValue] = useState<string>('');
     const [passValue, setPassValue] = useState<string>('');
     const router = useRouter();
-    const userData = {
-        username: '',
-        password: ''
-    };
 
-    const handleSubmit = async (event: any) => {
+    const handleSubmit = async () => {
         if (loginValue.trim() === '' || passValue.trim() === '') {
-            document.write('Submitted value:', loginValue, passValue);
-        } else {
-            userData.username = loginValue;
-            userData.password = passValue;
+            return;
+        }
 
-            try {
-                await Login.loginEnd({
-                    username: loginValue,
-                    password: passValue
-                });
-                const user = await User.getCurrentUserEnd();
-                createProfile(user);
-
-                router.push('/');
-                // router.refresh();
-                // redirect('/');
-            } catch (e) {
-                console.error(e);
-            }
-
-            event.preventDefault();
+        try {
+            await Login.loginEnd({
+                username: loginValue,
+                password: passValue
+            });
+            const user = await User.getCurrentUserEnd();
+            createProfile(user);
+            router.push('/');
+            toastSuccess('Logged in succeed!');
+        } catch (e: any) {
+            toastError(e.message);
         }
     };
 
