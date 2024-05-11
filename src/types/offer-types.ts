@@ -44,5 +44,5 @@ export type CodeModel = NewCodeModel & {
 
 export type ShopModel = {
     name: string,
-    hasImage: string
+    hasImage: boolean
 };
