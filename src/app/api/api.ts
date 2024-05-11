@@ -711,6 +711,7 @@ export const Offer = {
     }
 };
 export const Transactions = {
+    /** Retrieves every transaction done by the current user [Access: Logged in users] */
     async getTransactionsEnd(): Promise<TransactionModel[]> {
         const res = await fetch(`${API_BASE_URL}/Transactions/GetTransactions`, {
             mode: 'cors',
@@ -727,6 +728,10 @@ export const Transactions = {
 
         return res.json();
     },
+    /** Retrieves every transaction in the system [Access: Administrator]
+     * 
+     * organization - Optional parameter that specifies which shop will be included in the list
+     */
     async getAllTransactionsEnd(organization?: string): Promise<TransactionModel[]> {
         const res = await fetch(`${API_BASE_URL}/Transactions/GetAllTransactions${organization !== undefined ? '?organization=' + organization : '' }`, {
             mode: 'cors',
@@ -743,6 +748,10 @@ export const Transactions = {
 
         return res.json();
     },
+    /** Retrieves information about code availability in a given offer [Access: Logged in users]
+     * 
+     * offerID - Targeted offer ID
+     */
     async isCodeAvailable(offerID: number): Promise<boolean> {
         const res = await fetch(`${API_BASE_URL}/Transactions/IsCodeAvailable/${offerID}`, {
             mode: 'cors',
@@ -759,6 +768,10 @@ export const Transactions = {
 
         return res.json();
     },
+    /** Buys a code from a given offer for the current user [Access: Logged in users]
+     * 
+     * offerID - Targeted offer ID
+     */
     async buyCode(offerID: number): Promise<OfferTypes.NewCodeModel> {
         const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}`, {
             mode: 'cors',
