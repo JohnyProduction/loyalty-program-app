@@ -292,6 +292,74 @@ export const Organization = {
             });
 
         return res.text();
+    },
+    /** Retrieves organization image with the given name [Access: Logged in users]
+     * 
+     * organization - Targeted organization
+     */
+    async getOrganizationImageEnd(organization: string): Promise<AttachmentTypes.FileModel> {
+        const res = await fetch(`${API_BASE_URL}/Organization/GetOrganizationImage/${organization}`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        const file = await res.blob();
+
+        return {
+            blob: file,
+            type: file.type
+        };
+    },
+    /** Saves image for a given organization [Access: Administrator]
+     *
+     * organization - Targeted organization
+     *
+     * image - Form file with the image
+     */
+    async setOrganizationImageEnd(organization: string, image: FormData): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Organization/SetOrganizationImage/${organization}`, {
+            mode: 'cors',
+            method: 'PUT',
+            credentials: 'include',
+            headers: { 'accept': '*/*' },
+            body: image
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    },
+    /** Deletes image from a given organization [Access: Administrator]
+     *
+     * organization - Targeted organization
+     */
+    async deleteOrganizationImageEnd(organization: string): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Organization/DeleteOrganizationImage/${organization}`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'accept': '*/*', }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
     }
 };
 export const Categories = {
@@ -424,12 +492,32 @@ export const Categories = {
     }
 };
 export const Offer = {
+    /** Retrieves every shop from the system [Access: Logged in users]
+     * 
+     * category - Optional targeted category
+     */
+    async getShopsEnd(category?: string): Promise<OfferTypes.ShopModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Offer/GetShops${category !== undefined ? '?category=' + category : '' }`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
     /** Retrieves offers from a given organization [Access: Logged in users]
      * 
      * organization - Targeted organization
      */
-    async getOffersEnd(organization: string): Promise<OfferTypes.ShopOfferModel[]> {
-        const res = await fetch(`${API_BASE_URL}/Offer/GetOffers/${organization}`, {
+    async getOffersEnd(organization: string, category?: string): Promise<OfferTypes.ShopOfferModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Offer/GetOffers/${organization}${category !== undefined ? '?category=' + category : '' }`, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',

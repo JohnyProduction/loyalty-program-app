@@ -41,3 +41,8 @@ export type NewCodeModel = {
 export type CodeModel = NewCodeModel & {
     isUsed: boolean
 };
+
+export type ShopModel = {
+    name: string,
+    hasImage: boolean
+};
