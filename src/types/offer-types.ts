@@ -35,7 +35,7 @@ export type ShopDiscountModel = DiscountModel & {
 
 export type NewCodeModel = {
     code: number,
-    expirt: Date
+    expiry: Date
 };
 
 export type CodeModel = NewCodeModel & {
