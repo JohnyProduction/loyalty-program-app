@@ -10,7 +10,7 @@ export function BrowseProduct({ product }: BrowseProductProps) {
         <div className={styles['browse-product']}>
             <div className={styles['browse-product__image-container']}>
                 <div className={styles['browse-product__image']}>
-                    <img src={product.imageUrl} alt={product.name} />
+                    <img src={product.imageUrl} alt={`${product.name}'s category image`} />
                 </div>
             </div>
             <div className={styles['browse-product__name']}>{product.name}</div>
