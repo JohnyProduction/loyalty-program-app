@@ -3,10 +3,17 @@ export type OfferModel = {
     name: string,
     price: number,
     organization: string,
-    isActive: boolean,
     category?: string,
-    discount?: DiscountModel,
     hasImage?: boolean
+};
+
+export type ClientOfferModel = OfferModel & {
+    shopDiscount?: DiscountModel
+};
+
+export type ShopOfferModel = OfferModel & {
+    isActive: boolean,
+    discount?: ShopDiscountModel
 };
 
 export enum DiscountType {
@@ -19,13 +26,16 @@ export type DiscountModel = {
     name?: string,
     amount: number,
     type: DiscountType,
-    newPrice?: number,
+    newPrice?: number
+};
+
+export type ShopDiscountModel = DiscountModel & {
     expiry: Date
 };
 
 export type NewCodeModel = {
     code: number,
-    expirt: Date
+    expiry: Date
 };
 
 export type CodeModel = NewCodeModel & {

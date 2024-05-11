@@ -6,6 +6,7 @@ import * as CategoriesTypes from '../../types/categories-types';
 import * as AttachmentTypes from '../../types/attachment-types';
 import * as OfferTypes from '../../types/offer-types';
 import { apiErrorFactory } from './api-error-factory';
+import { TransactionModel } from '@/types/transaction-types';
 
 const API_BASE_URL = 'https://lojback.ne-quid-nimis.pl/api';
 
@@ -427,7 +428,7 @@ export const Offer = {
      * 
      * organization - Targeted organization
      */
-    async getOffersEnd(organization: string): Promise<OfferTypes.OfferModel[]> {
+    async getOffersEnd(organization: string): Promise<OfferTypes.ShopOfferModel[]> {
         const res = await fetch(`${API_BASE_URL}/Offer/GetOffers/${organization}`, {
             mode: 'cors',
             method: 'GET',
@@ -447,7 +448,7 @@ export const Offer = {
      * 
      * offer - New offer
      */
-    async addOfferEnd(offer: OfferTypes.OfferModel): Promise<number> {
+    async addOfferEnd(offer: OfferTypes.ShopOfferModel): Promise<number> {
         const res = await fetch(`${API_BASE_URL}/Offer/AddOffer`, {
             mode: 'cors',
             method: 'POST',
@@ -468,7 +469,7 @@ export const Offer = {
      * 
      * offer - Offer object
      */
-    async changeOfferEnd(offer: OfferTypes.OfferModel): Promise<string> {
+    async changeOfferEnd(offer: OfferTypes.ShopOfferModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/ChangeOffer`, {
             mode: 'cors',
             method: 'PUT',
@@ -511,7 +512,7 @@ export const Offer = {
      * 
      * discount - Object with discount details (null means clear discount)
      */
-    async setOfferDiscountEnd(ID: number, discount?: OfferTypes.DiscountModel): Promise<string> {
+    async setOfferDiscountEnd(ID: number, discount?: OfferTypes.ShopDiscountModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/SetOfferDiscount/${ID}`, {
             mode: 'cors',
             method: 'PUT',
@@ -707,5 +708,84 @@ export const Offer = {
             });
 
         return res.text();
+    }
+};
+export const Transactions = {
+    /** Retrieves every transaction done by the current user [Access: Logged in users] */
+    async getTransactionsEnd(): Promise<TransactionModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/GetTransactions`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    /** Retrieves every transaction in the system [Access: Administrator]
+     * 
+     * organization - Optional parameter that specifies which shop will be included in the list
+     */
+    async getAllTransactionsEnd(organization?: string): Promise<TransactionModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/GetAllTransactions${organization !== undefined ? '?organization=' + organization : '' }`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    /** Retrieves information about code availability in a given offer [Access: Logged in users]
+     * 
+     * offerID - Targeted offer ID
+     */
+    async isCodeAvailable(offerID: number): Promise<boolean> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/IsCodeAvailable/${offerID}`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    /** Buys a code from a given offer for the current user [Access: Logged in users]
+     * 
+     * offerID - Targeted offer ID
+     */
+    async buyCode(offerID: number): Promise<OfferTypes.NewCodeModel> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}`, {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
     }
 };
