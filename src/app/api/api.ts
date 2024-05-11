@@ -427,7 +427,7 @@ export const Offer = {
      * 
      * organization - Targeted organization
      */
-    async getOffersEnd(organization: string): Promise<OfferTypes.OfferModel[]> {
+    async getOffersEnd(organization: string): Promise<OfferTypes.ShopOfferModel[]> {
         const res = await fetch(`${API_BASE_URL}/Offer/GetOffers/${organization}`, {
             mode: 'cors',
             method: 'GET',
@@ -447,7 +447,7 @@ export const Offer = {
      * 
      * offer - New offer
      */
-    async addOfferEnd(offer: OfferTypes.OfferModel): Promise<number> {
+    async addOfferEnd(offer: OfferTypes.ShopOfferModel): Promise<number> {
         const res = await fetch(`${API_BASE_URL}/Offer/AddOffer`, {
             mode: 'cors',
             method: 'POST',
@@ -468,7 +468,7 @@ export const Offer = {
      * 
      * offer - Offer object
      */
-    async changeOfferEnd(offer: OfferTypes.OfferModel): Promise<string> {
+    async changeOfferEnd(offer: OfferTypes.ShopOfferModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/ChangeOffer`, {
             mode: 'cors',
             method: 'PUT',
@@ -511,7 +511,7 @@ export const Offer = {
      * 
      * discount - Object with discount details (null means clear discount)
      */
-    async setOfferDiscountEnd(ID: number, discount?: OfferTypes.DiscountModel): Promise<string> {
+    async setOfferDiscountEnd(ID: number, discount?: OfferTypes.ShopDiscountModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Offer/SetOfferDiscount/${ID}`, {
             mode: 'cors',
             method: 'PUT',
