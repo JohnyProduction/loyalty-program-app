@@ -39,9 +39,9 @@ export function TopBar() {
                 </div>
                 <div className={styles['header__search-menu-container']}>
                     <ul>
-                        <li>Menu item 1</li>
-                        <li>Menu item 1</li>
-                        <li>Menu item 1</li>
+                        <li><a href='#'>Sport</a></li>
+                        <li><a href='#'>Life</a></li>
+                        <li><a href='#'>Health</a></li>
                     </ul>
                 </div>
             </div>
