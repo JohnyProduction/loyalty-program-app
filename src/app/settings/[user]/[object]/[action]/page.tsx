@@ -28,8 +28,8 @@ export default function SettingsPage({ params }: SettingsPageProps) {
                     <LinkContainer user={user} object={object} action={action} />
                     <CreatorContainer user={user} object={object} action={action} />
                 </div>
+                <Footer />
             </PageBox>
-            <Footer />
         </main>
     );
 }

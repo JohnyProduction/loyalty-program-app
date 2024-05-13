@@ -38,6 +38,13 @@
                 li + li {
                     margin-left: 1rem;
                 }
+                a{
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+                a:hover{
+                    opacity: 0.7;
+                }
             }
         }
     }
