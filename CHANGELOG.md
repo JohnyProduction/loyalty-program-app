@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `/manage` subpage.
 - [Marek Kurańda](https://github.com/mjkuranda): Creators for `categories`.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputNumber` component.
 
 ## [0.20.0] - 2024-05-14
 ### Added

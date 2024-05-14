@@ -29,7 +29,7 @@ export function AddManagerUsersCreator() {
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

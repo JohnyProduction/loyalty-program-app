@@ -26,7 +26,7 @@ export function AddCreditsCreator() {
             <InputString label={'Login'} name={'login'} value={login} onChange={onChangeLogin} />
             <InputString label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

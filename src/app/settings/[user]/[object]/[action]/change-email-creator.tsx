@@ -77,7 +77,7 @@ export function ChangeEmailCreator() {
             <InputSelect label={'User'} name={'user'} options={users} value={username} onChange={onChangeUsername} />
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

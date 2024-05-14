@@ -28,7 +28,7 @@ export function AddOrganizationsCreator() {
             <InputString label={'Name'} name={'name'} value={name} onChange={onChangeName} />
             <InputSelect label={'Type'} name={'type'} value={type} onChange={onChangeType} options={typeOptions} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

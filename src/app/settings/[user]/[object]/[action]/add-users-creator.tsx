@@ -55,7 +55,7 @@ export function AddUsersCreator() {
             <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} />
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );
