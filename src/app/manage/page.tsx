@@ -11,10 +11,10 @@ export default function ManagePage() {
             <PageBox>
                 <div className={styles['creator-container']}>
                     <ul>
-                        <Link href={'/settings/Admin/shops/add'}>
+                        <Link href={'/settings/Administrator/organizations/add'}>
                             <li>Add a new shop</li>
                         </Link>
-                        <Link href={'/settings/Admin/categories/add'}>
+                        <Link href={'/settings/Administrator/categories/add'}>
                             <li>Add a new category</li>
                         </Link>
                     </ul>
