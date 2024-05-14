@@ -1,0 +1,22 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Offer } from '@/app/api/api';
+import { ShopOfferModel } from '@/types/offer-types';
+import { toastError } from '@/utils/toast-utils';
+
+export function useOffers(organizationName: string) {
+    const [offers, setOffers] = useState<ShopOfferModel[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const { getOffersEnd } = Offer;
+
+        getOffersEnd(organizationName)
+            .then(data => setOffers(data))
+            .catch(err => toastError(`Error occurred while fetching offers: ${err.message}`))
+            .finally(() => setIsLoading(false));
+    }, []);
+
+    return { offers, isLoading };
+}

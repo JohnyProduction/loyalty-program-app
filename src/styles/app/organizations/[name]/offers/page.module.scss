@@ -1,0 +1,12 @@
+.organization-offers-page {
+    .offer-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .offer-element {
+            width: 200px;
+            height: 300px;
+            border: 1px solid;
+        }
+    }
+}
