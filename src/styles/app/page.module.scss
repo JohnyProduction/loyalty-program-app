@@ -50,6 +50,7 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
 
         .browse-products__container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
             width: 100vw;
         }

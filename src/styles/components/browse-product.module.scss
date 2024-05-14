@@ -1,5 +1,11 @@
 .browse-product {
     flex-grow: 1;
+    transition: 382ms;
+
+    &:hover {
+        box-shadow: 0 0 10px black;
+        transition: 618ms;
+    }
 
     .browse-product__image-container {
         display: flex;
