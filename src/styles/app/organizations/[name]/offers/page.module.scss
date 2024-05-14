@@ -3,10 +3,21 @@
         display: flex;
         flex-wrap: wrap;
 
-        .offer-element {
-            width: 200px;
-            height: 300px;
-            border: 1px solid;
+        a {
+            margin: 1rem;
+
+            .offer-element {
+                .offer-element__image {
+                    width: 200px;
+                    height: 300px;
+                    border: 1px solid;
+                }
+
+                .offer-element__name {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
         }
     }
 }

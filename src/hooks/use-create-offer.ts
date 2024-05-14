@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Offer } from '@/app/api/api';
+import { Offers } from '@/app/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 
 export function useCreateOffer(organizationName: string) {
@@ -16,7 +16,7 @@ export function useCreateOffer(organizationName: string) {
     const onImageChange = (e: any) => setImage(e.target.files[0]);
 
     const onSubmit = async () => {
-        const { addOfferEnd, setOfferImageEnd } = Offer;
+        const { addOfferEnd, setOfferImageEnd } = Offers;
 
         try {
             const newOfferId = await addOfferEnd({

@@ -1,7 +1,7 @@
 'use client';
 
 import { useOffers } from '@/hooks/use-offers';
-import styles from '@/styles/app/categories/[name]/page.module.scss';
+import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
 import { Offer } from '@/app/organizations/[name]/offers/offer';
 
 interface OfferContainerProps {
@@ -12,12 +12,15 @@ export function OfferContainer({ organizationName }: OfferContainerProps) {
     const { offers, isLoading } = useOffers(organizationName);
 
     return (
-        <div className={styles['offer-container']}>
-            {
-                isLoading
-                    ? 'Loading offers...'
-                    : offers.map(offer => <Offer offer={offer} key={offer.name} />)
-            }
-        </div>
+        <>
+            <h3 style={{ textAlign: 'center', margin: '2rem 0 0.5rem 0' }}>Offers</h3>
+            <div className={styles['offer-container']}>
+                {
+                    isLoading
+                        ? 'Loading offers...'
+                        : offers.map(offer => <Offer offer={offer} key={offer.name} />)
+                }
+            </div>
+        </>
     );
 }

@@ -491,7 +491,7 @@ export const Categories = {
         return res.text();
     }
 };
-export const Offer = {
+export const Offers = {
     /** Retrieves every shop from the system [Access: Logged in users]
      *
      * category - Optional targeted category
