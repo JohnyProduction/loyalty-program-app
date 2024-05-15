@@ -9,7 +9,7 @@ interface CategoryCartProps {
 }
 
 export function CategoryCart({ category }: CategoryCartProps) {
-    const { isLoading, url } = useCategoryImage(category.name);
+    const { isLoading, url } = useCategoryImage(category);
     const product: ProductType = {
         name: category.name,
         imageUrl: url
