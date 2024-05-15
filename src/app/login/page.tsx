@@ -46,7 +46,7 @@ export default function LoginPage() {
 
     return (
         <main className={styles['main-page']}>
-            {isLoading && <Loader />}
+            {isLoading && <Loader isAbsolute={true} />}
             <div className={styles['login-page__container']}>
                 <div className={styles['login-page__leftbox']}>
                 </div>

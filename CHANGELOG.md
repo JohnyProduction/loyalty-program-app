@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.22.0] - 2024-05-15
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `Loader` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `Loader`s to appropriate places in app.
 
 ## [0.21.0] - 2024-05-15
 ### Added
