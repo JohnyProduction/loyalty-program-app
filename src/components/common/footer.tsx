@@ -8,11 +8,30 @@ export function Footer() {
     };
     const footerFragmentData: FooterFragmentDataType[] = [
         {
+            header: 'Categories',
+            paragraphs: [
+                {
+                    label: 'Sport',
+                    link: '#'
+                },
+                {
+                    label: 'Life',
+                    link: '#'
+                },
+                {
+                    label: 'Health',
+                    link: '#'
+                },
+            ]
+        },
+        {
             header: 'Contact',
-            paragraphs:{
-                label: 'Support 24',
-                link: '/contact-us'
-            }
+            paragraphs: [
+                {
+                    label: 'Support 24',
+                    link: '/contact-us'
+                },
+            ]
         }
     ];
 

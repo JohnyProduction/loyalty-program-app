@@ -1,13 +1,13 @@
 import styles from '@/styles/components/common/footer.module.scss';
-
+import Link from 'next/link';
 export type FooterFragmentDataType = {
     header: string;
-    paragraphs: {
-        label: string,
-        link: string,
-    };
+    paragraphs: FooterParagraph[];
 };
-
+export type FooterParagraph = {
+    label: string;
+    link: string;
+};
 export interface FooterFragmentProps {
     footerFragmentData: FooterFragmentDataType
 }
@@ -17,7 +17,11 @@ export function FooterFragment({ footerFragmentData }: FooterFragmentProps) {
         <div className={styles['footer-fragment__item']}>
             <h3>{footerFragmentData.header}</h3>
             <ul>
-                <li><a href={footerFragmentData.paragraphs.link}>{footerFragmentData.paragraphs.label}</a></li>
+                {footerFragmentData.paragraphs.map((paragraph, index) => (
+                    <li key={index}>
+                        <Link href={paragraph.link}>{paragraph.label}</Link>
+                    </li>
+                ))}
             </ul>
         </div>
     );
