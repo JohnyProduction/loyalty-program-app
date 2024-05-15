@@ -5,11 +5,11 @@ import { useOfferCodes } from '@/hooks/use-offer-codes';
 import { OfferCode } from '@/app/organizations/[name]/offers/[id]/offer-code';
 
 interface OfferCodeContainerProps {
-    id: number;
+    offerId: number;
 }
 
-export function OfferCodeContainer({ id }: OfferCodeContainerProps) {
-    const { codes, isLoading } = useOfferCodes(id);
+export function OfferCodeContainer({ offerId }: OfferCodeContainerProps) {
+    const { codes, isLoading } = useOfferCodes(offerId);
 
     return (
         <>
