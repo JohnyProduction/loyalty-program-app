@@ -6,18 +6,24 @@ import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
 import { useAddCreditsCreator } from '@/hooks/settings-creators/use-add-credits-creator';
+import { useContext } from 'react';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function AddCreditsCreator() {
     const { login, onChangeLogin, amount, onChangeAmount } = useAddCreditsCreator();
+    const { setIsLoading } = useContext(SettingsCreatorContext);
 
     const onSubmit = async () => {
         const { changeCreditsEnd } = User;
 
         try {
+            setIsLoading(true);
             await changeCreditsEnd(login, Number(amount));
             toastSuccess(`Pomyślnie dodano ${amount} kredytów dla użytkownika ${login}.`);
         } catch (e: any) {
             toastError(e.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 

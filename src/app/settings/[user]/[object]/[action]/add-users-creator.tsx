@@ -6,9 +6,10 @@ import { InputSelect, OptionType } from '@/components/common/inputs/input-select
 import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Login, Organization } from '@/app/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function AddUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, role, onChangeRole } = useAddUsersCreator();
@@ -18,6 +19,7 @@ export function AddUsersCreator() {
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
+    const { setIsLoading } = useContext(SettingsCreatorContext);
 
     useEffect(() => {
         const { getOrganizationsEnd } = Organization;
@@ -36,6 +38,7 @@ export function AddUsersCreator() {
     const onSubmit = () => {
         const { registerForAdminEnd } = Login;
 
+        setIsLoading(true);
         registerForAdminEnd({
             username,
             password,
@@ -44,7 +47,7 @@ export function AddUsersCreator() {
             organizationName: organization
         }).then(data => {
             toastSuccess(data);
-        });
+        }).finally(() => setIsLoading(false));
     };
 
     return (

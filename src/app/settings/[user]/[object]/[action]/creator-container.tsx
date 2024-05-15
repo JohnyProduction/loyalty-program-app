@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { AddUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-users-creator';
 import { AddCreditsCreator } from '@/app/settings/[user]/[object]/[action]/add-credits-creator';
@@ -7,6 +9,9 @@ import { ChangePasswordCreator } from '@/app/settings/[user]/[object]/[action]/c
 import { ChangeEmailCreator } from '@/app/settings/[user]/[object]/[action]/change-email-creator';
 import { AccountType } from '@/types/login-types';
 import { AddCategoriesCreator } from '@/app/settings/[user]/[object]/[action]/add-categories-creator';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { Loader } from '@/components/common/loader';
+import { useContext } from 'react';
 
 interface CreatorContainerProps {
     user: string;
@@ -15,6 +20,8 @@ interface CreatorContainerProps {
 }
 
 export function CreatorContainer({ user, object, action }: CreatorContainerProps) {
+    const { isLoading } = useContext(SettingsCreatorContext);
+
     const renderContainer = (user: string, object: string, action: string) => {
         if (user === AccountType.ADMINISTRATOR && object === 'users' && action === 'add') {
             return <AddUsersCreator />;
@@ -65,6 +72,7 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
 
     return (
         <div className={styles['creator-container']}>
+            {isLoading && <Loader isAbsolute={true} />}
             {renderContainer(user, object, action)}
         </div>
     );

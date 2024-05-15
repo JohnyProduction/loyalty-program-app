@@ -8,9 +8,12 @@ import { Organization } from '@/app/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { OrgTypes } from '@/types/organization-types';
 import { useAddOrganizationsCreator } from '@/hooks/settings-creators/use-add-organizations-creator';
+import { useContext } from 'react';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function AddOrganizationsCreator() {
     const { name, onChangeName, type, onChangeType } = useAddOrganizationsCreator();
+    const { setIsLoading } = useContext(SettingsCreatorContext);
     const typeOptions: OptionType[] = [
         { id: 1, label: OrgTypes.CLIENT, value: OrgTypes.CLIENT },
         { id: 2, label: OrgTypes.SHOP, value: OrgTypes.SHOP },
@@ -20,7 +23,10 @@ export function AddOrganizationsCreator() {
     const onSubmit = () => {
         const { addOrganizationEnd } = Organization;
 
-        addOrganizationEnd({ name, type }).then(data => toastSuccess(data));
+        setIsLoading(true);
+        addOrganizationEnd({ name, type })
+            .then(data => toastSuccess(data))
+            .finally(() => setIsLoading(false));
     };
 
     return (
