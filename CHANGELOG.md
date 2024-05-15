@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Creators for `categories`.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputNumber` component.
 - [Marek Kurańda](https://github.com/mjkuranda): `InputImage` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `InputDate` component.
 - [Marek Kurańda](https://github.com/mjkuranda): Creator for `offers` at shop subpage.
 - [Marek Kurańda](https://github.com/mjkuranda): `/organizations/:name/offers/:id` subpage.
 - [Marek Kurańda](https://github.com/mjkuranda): displaying and adding new codes to the offer.
