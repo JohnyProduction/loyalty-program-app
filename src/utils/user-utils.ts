@@ -5,18 +5,18 @@ import { UserDbModel } from '@/types/user-types';
 export function createProfile(userDb: UserDbModel): void {
     const userJson = JSON.stringify(userDb);
 
-    localStorage.setItem('user', userJson);
+    sessionStorage.setItem('user', userJson);
     window.dispatchEvent(new Event('storage'));
 }
 
 export function deleteProfile(): void {
-    localStorage.removeItem('user');
-    localStorage.clear();
+    sessionStorage.removeItem('user');
+    sessionStorage.clear();
     window.dispatchEvent(new Event('storage'));
 }
 
 export function getProfile(): UserDbModel | null {
-    const userJson = localStorage.getItem('user');
+    const userJson = sessionStorage.getItem('user');
 
     if (!userJson) {
         return null;

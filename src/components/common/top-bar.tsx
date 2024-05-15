@@ -14,12 +14,15 @@ export function TopBar() {
     const router = useRouter();
     const [user, setUser] = useState<UserDbModel>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(true);
 
     useEffect(() => {
+        setIsLoadingProfile(true);
         const profile = getProfile() as UserDbModel;
 
         setUser(profile);
-    }, [localStorage.getItem('user')]);
+        setIsLoadingProfile(false);
+    }, [process.browser ? sessionStorage.getItem('user') : '']);
 
     const onLogOut = async () => {
         deleteProfile();
@@ -50,24 +53,29 @@ export function TopBar() {
                 </div>
             </div>
             <div className={styles['header__user-container']}>
-                {user ?
-                    <>
-                        <p>{user?.credits} PKT</p>
-                        <div className={styles['header__user-profile']}>
-                            <ul>
-                                <li>
-                                    <a href="#">{user?.login}</a>
-                                    <ul>
-                                        <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
-                                        <li><Link href={'/manage'}>Manage</Link></li>
-                                        <li onClick={onLogOut}><a href='#'>Logout</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </>
+                {isLoadingProfile ?
+                    <Loader />
                     :
-                    <div className={styles['header__user-profile']}><a href='/login'>Sign in</a></div>
+                    (
+                        user ?
+                            <>
+                                <p>{user?.credits} PKT</p>
+                                <div className={styles['header__user-profile']}>
+                                    <ul>
+                                        <li>
+                                            <a href="#">{user?.login}</a>
+                                            <ul>
+                                                <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
+                                                <li><Link href={'/manage'}>Manage</Link></li>
+                                                <li onClick={onLogOut}><a href='#'>Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </>
+                            :
+                            <div className={styles['header__user-profile']}><a href='/login'>Sign in</a></div>
+                    )
                 }
             </div>
         </header>
