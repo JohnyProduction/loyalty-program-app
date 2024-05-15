@@ -8,9 +8,12 @@ import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-crea
 import { AccountType } from '@/types/login-types';
 import { User } from '@/app/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
+import { useContext } from 'react';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function AddManagerUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator();
+    const { setIsLoading } = useContext(SettingsCreatorContext);
     const roleOptions: OptionType[] = [
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
@@ -19,7 +22,10 @@ export function AddManagerUsersCreator() {
     const onSubmit = () => {
         const { addUserEnd } = User;
 
-        addUserEnd({ username, password, email, accountType: role }).then(data => toastSuccess(data));
+        setIsLoading(true);
+        addUserEnd({ username, password, email, accountType: role })
+            .then(data => toastSuccess(data))
+            .finally(() => setIsLoading(false));
     };
 
     return (

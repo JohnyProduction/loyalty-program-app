@@ -8,10 +8,12 @@ import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
 import { toastSuccess } from '@/utils/toast-utils';
 import Link from 'next/link';
+import { Loader } from '@/components/common/loader';
 
 export function TopBar() {
     const router = useRouter();
     const [user, setUser] = useState<UserDbModel>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const profile = getProfile() as UserDbModel;
@@ -23,16 +25,19 @@ export function TopBar() {
         deleteProfile();
 
         try {
+            setIsLoading(true);
             await Login.logoutEnd();
         } catch (e) { /* empty */ } finally {
             router.push('/login');
             router.refresh();
             toastSuccess('Logged out succeed!');
+            setIsLoading(false);
         }
     };
 
     return (
         <header className={styles['header']}>
+            {isLoading && <Loader isAbsolute={true} />}
             <span></span>
             <div className={styles['header__search-container']}>
                 <div className={styles['header__search-menu-container']}>

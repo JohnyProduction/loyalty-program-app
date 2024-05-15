@@ -47,6 +47,8 @@ $welcome-fragment-height: calc(100vh - $top-bar-height);
     > div {
         display: flex;
         align-items: center;
+        justify-content: center;
+        margin: 1rem 0;
 
         .browse-products__container {
             display: flex;

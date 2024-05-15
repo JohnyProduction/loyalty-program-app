@@ -2,6 +2,11 @@
     .shop-container {
         display: flex;
         flex-wrap: wrap;
+        margin: 1rem 0;
+
+        &[data-is-loading] {
+            display: block;
+        }
 
         .shop-element {
             width: 200px;

@@ -3,6 +3,7 @@
 import styles from '@/styles/app/organizations/[name]/offers/[id]/page.module.scss';
 import { useOfferCodes } from '@/hooks/use-offer-codes';
 import { OfferCode } from '@/app/organizations/[name]/offers/[id]/offer-code';
+import { Loader } from '@/components/common/loader';
 
 interface OfferCodeContainerProps {
     offerId: number;
@@ -13,11 +14,11 @@ export function OfferCodeContainer({ offerId }: OfferCodeContainerProps) {
 
     return (
         <>
-            <h3 style={{ textAlign: 'center', margin: '2rem 0 0.5rem 0' }}>Codes</h3>
+            <h3>Codes</h3>
             <div className={styles['offer-container']}>
                 {
                     isLoading
-                        ? 'Loading offer codes...'
+                        ? <Loader />
                         : codes.map(code => <OfferCode code={code} key={code.code} />)
                 }
             </div>
