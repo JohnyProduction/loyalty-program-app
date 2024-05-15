@@ -10,14 +10,16 @@ export default function ManagePage() {
             <TopBar />
             <PageBox>
                 <div className={styles['creator-container']}>
-                    <ul>
-                        <Link href={'/settings/Administrator/organizations/add'}>
-                            <li>Add a new shop</li>
-                        </Link>
-                        <Link href={'/settings/Administrator/categories/add'}>
-                            <li>Add a new category</li>
-                        </Link>
-                    </ul>
+                    <div className={styles['manage-container']}>
+                        <ul>
+                            <Link href={'/settings/Administrator/organizations/add'}>
+                                <li>Add a new shop</li>
+                            </Link>
+                            <Link href={'/settings/Administrator/categories/add'}>
+                                <li>Add a new category</li>
+                            </Link>
+                        </ul>
+                    </div>
                 </div>
                 <Footer />
             </PageBox>

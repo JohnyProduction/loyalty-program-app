@@ -35,7 +35,7 @@ export function Footer() {
         {
             header: 'Contact',
             paragraphs: [
-                'WhatsApp',
+                '<a href="WhatsApp">asd</a>',
                 'Support 24'
             ]
         }
