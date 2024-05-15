@@ -15,11 +15,14 @@ export function OfferContainer({ organizationName }: OfferContainerProps) {
     return (
         <>
             <h3 style={{ textAlign: 'center', margin: '2rem 0 0.5rem 0' }}>Offers</h3>
-            <div className={styles['offer-container']} data-is-loading={isLoading}>
+            <div className={styles['offer-container']}>
                 {
                     isLoading
                         ? <Loader />
-                        : offers.map(offer => <Offer offer={offer} key={offer.name} />)
+                        : <>
+                            <div className={styles['offer-container__elements']} data-is-loading={isLoading}>{offers.map(offer => <Offer offer={offer} key={offer.name} />)}</div>
+                            <p style={{ textAlign: 'center' }}>Found {offers.length} offer{offers.length > 1 ? 's' : ''}.</p>
+                        </>
                 }
             </div>
         </>

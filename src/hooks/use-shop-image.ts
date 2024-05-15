@@ -1,23 +1,23 @@
 'use client';
 
-import { Categories } from '@/app/api/api';
+import { Organization } from '@/app/api/api';
 import { useEffect, useState } from 'react';
-import { CategoryModel } from '@/types/categories-types';
+import { ShopModel } from '@/types/offer-types';
 
-export function useCategoryImage(category: CategoryModel) {
+export function useShopImage(shop: ShopModel) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [url, setUrl] = useState<string>('/pages/no-photo.png');
 
     useEffect(() => {
-        if (!category.hasImage) {
+        if (!shop.hasImage) {
             setIsLoading(false);
 
             return;
         }
 
-        const { getCategoryImageEnd } = Categories;
+        const { getOrganizationImageEnd } = Organization;
 
-        getCategoryImageEnd(category.name)
+        getOrganizationImageEnd(shop.name)
             .then(data => setUrl(URL.createObjectURL(data.blob)))
             .catch(() => {})
             .finally(() => setIsLoading(false));

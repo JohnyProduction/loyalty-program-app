@@ -2,7 +2,7 @@
 
 import styles from '@/styles/components/common/header.module.scss';
 import { useEffect, useState } from 'react';
-import { Login } from '@/app/api/api';
+import { Login, User } from '@/app/api/api';
 import { deleteProfile, getProfile } from '@/utils/user-utils';
 import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
@@ -15,6 +15,17 @@ export function TopBar() {
     const [user, setUser] = useState<UserDbModel>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(true);
+
+    useEffect(() => {
+        User.getCurrentUserEnd()
+            .then(data => setUser(data))
+            .catch(err => {
+                if (err.status === 401) {
+                    router.push('/login');
+                    router.refresh();
+                }
+            });
+    }, []);
 
     useEffect(() => {
         setIsLoadingProfile(true);
