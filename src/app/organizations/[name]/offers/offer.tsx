@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Offers } from '@/app/api/api';
 import { FileModel } from '@/types/attachment-types';
-import { toastError } from '@/utils/toast-utils';
 
 interface OfferProps {
     offer: OfferModel;
@@ -20,7 +19,7 @@ export function Offer({ offer }: OfferProps) {
 
         getOfferImageEnd(offer.id as number)
             .then(data => setImage(data))
-            .catch(err => toastError(`Error occurred while fetching offer's image: ${err.message}`));
+            .catch(() => {});
     }, []);
 
     const style = {
@@ -31,7 +30,7 @@ export function Offer({ offer }: OfferProps) {
     };
 
     return (
-        <Link href={`/organizations/${offer.name}/offers`}>
+        <Link href={`/organizations/${offer.organization}/offers/${offer.id}`}>
             <div className={styles['offer-element']}>
                 <div className={styles['offer-element__image']} style={style}></div>
                 <div className={styles['offer-element__name']}>{offer.name}</div>
