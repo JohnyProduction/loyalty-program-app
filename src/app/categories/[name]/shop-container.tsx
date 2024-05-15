@@ -17,7 +17,10 @@ export function ShopContainer({ categoryName }: ShopContainerProps) {
             {
                 isLoading
                     ? <Loader />
-                    : shops.map(shop => <Shop shop={shop} key={shop.name} />)
+                    : <>
+                        {shops.map(shop => <Shop shop={shop} key={shop.name} />)}
+                        <p style={{ textAlign: 'center' }}>Found {shops.length} shop{shops.length > 1 ? 's' : ''}.</p>
+                    </>
             }
         </div>
     );
