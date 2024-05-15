@@ -24,15 +24,16 @@ export function AddUsersCreator() {
     useEffect(() => {
         const { getOrganizationsEnd } = Organization;
 
-        getOrganizationsEnd().then(data => {
-            const options: OptionType[] = data.map((model, idx) => ({
-                id: idx,
-                label: model.name,
-                value: model.name
-            }));
+        getOrganizationsEnd()
+            .then(data => {
+                const options: OptionType[] = data.map((model, idx) => ({
+                    id: idx,
+                    label: model.name,
+                    value: model.name
+                }));
 
-            setOrganizationOptions(options);
-        });
+                setOrganizationOptions(options);
+            });
     }, []);
 
     const onSubmit = () => {
