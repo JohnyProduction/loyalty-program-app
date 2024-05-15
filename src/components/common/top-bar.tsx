@@ -7,6 +7,7 @@ import { deleteProfile, getProfile } from '@/utils/user-utils';
 import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
 import { toastSuccess } from '@/utils/toast-utils';
+import Link from 'next/link';
 
 export function TopBar() {
     const router = useRouter();
@@ -53,6 +54,7 @@ export function TopBar() {
                                     <a href="#">{user?.login}</a>
                                     <ul>
                                         <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
+                                        <li><Link href={'/manage'}>Manage</Link></li>
                                         <li onClick={onLogOut}><a href='#'>Logout</a></li>
                                     </ul>
                                 </li>

@@ -6,6 +6,7 @@ import { AddManagerUsersCreator } from '@/app/settings/[user]/[object]/[action]/
 import { ChangePasswordCreator } from '@/app/settings/[user]/[object]/[action]/change-password-creator';
 import { ChangeEmailCreator } from '@/app/settings/[user]/[object]/[action]/change-email-creator';
 import { AccountType } from '@/types/login-types';
+import { AddCategoriesCreator } from '@/app/settings/[user]/[object]/[action]/add-categories-creator';
 
 interface CreatorContainerProps {
     user: string;
@@ -33,6 +34,10 @@ export function CreatorContainer({ user, object, action }: CreatorContainerProps
 
         if (user === AccountType.ADMINISTRATOR && object === 'email' && action === 'change') {
             return <ChangeEmailCreator />;
+        }
+
+        if (user === AccountType.ADMINISTRATOR && object === 'categories' && action === 'add') {
+            return <AddCategoriesCreator />;
         }
 
         if (user === AccountType.MANAGER && object === 'users' && action === 'add') {

@@ -19,6 +19,7 @@ export function LinkContainer({ user, object, action }: LinkContainerProps) {
             { label: 'add users', path: '/users/add' },
             { label: 'add credits', path: '/credits/add' },
             { label: 'add organizations', path: '/organizations/add' },
+            { label: 'add categories', path: '/categories/add' },
             { label: 'change password', path: '/password/change' },
             { label: 'change email', path: '/email/change' }
         ],

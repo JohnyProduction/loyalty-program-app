@@ -24,7 +24,7 @@ export function ChangePasswordCreator() {
         <form className={styles['creator-form']}>
             <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} link={'/'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

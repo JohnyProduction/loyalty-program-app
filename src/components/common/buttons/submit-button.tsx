@@ -1,6 +1,6 @@
 import { OblongButton, OblongButtonProps } from '@/components/common/buttons/oblong-button';
 
-type SubmitButton = Omit<OblongButtonProps, 'onClick'> & {
+type SubmitButton = Omit<OblongButtonProps, 'onClick' | 'link'> & {
     onSubmit: () => void;
 };
 
