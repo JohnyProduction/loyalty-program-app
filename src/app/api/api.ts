@@ -690,7 +690,7 @@ export const Offers = {
      * ID - Targeted offer ID
      */
     async checkOfferCodesEnd(ID: number): Promise<OfferTypes.CodeModel[]> {
-        const res = await fetch(`${API_BASE_URL}/Offer/GetOfferCodes/${ID}`, {
+        const res = await fetch(`${API_BASE_URL}/Offer/CheckOfferCodes/${ID}`, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',
