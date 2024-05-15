@@ -2,7 +2,10 @@ import styles from '@/styles/components/common/footer.module.scss';
 
 export type FooterFragmentDataType = {
     header: string;
-    paragraphs: string[];
+    paragraphs: {
+        label: string,
+        link: string,
+    };
 };
 
 export interface FooterFragmentProps {
@@ -14,7 +17,7 @@ export function FooterFragment({ footerFragmentData }: FooterFragmentProps) {
         <div className={styles['footer-fragment__item']}>
             <h3>{footerFragmentData.header}</h3>
             <ul>
-                {footerFragmentData.paragraphs.map(el => <li key={el}>{el}</li>)}
+                <li><a href={footerFragmentData.paragraphs.link}>{footerFragmentData.paragraphs.label}</a></li>
             </ul>
         </div>
     );
