@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export function useCategoryImage(categoryName: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [url, setUrl] = useState<string>('');
+    const [url, setUrl] = useState<string>('/pages/no-photo.png');
 
     useEffect(() => {
         const { getCategoryImageEnd } = Categories;
