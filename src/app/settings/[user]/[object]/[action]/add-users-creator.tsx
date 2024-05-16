@@ -7,7 +7,7 @@ import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { useContext, useEffect, useState } from 'react';
-import { Login, Organization } from '@/app/api/api';
+import { Login, Organization } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 

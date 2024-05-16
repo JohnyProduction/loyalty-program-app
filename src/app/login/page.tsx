@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from '@/styles/app/login/page.module.scss';
-import { Login, User } from '../api/api';
+import { Login, User } from '@/api/api';
 import { useRouter } from 'next/navigation';
 import { createProfile } from '@/utils/user-utils';
 import { toastError, toastSuccess } from '@/utils/toast-utils';

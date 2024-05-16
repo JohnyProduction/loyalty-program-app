@@ -2,7 +2,7 @@
 
 import styles from '@/styles/components/common/header.module.scss';
 import { useEffect, useState } from 'react';
-import { Login, User } from '@/app/api/api';
+import { Login, User } from '@/api/api';
 import { deleteProfile, getProfile } from '@/utils/user-utils';
 import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';

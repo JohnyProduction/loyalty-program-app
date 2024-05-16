@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Categories } from '@/app/api/api';
+import { Categories } from '@/api/api';
 import { CategoryModel } from '@/types/categories-types';
 import { toastError } from '@/utils/toast-utils';
 

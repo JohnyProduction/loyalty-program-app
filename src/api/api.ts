@@ -1,10 +1,10 @@
 /* eslint-disable no-trailing-spaces */
-import * as LoginTypes from '../../types/login-types';
-import * as UserTypes from '../../types/user-types';
-import * as OrganizationTypes from '../../types/organization-types';
-import * as CategoriesTypes from '../../types/categories-types';
-import * as AttachmentTypes from '../../types/attachment-types';
-import * as OfferTypes from '../../types/offer-types';
+import * as LoginTypes from '../types/login-types';
+import * as UserTypes from '../types/user-types';
+import * as OrganizationTypes from '../types/organization-types';
+import * as CategoriesTypes from '../types/categories-types';
+import * as AttachmentTypes from '../types/attachment-types';
+import * as OfferTypes from '../types/offer-types';
 import { apiErrorFactory } from './api-error-factory';
 import { TransactionModel } from '@/types/transaction-types';
 

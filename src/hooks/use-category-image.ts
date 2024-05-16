@@ -1,6 +1,6 @@
 'use client';
 
-import { Categories } from '@/app/api/api';
+import { Categories } from '@/api/api';
 import { useEffect, useState } from 'react';
 import { CategoryModel } from '@/types/categories-types';
 
