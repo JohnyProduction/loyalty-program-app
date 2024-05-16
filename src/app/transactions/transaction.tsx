@@ -7,6 +7,6 @@ interface TransactionProps {
 
 export function Transaction({ transaction }: TransactionProps) {
     return (
-        <div className={styles['transaction-element']}></div>
+        <div className={styles['transaction-element']}>Transaction ID: {transaction.id}</div>
     );
 }
