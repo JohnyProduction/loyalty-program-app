@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
-import { User } from '@/app/api/api';
+import { User } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';

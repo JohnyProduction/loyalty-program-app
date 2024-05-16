@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext, useEffect, useState } from 'react';
-import { Organization, User } from '@/app/api/api';
+import { Organization, User } from '@/api/api';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { SubmitButton } from '@/components/common/buttons/submit-button';

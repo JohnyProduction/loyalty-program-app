@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 
 export function useCreateOffer(organizationName: string) {

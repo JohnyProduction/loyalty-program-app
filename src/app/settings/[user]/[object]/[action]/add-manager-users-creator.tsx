@@ -6,7 +6,7 @@ import { InputSelect, OptionType } from '@/components/common/inputs/input-select
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
 import { AccountType } from '@/types/login-types';
-import { User } from '@/app/api/api';
+import { User } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { useContext } from 'react';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';

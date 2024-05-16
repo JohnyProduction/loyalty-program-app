@@ -2,8 +2,8 @@
 
 import styles from '@/styles/components/common/header.module.scss';
 import { useEffect, useState } from 'react';
-import { Login, User } from '@/app/api/api';
-import { deleteProfile, getProfile } from '@/utils/user-utils';
+import { Login, User } from '@/api/api';
+import { createProfile, deleteProfile, getProfile } from '@/utils/user-utils';
 import { useRouter } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
 import { toastSuccess } from '@/utils/toast-utils';
@@ -18,7 +18,10 @@ export function TopBar() {
 
     useEffect(() => {
         User.getCurrentUserEnd()
-            .then(data => setUser(data))
+            .then(data => {
+                setUser(data);
+                createProfile(data);
+            })
             .catch(err => {
                 if (err.status === 401) {
                     router.push('/login');

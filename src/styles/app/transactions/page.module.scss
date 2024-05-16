@@ -1,0 +1,17 @@
+.transactions-page {
+    .transaction-container {
+        .transaction-container__header {
+            text-align: center;
+        }
+
+        .transaction-container__list {
+            margin: 2rem 0 1rem 0;
+
+            .transaction-container__list-container {}
+
+            .transaction-container__list-summary {
+                text-align: center;
+            }
+        }
+    }
+}

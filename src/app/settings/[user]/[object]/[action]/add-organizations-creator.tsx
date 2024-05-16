@@ -4,7 +4,7 @@ import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.s
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
-import { Organization } from '@/app/api/api';
+import { Organization } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { OrgTypes } from '@/types/organization-types';
 import { useAddOrganizationsCreator } from '@/hooks/settings-creators/use-add-organizations-creator';

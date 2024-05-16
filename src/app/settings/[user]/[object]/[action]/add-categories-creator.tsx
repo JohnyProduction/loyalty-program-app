@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import { Categories } from '@/app/api/api';
+import { Categories } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { SubmitButton } from '@/components/common/buttons/submit-button';

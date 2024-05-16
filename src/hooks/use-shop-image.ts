@@ -1,6 +1,6 @@
 'use client';
 
-import { Organization } from '@/app/api/api';
+import { Organization } from '@/api/api';
 import { useEffect, useState } from 'react';
 import { ShopModel } from '@/types/offer-types';
 

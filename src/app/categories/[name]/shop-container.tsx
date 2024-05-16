@@ -13,12 +13,14 @@ export function ShopContainer({ categoryName }: ShopContainerProps) {
     const { isLoading, shops } = useShops(categoryName);
 
     return (
-        <div className={styles['shop-container']} data-is-loading={isLoading}>
+        <div className={styles['shop-container']}>
             {
                 isLoading
                     ? <Loader />
                     : <>
-                        {shops.map(shop => <Shop shop={shop} key={shop.name} />)}
+                        <div className={styles['shop-container__elements']} data-is-loading={isLoading}>
+                            {shops.map(shop => <Shop shop={shop} key={shop.name} />)}
+                        </div>
                         <p style={{ textAlign: 'center' }}>Found {shops.length} shop{shops.length > 1 ? 's' : ''}.</p>
                     </>
             }

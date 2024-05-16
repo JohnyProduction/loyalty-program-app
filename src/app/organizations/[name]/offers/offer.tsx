@@ -4,7 +4,7 @@ import { OfferModel } from '@/types/offer-types';
 import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { FileModel } from '@/types/attachment-types';
 import { Loader } from '@/components/common/loader';
 

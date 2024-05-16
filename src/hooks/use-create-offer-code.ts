@@ -1,6 +1,6 @@
 'use client';
 
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { useState } from 'react';
 import { NewCodeModel } from '@/types/offer-types';
