@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 export function TransactionHeader() {
     const [isClient, setIsClient] = useState<boolean>(false);
 
+    // To avoid render error by client and server side
     useEffect(() => {
         setIsClient(true);
     }, []);
