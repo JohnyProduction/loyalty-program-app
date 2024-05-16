@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.23.0] - 2024-05-16
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `/transactions` page to render all user's transactions.
+- [Marek Kurańda](https://github.com/mjkuranda): `/transactions/:id` page to render transaction details information.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `src/app/api` directory to `src/api`.
