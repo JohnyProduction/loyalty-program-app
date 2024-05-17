@@ -13,8 +13,8 @@ export function Transaction({ transaction }: TransactionProps) {
             <td>{transaction.code.expiry.toISOString()}</td>
             <td>{transaction.code.code}</td>
             <td>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <OblongButton label={'Show'} link={`/transaction/${transaction.id}`} size={'small'} />
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <OblongButton label={'Show'} link={`/transactions/${transaction.id}`} size={'small'} />
                 </div>
             </td>
         </tr>

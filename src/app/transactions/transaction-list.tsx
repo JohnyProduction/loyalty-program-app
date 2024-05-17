@@ -8,22 +8,6 @@ import { Transaction } from '@/app/transactions/transaction';
 export function TransactionList() {
     const { transactions, isLoading } = useTransactions();
 
-    transactions.push({
-        id: 1,
-        offer: {
-            id: 1,
-            organization: '',
-            name: 'xxx',
-            price: 11,
-            category: 'x'
-        },
-        code: {
-            code: 55,
-            expiry: new Date()
-        },
-        date: new Date()
-    });
-
     return (
         <div className={styles['transaction-container__list']}>
             {isLoading
