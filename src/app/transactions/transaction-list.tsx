@@ -13,9 +13,19 @@ export function TransactionList() {
             {isLoading
                 ? <Loader />
                 : <>
-                    <div className={styles['transaction-container__list-container']}>
-                        {transactions.map(transaction => <Transaction transaction={transaction} />)}
-                    </div>
+                    <table className={styles['transaction-container__list-container']}>
+                        <thead>
+                            <tr>
+                                <th>Purchase date</th>
+                                <th>Expiration date</th>
+                                <th>Code</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map(transaction => <Transaction transaction={transaction} />)}
+                        </tbody>
+                    </table>
                     <div className={styles['transaction-container__list-summary']}>
                         Found {transactions.length} transaction{transactions.length > 1 ? 's' : ''}
                     </div>
