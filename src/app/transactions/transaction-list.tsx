@@ -8,14 +8,40 @@ import { Transaction } from '@/app/transactions/transaction';
 export function TransactionList() {
     const { transactions, isLoading } = useTransactions();
 
+    transactions.push({
+        id: 1,
+        offer: {
+            id: 1,
+            organization: '',
+            name: 'xxx',
+            price: 11,
+            category: 'x'
+        },
+        code: {
+            code: 55,
+            expiry: new Date()
+        },
+        date: new Date()
+    });
+
     return (
         <div className={styles['transaction-container__list']}>
             {isLoading
                 ? <Loader />
                 : <>
-                    <div className={styles['transaction-container__list-container']}>
-                        {transactions.map(transaction => <Transaction transaction={transaction} />)}
-                    </div>
+                    <table className={styles['transaction-container__list-container']}>
+                        <thead>
+                            <tr>
+                                <th>Purchase date</th>
+                                <th>Expiration date</th>
+                                <th>Code</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map(transaction => <Transaction transaction={transaction} />)}
+                        </tbody>
+                    </table>
                     <div className={styles['transaction-container__list-summary']}>
                         Found {transactions.length} transaction{transactions.length > 1 ? 's' : ''}
                     </div>

@@ -81,6 +81,7 @@ export function TopBar() {
                                             <ul>
                                                 <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
                                                 <li><Link href={'/manage'}>Manage</Link></li>
+                                                <li><Link href={'/transactions'}>View transactions</Link></li>
                                                 <li onClick={onLogOut}><a href='#'>Logout</a></li>
                                             </ul>
                                         </li>
