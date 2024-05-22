@@ -21,13 +21,11 @@ export const linksData: LinkDataType = {
         { label: 'add users', path: '/users/add' },
         { label: 'add credits', path: '/credits/add' },
         { label: 'add organizations', path: '/organizations/add' },
-        { label: 'add categories', path: '/categories/add' },
-        { label: 'change email', path: '/email/change' }
+        { label: 'add categories', path: '/categories/add' }
     ],
     [AccountType.MANAGER]: [
         { label: 'add users', path: '/users/add' },
-        { label: 'add credits', path: '/credits/add' },
-        { label: 'change email', path: '/email/change' }
+        { label: 'add credits', path: '/credits/add' }
     ]
 };
 

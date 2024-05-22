@@ -8,6 +8,7 @@ import { redirect } from 'next/navigation';
 import { areValidParams } from '@/utils/setting-utils';
 import { SubSettingsHeader } from '@/app/manage/[user]/[object]/[action]/sub-settings-header';
 import { SettingsCreatorProvider } from '@/contexts/settings-creator-context';
+import { DataContainer } from '@/app/manage/[user]/[object]/[action]/data-container';
 
 interface SettingsPageProps {
     params: Record<string, any>;
@@ -31,6 +32,7 @@ export default function ManagePage({ params }: SettingsPageProps) {
                         <CreatorContainer user={user} object={object} action={action} />
                     </SettingsCreatorProvider>
                 </div>
+                <DataContainer user={user} object={object} action={action} />
                 <Footer />
             </PageBox>
         </main>

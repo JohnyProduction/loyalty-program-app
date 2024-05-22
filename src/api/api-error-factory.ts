@@ -20,10 +20,6 @@ function getApiErrorMessage(status: number, url: string, text: string): string {
         return 'Wystąpił nieznany błąd';
     }
 
-    if (text === 'Username is taken!') {
-        return 'Użytkownik o podanej nazwie już istnieje.';
-    }
-
     if (status === 400) {
         return text;
     }
