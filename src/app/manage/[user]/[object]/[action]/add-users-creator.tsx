@@ -1,7 +1,7 @@
 'use client';
 
 import { InputString } from '@/components/common/inputs/input-string';
-import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
+import { useAddUsersCreator } from '@/hooks/manage-creators/use-add-users-creator';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';

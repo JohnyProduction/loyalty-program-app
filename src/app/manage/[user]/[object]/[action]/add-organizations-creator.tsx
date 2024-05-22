@@ -7,7 +7,7 @@ import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { Organization } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { OrgTypes } from '@/types/organization-types';
-import { useAddOrganizationsCreator } from '@/hooks/settings-creators/use-add-organizations-creator';
+import { useAddOrganizationsCreator } from '@/hooks/manage-creators/use-add-organizations-creator';
 import { useContext } from 'react';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 

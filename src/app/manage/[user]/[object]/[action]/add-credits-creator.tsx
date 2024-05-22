@@ -5,7 +5,7 @@ import { User } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
-import { useAddCreditsCreator } from '@/hooks/settings-creators/use-add-credits-creator';
+import { useAddCreditsCreator } from '@/hooks/manage-creators/use-add-credits-creator';
 import { useContext } from 'react';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 

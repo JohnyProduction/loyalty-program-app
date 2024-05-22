@@ -4,7 +4,7 @@ import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scs
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
-import { useAddUsersCreator } from '@/hooks/settings-creators/use-add-users-creator';
+import { useAddUsersCreator } from '@/hooks/manage-creators/use-add-users-creator';
 import { AccountType } from '@/types/login-types';
 import { User } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';

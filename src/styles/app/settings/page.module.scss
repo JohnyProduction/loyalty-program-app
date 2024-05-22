@@ -1,0 +1,13 @@
+.settings-page {
+    .settings-container {
+        .settings-section {
+            .settings-section__button {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                margin: 1rem 0;
+            }
+        }
+    }
+}
