@@ -18,6 +18,7 @@ export function DataContainer({ user, object, action }: DataContainerProps) {
             {isLoading ?
                 <Loader /> :
                 <div className={styles['data-container']}>
+                    {data.length > 0 && <h3>{object} list</h3>}
                     <ul>
                         {data.map(el => {
                             return <li>{el}</li>;

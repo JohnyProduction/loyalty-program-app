@@ -56,7 +56,26 @@
                 }
             }
         }
+    }
 
-        .data-container {}
+    .data-container {
+        h3 {
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                width: 256px;
+                padding: 8px;
+                margin: 8px;
+                background-color: bisque;
+                border-radius: 1rem;
+                text-align: center;
+            }
+        }
     }
 }
