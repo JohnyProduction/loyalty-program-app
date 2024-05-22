@@ -1,8 +1,8 @@
 'use client';
 
-import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { LinkDataType, LinkRecord } from '@/types/setting-types';
-import { LinkComponent } from '@/app/settings/[user]/[object]/[action]/link-component';
+import { LinkComponent } from '@/app/manage/[user]/[object]/[action]/link-component';
 import { AccountType } from '@/types/login-types';
 import { getProfile } from '@/utils/user-utils';
 import { UserDbModel } from '@/types/user-types';

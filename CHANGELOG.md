@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.24.0] - 2024-05-22
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Manage` bookmark is not available for workers.
+- [Marek Kurańda](https://github.com/mjkuranda): Settings subpage to Manage and settings page content moved to `/manage` page.
 
 ## [0.23.1] - 2024-05-18
 ### Added

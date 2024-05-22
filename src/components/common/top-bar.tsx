@@ -80,7 +80,7 @@ export function TopBar() {
                                         <li>
                                             <a href="#">{user?.login}</a>
                                             <ul>
-                                                <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
+                                                <li><a href={'/settings'}>Settings</a></li>
                                                 {user.type !== AccountType.WORKER && <li><Link href={'/manage'}>Manage</Link></li>}
                                                 <li><Link href={'/transactions'}>View transactions</Link></li>
                                                 <li onClick={onLogOut}><a href='#'>Logout</a></li>

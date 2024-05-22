@@ -1,19 +1,19 @@
-import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { TopBar } from '@/components/common/top-bar';
 import { Footer } from '@/components/common/footer';
-import { LinkContainer } from '@/app/settings/[user]/[object]/[action]/link-container';
-import { CreatorContainer } from '@/app/settings/[user]/[object]/[action]/creator-container';
+import { LinkContainer } from '@/app/manage/[user]/[object]/[action]/link-container';
+import { CreatorContainer } from '@/app/manage/[user]/[object]/[action]/creator-container';
 import { PageBox } from '@/app/page-box';
 import { redirect } from 'next/navigation';
 import { areValidParams } from '@/utils/setting-utils';
-import { SubSettingsHeader } from '@/app/settings/[user]/[object]/[action]/sub-settings-header';
+import { SubSettingsHeader } from '@/app/manage/[user]/[object]/[action]/sub-settings-header';
 import { SettingsCreatorProvider } from '@/contexts/settings-creator-context';
 
 interface SettingsPageProps {
     params: Record<string, any>;
 }
 
-export default function SettingsPage({ params }: SettingsPageProps) {
+export default function ManagePage({ params }: SettingsPageProps) {
     const { user, object, action } = params;
 
     if (!areValidParams(user, object, action)) {
@@ -21,7 +21,7 @@ export default function SettingsPage({ params }: SettingsPageProps) {
     }
 
     return (
-        <main className={styles['settings-page']}>
+        <main className={styles['manage-page']}>
             <TopBar />
             <PageBox>
                 <SubSettingsHeader object={object} action={action} />

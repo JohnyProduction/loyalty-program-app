@@ -1,14 +1,14 @@
 'use client';
 
-import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
-import { AddUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-users-creator';
-import { AddCreditsCreator } from '@/app/settings/[user]/[object]/[action]/add-credits-creator';
-import { AddOrganizationsCreator } from '@/app/settings/[user]/[object]/[action]/add-organizations-creator';
-import { AddManagerUsersCreator } from '@/app/settings/[user]/[object]/[action]/add-manager-users-creator';
-import { ChangePasswordCreator } from '@/app/settings/[user]/[object]/[action]/change-password-creator';
-import { ChangeEmailCreator } from '@/app/settings/[user]/[object]/[action]/change-email-creator';
+import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import { AddUsersCreator } from '@/app/manage/[user]/[object]/[action]/add-users-creator';
+import { AddCreditsCreator } from '@/app/manage/[user]/[object]/[action]/add-credits-creator';
+import { AddOrganizationsCreator } from '@/app/manage/[user]/[object]/[action]/add-organizations-creator';
+import { AddManagerUsersCreator } from '@/app/manage/[user]/[object]/[action]/add-manager-users-creator';
+import { ChangePasswordCreator } from '@/app/manage/[user]/[object]/[action]/change-password-creator';
+import { ChangeEmailCreator } from '@/app/manage/[user]/[object]/[action]/change-email-creator';
 import { AccountType } from '@/types/login-types';
-import { AddCategoriesCreator } from '@/app/settings/[user]/[object]/[action]/add-categories-creator';
+import { AddCategoriesCreator } from '@/app/manage/[user]/[object]/[action]/add-categories-creator';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 import { Loader } from '@/components/common/loader';
 import { useContext } from 'react';

@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react';
 import { Organization, User } from '@/api/api';
-import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { toastSuccess } from '@/utils/toast-utils';
