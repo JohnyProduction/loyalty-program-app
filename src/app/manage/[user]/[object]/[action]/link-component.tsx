@@ -10,7 +10,7 @@ interface LinkComponentProps {
 
 export function LinkComponent({ label, path, user }: LinkComponentProps) {
     return (
-        <Link href={`/settings/${user}${path}`}>
+        <Link href={`/manage/${user}${path}`}>
             <li>{label}</li>
         </Link>
     );

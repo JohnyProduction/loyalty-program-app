@@ -1,8 +1,14 @@
 .manage-page {
     .creator-container {
+        h3 {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
         li {
             border: 1px solid;
             padding: 8px;
+            text-transform: capitalize;
         }
     }
 }
