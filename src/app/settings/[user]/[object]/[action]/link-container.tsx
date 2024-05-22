@@ -20,19 +20,19 @@ export function LinkContainer({ user, object, action }: LinkContainerProps) {
             { label: 'add credits', path: '/credits/add' },
             { label: 'add organizations', path: '/organizations/add' },
             { label: 'add categories', path: '/categories/add' },
-            { label: 'change password', path: '/password/change' },
+            // { label: 'change password', path: '/password/change' },
             { label: 'change email', path: '/email/change' }
         ],
         [AccountType.MANAGER]: [
             { label: 'add users', path: '/users/add' },
             { label: 'add credits', path: '/credits/add' },
-            { label: 'change password', path: '/password/change' },
+            // { label: 'change password', path: '/password/change' },
             { label: 'change email', path: '/email/change' }
         ],
-        [AccountType.WORKER]: [
-            { label: 'change password', path: '/password/change' },
-            { label: 'change email', path: '/email/change' }
-        ]
+        // [AccountType.WORKER]: [
+        //     { label: 'change password', path: '/password/change' }, //settings
+        //     { label: 'change email', path: '/email/change' } // settings
+        // ]
     };
 
     const renderLinks = () => {
