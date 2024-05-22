@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { User } from '@/api/api';
+import { Categories, Organization, User } from '@/api/api';
 
 export function useFetchCollection(object: string, action: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -17,6 +17,25 @@ export function useFetchCollection(object: string, action: string) {
                 .catch(() => {})
                 .finally(() => setIsLoading(false));
         }
+        else if (object === 'organizations' && action === 'add') {
+            Organization.getOrganizationsEnd()
+                .then(data => {
+                    const organizationMap = data.map(organization => organization.name);
+                    setData(organizationMap);
+                })
+                .catch(() => {})
+                .finally(() => setIsLoading(false));
+        }
+        else if (object === 'categories' && action === 'add') {
+            Categories.getCategoriesEnd()
+                .then(data => {
+                    const categoriesMap = data.map(categories => categories.name);
+                    setData(categoriesMap);
+                })
+                .catch(() => {})
+                .finally(() => setIsLoading(false));
+        }
+        else setIsLoading(false);
     }, []);
 
     return { data, isLoading };
