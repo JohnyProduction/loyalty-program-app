@@ -25,7 +25,7 @@ function getApiErrorMessage(status: number, url: string, text: string): string {
     }
 
     if (status === 400) {
-        return 'Bad request błąd.';
+        return text;
     }
 
     if (status === 401) {

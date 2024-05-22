@@ -6,6 +6,9 @@ import { LinkComponent } from '@/app/manage/[user]/[object]/[action]/link-compon
 import { AccountType } from '@/types/login-types';
 import { getProfile } from '@/utils/user-utils';
 import { UserDbModel } from '@/types/user-types';
+import { useEffect, useState } from 'react';
+import { User } from '@/api/api';
+import { Loader } from '@/components/common/loader';
 
 interface LinkContainerProps {
     user: string;
@@ -29,8 +32,17 @@ export const linksData: LinkDataType = {
 };
 
 export function LinkContainer({ user, object, action }: LinkContainerProps) {
+    const [profile, setUser] = useState<UserDbModel>();
+
+    useEffect(() => {
+        User.getCurrentUserEnd().then(data => setUser(data));
+    }, []);
+
     const renderLinks = () => {
-        const profile: UserDbModel = getProfile() as UserDbModel;
+        if (!profile) {
+            return <Loader />;
+        }
+
         const accountType = profile ? profile.type : AccountType.WORKER;
 
         if (accountType === AccountType.WORKER) {

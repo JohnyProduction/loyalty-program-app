@@ -8,7 +8,7 @@ import { SubmitButton } from '@/components/common/buttons/submit-button';
 import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { Login, Organization } from '@/api/api';
-import { toastSuccess } from '@/utils/toast-utils';
+import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function AddUsersCreator() {
@@ -46,9 +46,10 @@ export function AddUsersCreator() {
             email,
             accountType: role,
             organizationName: organization
-        }).then(data => {
-            toastSuccess(data);
-        }).finally(() => setIsLoading(false));
+        })
+            .then(data => toastSuccess(data))
+            .catch(err => toastError(err.message))
+            .finally(() => setIsLoading(false));
     };
 
     return (
