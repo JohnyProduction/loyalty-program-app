@@ -3,7 +3,7 @@
 import { useContext, useState } from 'react';
 import { Categories } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';

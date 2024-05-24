@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { User } from '@/api/api';

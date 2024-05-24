@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { SubmitButton } from '@/components/common/buttons/submit-button';

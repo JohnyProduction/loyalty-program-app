@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { LinkDataType, LinkRecord } from '@/types/setting-types';
 import { AccountType } from '@/types/login-types';
 import { UserDbModel } from '@/types/user-types';
@@ -11,14 +11,14 @@ import { LinkComponent } from '@/app/manage/[object]/link-component';
 
 export const linksData: LinkDataType = {
     [AccountType.ADMINISTRATOR]: [
-        { label: 'add users', path: '/users/add' },
-        { label: 'add credits', path: '/credits/add' },
-        { label: 'add organizations', path: '/organizations/add' },
-        { label: 'add categories', path: '/categories/add' }
+        { label: 'Users', path: '/users' },
+        { label: 'Credits', path: '/credits' },
+        { label: 'Organizations', path: '/organizations' },
+        { label: 'Categories', path: '/categories' }
     ],
     [AccountType.MANAGER]: [
-        { label: 'add users', path: '/users/add' },
-        { label: 'add credits', path: '/credits/add' }
+        { label: 'Users', path: '/users' },
+        { label: 'Credits', path: '/credits' }
     ]
 };
 
@@ -47,7 +47,7 @@ export function LinkContainer() {
                 {links.map(link => {
                     const { label, path } = link;
 
-                    return <LinkComponent key={path} label={label} path={path} user={profile.type} />;
+                    return <LinkComponent key={path} label={label} path={path} />;
                 })}
             </ul>
         );

@@ -5,7 +5,7 @@ import { useAddUsersCreator } from '@/hooks/manage-creators/use-add-users-creato
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { Login, Organization } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';

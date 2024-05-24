@@ -1,4 +1,4 @@
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 
 interface SubSettingsHeaderProps {
     object: string;

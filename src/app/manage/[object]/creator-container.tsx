@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
+import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { AccountType } from '@/types/login-types';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { Loader } from '@/components/common/loader';
