@@ -9,11 +9,20 @@ import { useAddCreditsCreator } from '@/hooks/manage-creators/use-add-credits-cr
 import { useContext } from 'react';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { Loader } from '@/components/common/loader';
-import { InputSelect } from '@/components/common/inputs/input-select';
+import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
+import { OrganizationModel } from '@/types/organization-types';
 
 export function AddCreditsCreator() {
-    const { usernames, isLoading, login, onChangeLogin, amount, onChangeAmount } = useAddCreditsCreator();
+    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount } = useAddCreditsCreator();
     const { setIsLoading } = useContext(ManageCreatorContext);
+
+    const getOrganizationsAsOptions = (organizations: OrganizationModel[]): OptionType[] => {
+        return organizations.map(((organization, idx) => ({
+            id: idx,
+            label: organization.name,
+            value: organization.name
+        })));
+    };
 
     const onSubmit = async () => {
         const { changeCreditsEnd } = User;
@@ -33,6 +42,7 @@ export function AddCreditsCreator() {
         <>
             {isLoading ? <Loader isAbsolute={true} /> : (
                 <form className={styles['creator-form']}>
+                    <InputSelect label={'Organization'} name={'organization'} options={getOrganizationsAsOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />
                     <InputSelect label={'Login'} name={'login'} options={usernames} value={login} onChange={onChangeLogin} />
                     <InputString label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
                     <div className={styles['navigation-box']}>
