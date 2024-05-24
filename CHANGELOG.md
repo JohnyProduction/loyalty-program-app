@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.24.0] - 2024-05-24
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Each object list at `manage` page.
+- [Marek Kurańda](https://github.com/mjkuranda): Deleting users.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Manage` bookmark is not available for workers.
