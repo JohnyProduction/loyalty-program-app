@@ -6,11 +6,11 @@ import { toastError, toastSuccess } from '@/utils/toast-utils';
 import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddCategoriesCreator() {
     const [categoryName, setCategoryName] = useState<string>('');
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
 
     const onCategoryNameChange = (e: any) => {
         setCategoryName(e.target.value);

@@ -3,12 +3,12 @@
 import { useEffect, useState } from 'react';
 import { Categories, Organization, User } from '@/api/api';
 
-export function useFetchCollection(object: string, action: string) {
+export function useFetchCollection(object: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [data, setData] = useState<string[]>([]);
 
     useEffect(() => {
-        if (object === 'users' && action === 'add') {
+        if (object === 'users') {
             User.getUsersEnd()
                 .then(data => {
                     const userMap = data.map(user => user.login);
@@ -17,7 +17,7 @@ export function useFetchCollection(object: string, action: string) {
                 .catch(() => {})
                 .finally(() => setIsLoading(false));
         }
-        else if (object === 'organizations' && action === 'add') {
+        else if (object === 'organizations') {
             Organization.getOrganizationsEnd()
                 .then(data => {
                     const organizationMap = data.map(organization => organization.name);
@@ -26,7 +26,7 @@ export function useFetchCollection(object: string, action: string) {
                 .catch(() => {})
                 .finally(() => setIsLoading(false));
         }
-        else if (object === 'categories' && action === 'add') {
+        else if (object === 'categories') {
             Categories.getCategoriesEnd()
                 .then(data => {
                     const categoriesMap = data.map(categories => categories.name);

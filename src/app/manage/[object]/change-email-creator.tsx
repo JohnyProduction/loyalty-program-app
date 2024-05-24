@@ -9,7 +9,7 @@ import { toastSuccess } from '@/utils/toast-utils';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { UserDbModel } from '@/types/user-types';
 import { updateProfile } from '@/utils/user-utils';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function ChangeEmailCreator() {
     const [username, setUsername] = useState<string>('');
@@ -17,7 +17,7 @@ export function ChangeEmailCreator() {
     const [email, setEmail] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
     const [organizations, setOrganizations] = useState<OptionType[]>([]);
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
 
     const { getUsersEnd, editUserMailEnd } = User;
     const { getOrganizationsEnd } = Organization;

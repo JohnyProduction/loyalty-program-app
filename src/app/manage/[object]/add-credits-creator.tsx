@@ -7,13 +7,13 @@ import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
 import { useAddCreditsCreator } from '@/hooks/manage-creators/use-add-credits-creator';
 import { useContext } from 'react';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { Loader } from '@/components/common/loader';
 import { InputSelect } from '@/components/common/inputs/input-select';
 
 export function AddCreditsCreator() {
     const { usernames, isLoading, login, onChangeLogin, amount, onChangeAmount } = useAddCreditsCreator();
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
 
     const onSubmit = async () => {
         const { changeCreditsEnd } = User;

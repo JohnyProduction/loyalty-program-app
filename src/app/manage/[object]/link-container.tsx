@@ -2,19 +2,12 @@
 
 import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { LinkDataType, LinkRecord } from '@/types/setting-types';
-import { LinkComponent } from '@/app/manage/[user]/[object]/[action]/link-component';
 import { AccountType } from '@/types/login-types';
-import { getProfile } from '@/utils/user-utils';
 import { UserDbModel } from '@/types/user-types';
 import { useEffect, useState } from 'react';
 import { User } from '@/api/api';
 import { Loader } from '@/components/common/loader';
-
-interface LinkContainerProps {
-    user: string;
-    object: string;
-    action: string;
-}
+import { LinkComponent } from '@/app/manage/[object]/link-component';
 
 export const linksData: LinkDataType = {
     [AccountType.ADMINISTRATOR]: [
@@ -29,7 +22,7 @@ export const linksData: LinkDataType = {
     ]
 };
 
-export function LinkContainer({ user, object, action }: LinkContainerProps) {
+export function LinkContainer() {
     const [profile, setUser] = useState<UserDbModel>();
 
     useEffect(() => {
@@ -54,7 +47,7 @@ export function LinkContainer({ user, object, action }: LinkContainerProps) {
                 {links.map(link => {
                     const { label, path } = link;
 
-                    return <LinkComponent key={path} label={label} path={path} user={user} />;
+                    return <LinkComponent key={path} label={label} path={path} user={profile.type} />;
                 })}
             </ul>
         );

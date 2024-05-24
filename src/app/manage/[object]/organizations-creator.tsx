@@ -4,30 +4,19 @@ import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scs
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
-import { Organization } from '@/api/api';
-import { toastSuccess } from '@/utils/toast-utils';
-import { OrgTypes } from '@/types/organization-types';
-import { useAddOrganizationsCreator } from '@/hooks/manage-creators/use-add-organizations-creator';
+import { useOrganizationsCreator } from '@/hooks/manage-creators/use-organizations-creator';
 import { useContext } from 'react';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
+import { OrgTypes } from '@/types/organization-types';
 
-export function AddOrganizationsCreator() {
-    const { name, onChangeName, type, onChangeType } = useAddOrganizationsCreator();
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+export function OrganizationsCreator() {
+    const { setIsLoading } = useContext(ManageCreatorContext);
+    const { name, onChangeName, type, onChangeType, onSubmit } = useOrganizationsCreator(setIsLoading);
     const typeOptions: OptionType[] = [
         { id: 1, label: OrgTypes.CLIENT, value: OrgTypes.CLIENT },
         { id: 2, label: OrgTypes.SHOP, value: OrgTypes.SHOP },
         { id: 3, label: OrgTypes.SWAGGER, value: OrgTypes.SWAGGER }
     ];
-
-    const onSubmit = () => {
-        const { addOrganizationEnd } = Organization;
-
-        setIsLoading(true);
-        addOrganizationEnd({ name, type })
-            .then(data => toastSuccess(data))
-            .finally(() => setIsLoading(false));
-    };
 
     return (
         <form className={styles['creator-form']}>

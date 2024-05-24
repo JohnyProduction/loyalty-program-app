@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { UserDbModel } from '@/types/user-types';
 import { User } from '@/api/api';
-import { linksData } from '@/app/manage/[user]/[object]/[action]/link-container';
+import { linksData } from '@/app/manage/x/[user]/[object]/[action]/link-container';
 import { AccountType } from '@/types/login-types';
 import { redirect } from 'next/navigation';
 import { Loader } from '@/components/common/loader';

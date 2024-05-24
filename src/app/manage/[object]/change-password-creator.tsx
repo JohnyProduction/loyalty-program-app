@@ -6,11 +6,11 @@ import { InputString } from '@/components/common/inputs/input-string';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { User } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function ChangePasswordCreator() {
     const [password, setPassword] = useState<string>('');
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
 
     const onChangePassword = (e: any) => {
         setPassword(e.target.value);

@@ -3,15 +3,14 @@
 import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scss';
 import { useFetchCollection } from '@/hooks/use-fetch-collection';
 import { Loader } from '@/components/common/loader';
+import Link from 'next/link';
 
 interface DataContainerProps {
-    user: string;
     object: string;
-    action: string;
 }
 
-export function DataContainer({ user, object, action }: DataContainerProps) {
-    const { data, isLoading } = useFetchCollection(object, action);
+export function DataContainer({ object }: DataContainerProps) {
+    const { data, isLoading } = useFetchCollection(object);
 
     return (
         <>
@@ -21,7 +20,11 @@ export function DataContainer({ user, object, action }: DataContainerProps) {
                     {data.length > 0 && <h3>{object} list</h3>}
                     <ul>
                         {data.map(el => {
-                            return <li>{el}</li>;
+                            return (
+                                <Link href={`/manage/${object}?edit=${el}`}>
+                                    <li>{el}</li>
+                                </Link>
+                            );
                         })}
                     </ul>
                 </div>

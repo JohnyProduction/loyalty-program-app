@@ -9,7 +9,7 @@ import styles from '@/styles/app/manage/[user]/[object]/[action]/page.module.scs
 import { useContext, useEffect, useState } from 'react';
 import { Login, Organization } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, role, onChangeRole } = useAddUsersCreator();
@@ -19,7 +19,7 @@ export function AddUsersCreator() {
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
 
     useEffect(() => {
         const { getOrganizationsEnd } = Organization;

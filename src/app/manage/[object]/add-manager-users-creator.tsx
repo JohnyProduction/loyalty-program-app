@@ -9,11 +9,11 @@ import { AccountType } from '@/types/login-types';
 import { User } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { useContext } from 'react';
-import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddManagerUsersCreator() {
     const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator();
-    const { setIsLoading } = useContext(SettingsCreatorContext);
+    const { setIsLoading } = useContext(ManageCreatorContext);
     const roleOptions: OptionType[] = [
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
