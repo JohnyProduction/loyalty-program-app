@@ -8,10 +8,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { UserDbModel } from '@/types/user-types';
 import { User } from '@/api/api';
-import { linksData } from '@/app/manage/x/[user]/[object]/[action]/link-container';
 import { AccountType } from '@/types/login-types';
 import { redirect } from 'next/navigation';
 import { Loader } from '@/components/common/loader';
+import { linksData } from '@/app/manage/[object]/link-container';
 
 export default function ManagePage() {
     const [user, setUser] = useState<UserDbModel>();
@@ -37,7 +37,7 @@ export default function ManagePage() {
             <ul>
                 {links.map(link => {
                     return (
-                        <Link href={`/manage/${user.type}/${link.path}`}>
+                        <Link href={`/manage/${link.path}`} key={link.path}>
                             <li>{link.label}</li>
                         </Link>
                     );
