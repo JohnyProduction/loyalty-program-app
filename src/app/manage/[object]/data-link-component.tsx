@@ -17,9 +17,10 @@ export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
 
     const onDelete = (e: any) => {
         const result = confirm('Are you sure to delete this object?');
-        setIsLoading(true);
 
         if (result) {
+            setIsLoading(true);
+
             switch (object) {
             case 'users':
                 deleteUser(label)
