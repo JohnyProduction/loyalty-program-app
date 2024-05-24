@@ -7,6 +7,8 @@ interface ManageCreatorProviderType {
     setIsLoading: Dispatch<SetStateAction<boolean>>;
     edit: string | undefined;
     setEdit: Dispatch<SetStateAction<string | undefined>>;
+    isReFetched: boolean;
+    reFetch: () => void;
 }
 
 export const ManageCreatorContext: Context<ManageCreatorProviderType> = createContext(null);
@@ -14,10 +16,14 @@ export const ManageCreatorContext: Context<ManageCreatorProviderType> = createCo
 export function SettingsCreatorProvider({ children }) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [edit, setEdit] = useState<string>();
+    const [isReFetched, setIsReFetched] = useState<boolean>(false);
+
+    const reFetch = () => setIsReFetched(!isReFetched);
 
     const contextValue = {
         isLoading, setIsLoading,
-        edit, setEdit
+        edit, setEdit,
+        isReFetched, reFetch
     };
 
     return (

@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AccountType } from '@/types/login-types';
+import { OptionType } from '@/components/common/inputs/input-select';
+import { Organization } from '@/api/api';
 
 export function useAddUsersCreator() {
     const [username, setUsername] = useState<string>('');
@@ -9,6 +11,24 @@ export function useAddUsersCreator() {
     const [email, setEmail] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
     const [role, setRole] = useState<AccountType>(AccountType.WORKER);
+
+    const [organizationOptions, setOrganizationOptions] = useState<OptionType[]>([]);
+
+    useEffect(() => {
+        const { getOrganizationsEnd } = Organization;
+
+        getOrganizationsEnd()
+            .then(data => {
+                const options: OptionType[] = data.map((model, idx) => ({
+                    id: idx,
+                    label: model.name,
+                    value: model.name
+                }));
+
+                setOrganizationOptions(options);
+                setOrganization(data[0].name);
+            });
+    }, []);
 
     const onChangeUsername = (e: any) => {
         setUsername(e.target.value);
@@ -34,7 +54,7 @@ export function useAddUsersCreator() {
         username, onChangeUsername,
         password, onChangePassword,
         email, onChangeEmail,
-        organization, onChangeOrganization,
+        organization, onChangeOrganization, organizationOptions,
         role, onChangeRole
     };
 }

@@ -12,29 +12,13 @@ import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddUsersCreator() {
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, role, onChangeRole } = useAddUsersCreator();
-    const [organizationOptions, setOrganizationOptions] = useState<OptionType[]>([]);
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole } = useAddUsersCreator();
     const roleOptions: OptionType[] = [
         { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
-    const { setIsLoading } = useContext(ManageCreatorContext);
-
-    useEffect(() => {
-        const { getOrganizationsEnd } = Organization;
-
-        getOrganizationsEnd()
-            .then(data => {
-                const options: OptionType[] = data.map((model, idx) => ({
-                    id: idx,
-                    label: model.name,
-                    value: model.name
-                }));
-
-                setOrganizationOptions(options);
-            });
-    }, []);
+    const { setIsLoading, reFetch } = useContext(ManageCreatorContext);
 
     const onSubmit = () => {
         const { registerForAdminEnd } = Login;
@@ -47,7 +31,10 @@ export function AddUsersCreator() {
             accountType: role,
             organizationName: organization
         })
-            .then(data => toastSuccess(data))
+            .then(data => {
+                toastSuccess(data);
+                reFetch();
+            })
             .catch(err => toastError(err.message))
             .finally(() => setIsLoading(false));
     };

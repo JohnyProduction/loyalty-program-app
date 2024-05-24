@@ -27,13 +27,13 @@ export default function ManagePage({ params, searchParams }: ManageObjectPagePro
             <TopBar />
             <PageBox>
                 <SubSettingsHeader object={object} />
-                <div className={styles['content-box']}>
-                    <SettingsCreatorProvider>
+                <SettingsCreatorProvider>
+                    <div className={styles['content-box']}>
                         <LinkContainer />
                         <CreatorContainer object={object} edit={edit} />
-                    </SettingsCreatorProvider>
-                </div>
-                <DataContainer object={object} />
+                    </div>
+                    <DataContainer object={object} />
+                </SettingsCreatorProvider>
                 <Footer />
             </PageBox>
         </main>

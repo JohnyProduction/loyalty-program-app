@@ -10,8 +10,8 @@ import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { OrgTypes } from '@/types/organization-types';
 
 export function OrganizationsCreator() {
-    const { setIsLoading } = useContext(ManageCreatorContext);
-    const { name, onChangeName, type, onChangeType, onSubmit } = useOrganizationsCreator(setIsLoading);
+    const { setIsLoading, reFetch } = useContext(ManageCreatorContext);
+    const { name, onChangeName, type, onChangeType, onSubmit } = useOrganizationsCreator(setIsLoading, reFetch);
     const typeOptions: OptionType[] = [
         { id: 1, label: OrgTypes.CLIENT, value: OrgTypes.CLIENT },
         { id: 2, label: OrgTypes.SHOP, value: OrgTypes.SHOP },

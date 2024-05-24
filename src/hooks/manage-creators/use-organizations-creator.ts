@@ -5,7 +5,7 @@ import { Organization } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
 import { OrgTypes } from '@/types/organization-types';
 
-export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<boolean>>) {
+export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<boolean>>, reFetch: () => void) {
     const [name, setName] = useState<string>('');
     const [type, setType] = useState<OrgTypes>(OrgTypes.CLIENT);
 
@@ -22,7 +22,10 @@ export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<bo
 
         setIsLoading(true);
         addOrganizationEnd({ name, type })
-            .then(data => toastSuccess(data))
+            .then(data => {
+                toastSuccess(data);
+                reFetch();
+            })
             .finally(() => setIsLoading(false));
     };
 

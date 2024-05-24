@@ -10,7 +10,7 @@ import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddCategoriesCreator() {
     const [categoryName, setCategoryName] = useState<string>('');
-    const { setIsLoading } = useContext(ManageCreatorContext);
+    const { setIsLoading, reFetch } = useContext(ManageCreatorContext);
 
     const onCategoryNameChange = (e: any) => {
         setCategoryName(e.target.value);
@@ -25,6 +25,7 @@ export function AddCategoriesCreator() {
             setCategoryName('');
 
             toastSuccess(`New "${categoryName}" category has been added!`);
+            reFetch();
         } catch (err: any) {
             toastError(err.message);
         } finally {

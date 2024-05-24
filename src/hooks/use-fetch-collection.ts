@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Categories, Organization, User } from '@/api/api';
+import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function useFetchCollection(object: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [data, setData] = useState<string[]>([]);
+    const context = useContext(ManageCreatorContext);
 
     useEffect(() => {
         if (object === 'users') {
@@ -36,7 +38,7 @@ export function useFetchCollection(object: string) {
                 .finally(() => setIsLoading(false));
         }
         else setIsLoading(false);
-    }, []);
+    }, [context.isReFetched]);
 
     return { data, isLoading };
 }
