@@ -8,14 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.24.0] - 2024-05-24
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Each object list at `manage` page.
-- [Marek Kurańda](https://github.com/mjkuranda): Deleting users.
+- [Marek Kurańda](https://github.com/mjkuranda): Editing and deleting users.
 - [Marek Kurańda](https://github.com/mjkuranda): Refreshing object list after deleting.
+- [Marek Kurańda](https://github.com/mjkuranda): Inputs can be disabled.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): `Manage` bookmark is not available for workers.
 - [Marek Kurańda](https://github.com/mjkuranda): Settings subpage to Manage and settings page content moved to `/manage` page.
 - [Marek Kurańda](https://github.com/mjkuranda): Settings page allows changing user email and password.
 - [Marek Kurańda](https://github.com/mjkuranda): `/manage/:object` allows displaying creator for a specific object, e.g. organizations, users etc.
+- [Marek Kurańda](https://github.com/mjkuranda): InputString can contain password as well.
 
 ## [0.23.1] - 2024-05-18
 ### Added

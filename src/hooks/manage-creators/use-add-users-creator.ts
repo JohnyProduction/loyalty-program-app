@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { AccountType } from '@/types/login-types';
 import { OptionType } from '@/components/common/inputs/input-select';
 import { Organization } from '@/api/api';
+import { UserDbModel } from '@/types/user-types';
 
 export function useAddUsersCreator() {
     const [username, setUsername] = useState<string>('');
@@ -30,6 +31,21 @@ export function useAddUsersCreator() {
             });
     }, []);
 
+    const loadUser = (user: UserDbModel) => {
+        setUsername(user.login);
+        setPassword('XXXXXXXXXXXXXXXX');
+        setEmail(user.email || '');
+        setRole(user.type);
+    };
+
+    const resetForm = () => {
+        setUsername('');
+        setPassword('');
+        setEmail('');
+        setOrganization(organizationOptions[0].value);
+        setRole(AccountType.WORKER);
+    };
+
     const onChangeUsername = (e: any) => {
         setUsername(e.target.value);
     };
@@ -55,6 +71,7 @@ export function useAddUsersCreator() {
         password, onChangePassword,
         email, onChangeEmail,
         organization, onChangeOrganization, organizationOptions,
-        role, onChangeRole
+        role, onChangeRole,
+        loadUser, resetForm
     };
 }

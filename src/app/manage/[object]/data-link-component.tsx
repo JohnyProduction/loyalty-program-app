@@ -51,7 +51,7 @@ export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
         <li>
             {isLoading && <Loader isAbsolute={true} />}
             {label}
-            {['users'].includes(object) && <Icon src={'/pages/edit.png'} size={32} />}
+            {['users'].includes(object) && <Icon src={'/pages/edit.png'} size={32} href={`?object=${object}&edit=${label}`} />}
             <Icon src={'/pages/delete.png'} size={32} onClick={onDelete} />
         </li>
     );
