@@ -1,41 +1,65 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Categories } from '@/api/api';
-import { toastError, toastSuccess } from '@/utils/toast-utils';
+import { toastError } from '@/utils/toast-utils';
 import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputString } from '@/components/common/inputs/input-string';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
+import { InputImage } from '@/components/common/inputs/input-image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCategoriesCreator } from '@/hooks/manage-creators/use-categories-creator';
+import { Loader } from '@/components/common/loader';
 
 export function AddCategoriesCreator() {
-    const [categoryName, setCategoryName] = useState<string>('');
-    const { setIsLoading, reFetch } = useContext(ManageCreatorContext);
+    const [isLoadingObject, setIsLoadingObject] = useState<boolean>(false);
+    const queryParams = useSearchParams();
+    const objectParam = queryParams.get('object');
+    const editParam = queryParams.get('edit');
+    const disabled = Boolean(editParam);
+    const router = useRouter();
 
-    const onCategoryNameChange = (e: any) => {
-        setCategoryName(e.target.value);
-    };
+    const formRef = useRef(null);
+    const { setIsLoading, reFetch, needsToRefreshForm } = useContext(ManageCreatorContext);
 
-    const onSubmit = async () => {
-        const { addCategoryEnd } = Categories;
-        setIsLoading(true);
+    const { categoryName, onCategoryNameChange, image, onImageChange, onSubmit, loadForm, resetForm } = useCategoriesCreator(setIsLoading, reFetch, formRef, editParam, router);
 
-        try {
-            await addCategoryEnd(categoryName);
-            setCategoryName('');
+    useEffect(() => {
+        if (objectParam === 'categories' && editParam) {
+            setIsLoadingObject(true);
+            let file: File | null;
 
-            toastSuccess(`New "${categoryName}" category has been added!`);
-            reFetch();
-        } catch (err: any) {
-            toastError(err.message);
-        } finally {
-            setIsLoading(false);
+            Categories
+                .getCategoryImageEnd(editParam)
+                .then(img => {
+                    file = new File([img.blob], `${editParam}-category-image`, { type: img.blob.type });
+                })
+                .catch(err => {
+                    if (err.message !== 'Image does not exist!') toastError(`Error: ${err.message}`);
+                })
+                .then(() => {
+                    resetForm();
+
+                    if (file) {
+                        loadForm(editParam, file);
+                    } else {
+                        loadForm(editParam);
+                    }
+                })
+                .finally(() => setIsLoadingObject(false));
         }
-    };
+    }, [editParam]);
+
+    useEffect(() => {
+        resetForm();
+    }, [needsToRefreshForm]);
 
     return (
-        <form className={styles['creator-form']}>
-            <InputString label={'Category name'} name={'category-name'} value={categoryName} onChange={onCategoryNameChange} />
+        <form className={styles['creator-form']} ref={formRef}>
+            {isLoadingObject && <Loader isAbsolute={true} />}
+            <InputString label={'Category name'} name={'category-name'} value={categoryName} onChange={onCategoryNameChange} disabled={disabled} />
+            <InputImage label={'Category image'} name={'category-image'} image={image} onChange={onImageChange} />
             <div className={styles['navigation-box']}>
                 <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>

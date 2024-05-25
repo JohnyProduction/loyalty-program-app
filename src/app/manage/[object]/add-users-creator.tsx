@@ -6,7 +6,7 @@ import { InputSelect, OptionType } from '@/components/common/inputs/input-select
 import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import styles from '@/styles/app/manage/[object]/page.module.scss';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Login, User } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
@@ -14,14 +14,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
 
 export function AddUsersCreator() {
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator();
+    const formRef = useRef(null);
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef);
     const [user, setUser] = useState<UserDbModel>();
     const roleOptions: OptionType[] = [
         { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
         { id: 3, label: AccountType.WORKER, value: AccountType.WORKER }
     ];
-    const { setIsLoading, reFetch } = useContext(ManageCreatorContext);
+    const { setIsLoading, reFetch, needsToRefreshForm } = useContext(ManageCreatorContext);
     const queryParams = useSearchParams();
     const objectParam = queryParams.get('object');
     const editParam = queryParams.get('edit');
@@ -48,6 +49,10 @@ export function AddUsersCreator() {
             })
             .catch(err => toastError(`Error: ${err.message}.`));
     }, [editParam]);
+
+    useEffect(() => {
+        resetForm();
+    }, [needsToRefreshForm]);
 
     const onSubmit = () => {
         if (editParam) {
@@ -86,7 +91,7 @@ export function AddUsersCreator() {
     };
 
     return (
-        <form className={styles['creator-form']}>
+        <form className={styles['creator-form']} ref={formRef}>
             <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} />
             <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} />
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />

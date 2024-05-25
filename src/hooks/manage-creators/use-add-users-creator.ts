@@ -6,7 +6,7 @@ import { OptionType } from '@/components/common/inputs/input-select';
 import { Organization } from '@/api/api';
 import { UserDbModel } from '@/types/user-types';
 
-export function useAddUsersCreator() {
+export function useAddUsersCreator(formRef: any) {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -39,10 +39,18 @@ export function useAddUsersCreator() {
     };
 
     const resetForm = () => {
+        if (formRef) {
+            formRef.current.reset();
+        }
+
         setUsername('');
         setPassword('');
         setEmail('');
-        setOrganization(organizationOptions[0].value);
+
+        if (organizationOptions.length) {
+            setOrganization(organizationOptions[0].value);
+        }
+
         setRole(AccountType.WORKER);
     };
 
