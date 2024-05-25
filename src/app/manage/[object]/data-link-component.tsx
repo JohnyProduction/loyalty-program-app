@@ -7,7 +7,7 @@ import { useContext, useState } from 'react';
 import { deleteUser } from '@/helpers/manage-user';
 import { Loader } from '@/components/common/loader';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface DataLinkComponentProps {
     object: string;
@@ -65,7 +65,7 @@ export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
         <li>
             {isLoading && <Loader isAbsolute={true} />}
             {label}
-            {['categories', 'users'].includes(object) && <Icon src={'/pages/edit.png'} size={32} href={`?object=${object}&edit=${label}`} />}
+            {['users', 'organizations', 'categories'].includes(object) && <Icon src={'/pages/edit.png'} size={32} href={`?object=${object}&edit=${label}`} />}
             <Icon src={'/pages/delete.png'} size={32} onClick={onDelete} />
         </li>
     );

@@ -18,10 +18,6 @@ export default function ManagePage({ params, searchParams }: ManageObjectPagePro
     const { object } = params;
     const { edit } = searchParams;
 
-    // if (!areValidParams(user, object, action)) {
-    //     redirect('/');
-    // }
-
     return (
         <main className={styles['manage-page']}>
             <TopBar />
