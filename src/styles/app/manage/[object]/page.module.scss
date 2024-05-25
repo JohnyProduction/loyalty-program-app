@@ -49,6 +49,10 @@
             .creator-form {
                 width: 50%;
 
+                div + div {
+                    margin-top: .618rem;
+                }
+
                 .navigation-box {
                     margin-top: 1rem;
                     display: flex;
