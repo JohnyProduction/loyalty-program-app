@@ -4,14 +4,14 @@ import { useContext, useEffect, useState } from 'react';
 import { Categories, Organization, User } from '@/api/api';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
-export function useFetchCollection(object: string) {
+export function useFetchCollection(object: string, organization?: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [data, setData] = useState<string[]>([]);
     const context = useContext(ManageCreatorContext);
 
     useEffect(() => {
         if (object === 'users') {
-            User.getUsersEnd()
+            User.getUsersEnd(organization ?? undefined)
                 .then(data => {
                     const userMap = data.map(user => user.login);
                     setData(userMap);
@@ -38,7 +38,7 @@ export function useFetchCollection(object: string) {
                 .finally(() => setIsLoading(false));
         }
         else setIsLoading(false);
-    }, [context.isReFetched]);
+    }, [context.isReFetched, organization]);
 
     return { data, isLoading };
 }

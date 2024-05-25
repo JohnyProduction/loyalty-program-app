@@ -3,7 +3,7 @@ import { TopBar } from '@/components/common/top-bar';
 import { Footer } from '@/components/common/footer';
 import { PageBox } from '@/app/page-box';
 import { SubSettingsHeader } from '@/app/manage/[object]/sub-settings-header';
-import { SettingsCreatorProvider } from '@/contexts/manage-creator-context';
+import { ManageCreatorProvider } from '@/contexts/manage-creator-context';
 import { LinkContainer } from '@/app/manage/[object]/link-container';
 import { CreatorContainer } from '@/app/manage/[object]/creator-container';
 import { DataContainer } from '@/app/manage/[object]/data-container';
@@ -23,13 +23,13 @@ export default function ManagePage({ params, searchParams }: ManageObjectPagePro
             <TopBar />
             <PageBox>
                 <SubSettingsHeader object={object} />
-                <SettingsCreatorProvider>
+                <ManageCreatorProvider>
                     <div className={styles['content-box']}>
                         <LinkContainer />
                         <CreatorContainer object={object} edit={edit} />
                     </div>
                     <DataContainer object={object} />
-                </SettingsCreatorProvider>
+                </ManageCreatorProvider>
                 <Footer />
             </PageBox>
         </main>

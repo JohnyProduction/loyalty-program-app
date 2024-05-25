@@ -15,7 +15,7 @@ interface ManageCreatorProviderType {
 
 export const ManageCreatorContext: Context<ManageCreatorProviderType> = createContext(null);
 
-export function SettingsCreatorProvider({ children }) {
+export function ManageCreatorProvider({ children }) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [edit, setEdit] = useState<string>();
     const [isReFetched, setIsReFetched] = useState<boolean>(false);
