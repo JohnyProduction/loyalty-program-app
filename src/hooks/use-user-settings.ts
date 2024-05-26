@@ -47,7 +47,6 @@ export function useUserSettings() {
             .catch(err => toastError(`Error occurred while changing user email: ${err.message}.`))
             .finally(() => {
                 setIsProceedingEmail(false);
-                setEmail('');
             });
     };
 
