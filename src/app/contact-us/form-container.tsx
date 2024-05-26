@@ -9,8 +9,6 @@ import { useContactForm } from '@/hooks/use-contact-form';
 export function FormContainer() {
     const { fullName, onFullNameChange, email, onEmailChange, message, onMessageChange } = useContactForm();
 
-    console.log(fullName, email, message);
-
     return (
         <div className={styles['contact-us-page__form-container__form-container']}>
             <InputString label={'Full name'} name={'full-name'} value={fullName} onChange={onFullNameChange} />

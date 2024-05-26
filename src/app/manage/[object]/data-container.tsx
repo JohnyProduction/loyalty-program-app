@@ -59,7 +59,7 @@ export function DataContainer({ object }: DataContainerProps) {
                         </div>
                     )}
                     <ul>
-                        {data.map(el => <DataLinkComponent key={el} label={el} object={object} />)}
+                        {data.map(el => <DataLinkComponent key={el} label={el} object={object} organization={organization} />)}
                     </ul>
                 </div>
             }

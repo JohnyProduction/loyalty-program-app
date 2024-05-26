@@ -11,13 +11,22 @@ export function useUserSettings() {
     const [user, setUser] = useState<UserDbModel | null>(null);
     const [isProceedingEmail, setIsProceedingEmail] = useState<boolean>(false);
     const [isProceedingPassword, setIsProceedingPassword] = useState<boolean>(false);
+    const [isFetchingUser, setIsFetchingUser] = useState<boolean>(false);
 
     useEffect(() => {
         const { getCurrentUserEnd } = User;
 
+        setIsFetchingUser(true);
         getCurrentUserEnd()
-            .then(data => setUser(data))
-            .catch(err => toastError(`Error occurred while fetching current user: ${err.message}.`));
+            .then(data => {
+                setUser(data);
+
+                if (data.email) {
+                    setEmail(data.email);
+                }
+            })
+            .catch(err => toastError(`Error occurred while fetching current user: ${err.message}.`))
+            .finally(() => setIsFetchingUser(false));
     }, []);
 
     const onChangeEmail = (e: any) => setEmail(e.target.value);
@@ -57,6 +66,7 @@ export function useUserSettings() {
 
     return {
         email, onChangeEmail, onSubmitEmail, isProceedingEmail,
-        password, onChangePassword, onSubmitPassword, isProceedingPassword
+        password, onChangePassword, onSubmitPassword, isProceedingPassword,
+        isFetchingUser
     };
 }

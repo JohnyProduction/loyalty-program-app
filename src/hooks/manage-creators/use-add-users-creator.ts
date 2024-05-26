@@ -6,7 +6,7 @@ import { OptionType } from '@/components/common/inputs/input-select';
 import { Organization } from '@/api/api';
 import { UserDbModel } from '@/types/user-types';
 
-export function useAddUsersCreator(formRef: any) {
+export function useAddUsersCreator(formRef: any, router: any) {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -52,6 +52,7 @@ export function useAddUsersCreator(formRef: any) {
         }
 
         setRole(AccountType.WORKER);
+        router.push('/manage/users');
     };
 
     const onChangeUsername = (e: any) => {

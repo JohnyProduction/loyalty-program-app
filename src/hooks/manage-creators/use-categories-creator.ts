@@ -27,6 +27,7 @@ export function useCategoriesCreator(setIsLoading: Dispatch<SetStateAction<boole
 
         setCategoryName('');
         setImage(null);
+        router.push('/manage/categories');
     };
 
     const onCategoryNameChange = (e: any) => setCategoryName(e.target.value);

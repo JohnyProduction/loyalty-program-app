@@ -13,7 +13,7 @@ import { InputSelect, OptionType } from '@/components/common/inputs/input-select
 import { OrganizationModel } from '@/types/organization-types';
 
 export function AddCreditsCreator() {
-    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm } = useAddCreditsCreator();
+    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm, currentAmount } = useAddCreditsCreator();
     const { setIsLoading } = useContext(ManageCreatorContext);
 
     const getOrganizationsAsOptions = (organizations: OrganizationModel[]): OptionType[] => {
@@ -46,8 +46,9 @@ export function AddCreditsCreator() {
                     <InputSelect label={'Organization'} name={'organization'} options={getOrganizationsAsOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />
                     <InputSelect label={'Login'} name={'login'} options={usernames} value={login} onChange={onChangeLogin} />
                     <InputString label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
+                    {`Currently has: ${currentAmount} credits.`}
                     <div className={styles['navigation-box']}>
-                        <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
+                        <SubmitButton label={'Add'} size="small" onSubmit={onSubmit} />
                     </div>
                 </form>
             )}

@@ -10,6 +10,7 @@ export function useAddCreditsCreator() {
     const [organization, setOrganization] = useState<string>();
     const [login, setLogin] = useState<string>('');
     const [amount, setAmount] = useState<string>('');
+    const [currentAmount, setCurrentAmount] = useState<number>(0);
 
     const [usernames, setUsernames] = useState<OptionType[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -25,7 +26,8 @@ export function useAddCreditsCreator() {
                     };
                 });
                 setUsernames(map);
-                setLogin(map[0].label);
+                setLogin(data[0].login);
+                setCurrentAmount(data[0].credits);
             })
             .catch(() => {})
             .finally(() => setIsLoading(false));
@@ -53,6 +55,6 @@ export function useAddCreditsCreator() {
         organization, organizations, onChangeOrganization,
         login, onChangeLogin,
         amount, onChangeAmount,
-        resetForm
+        resetForm, currentAmount
     };
 }

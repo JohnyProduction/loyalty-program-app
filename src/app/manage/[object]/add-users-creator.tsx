@@ -14,8 +14,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { UserDbModel } from '@/types/user-types';
 
 export function AddUsersCreator() {
+    const router = useRouter();
     const formRef = useRef(null);
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef);
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef, router);
     const [user, setUser] = useState<UserDbModel>();
     const roleOptions: OptionType[] = [
         { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
@@ -26,8 +27,8 @@ export function AddUsersCreator() {
     const queryParams = useSearchParams();
     const objectParam = queryParams.get('object');
     const editParam = queryParams.get('edit');
+    const organizationParam = queryParams.get('organization');
     const disabled = Boolean(editParam);
-    const router = useRouter();
 
     useEffect(() => {
         if (objectParam !== 'users') {
@@ -36,7 +37,7 @@ export function AddUsersCreator() {
 
         const { getUsersEnd } = User;
 
-        getUsersEnd(organization)
+        getUsersEnd(organizationParam ?? undefined)
             .then(users => {
                 const filteredUser = users.find(u => u.login === editParam);
 
@@ -98,7 +99,9 @@ export function AddUsersCreator() {
             <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} disabled={disabled} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
+                {!editParam && <div></div>}
+                <SubmitButton label={editParam ? 'Edit' : 'Create new'} size="small" onSubmit={onSubmit} />
+                {editParam && <SubmitButton label={'Back to creation'} size="small" onSubmit={resetForm} />}
             </div>
         </form>
     );

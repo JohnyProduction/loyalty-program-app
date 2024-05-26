@@ -8,11 +8,12 @@ import { useAddUsersCreator } from '@/hooks/manage-creators/use-add-users-creato
 import { AccountType } from '@/types/login-types';
 import { User } from '@/api/api';
 import { toastSuccess } from '@/utils/toast-utils';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 
 export function AddManagerUsersCreator() {
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator();
+    const formRef = useRef(null);
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole } = useAddUsersCreator(formRef);
     const { setIsLoading } = useContext(ManageCreatorContext);
     const roleOptions: OptionType[] = [
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
@@ -29,13 +30,13 @@ export function AddManagerUsersCreator() {
     };
 
     return (
-        <form className={styles['creator-form']}>
+        <form className={styles['creator-form']} ref={formRef}>
             <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} />
             <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} />
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} />
             <div className={styles['navigation-box']}>
-                <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={'Create new'} size="small" onSubmit={onSubmit} />
             </div>
         </form>
     );

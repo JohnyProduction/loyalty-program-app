@@ -12,9 +12,10 @@ import { useRouter } from 'next/navigation';
 interface DataLinkComponentProps {
     object: string;
     label: string;
+    organization?: string
 }
 
-export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
+export function DataLinkComponent({ object, label, organization }: DataLinkComponentProps) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { reFetch, forceRefreshForm } = useContext(ManageCreatorContext);
     const router = useRouter();
@@ -27,8 +28,9 @@ export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
 
             switch (object) {
             case 'users':
-                deleteUser(label)
+                deleteUser(label, organization)
                     .then(() => { toastSuccess('User successfully deleted.'); reFetch(); })
+                    .catch(err => toastError(`Error occurred: ${err.message}`))
                     .finally(() => {
                         setIsLoading(false);
                         router.push('/manage/users');
@@ -65,7 +67,7 @@ export function DataLinkComponent({ object, label }: DataLinkComponentProps) {
         <li>
             {isLoading && <Loader isAbsolute={true} />}
             {label}
-            {['users', 'organizations', 'categories'].includes(object) && <Icon src={'/pages/edit.png'} size={32} href={`?object=${object}&edit=${label}`} />}
+            {['users', 'organizations', 'categories'].includes(object) && <Icon src={'/pages/edit.png'} size={32} href={`?object=${object}&edit=${label}&${object === 'users' && `organization=${organization}`}`} />}
             <Icon src={'/pages/delete.png'} size={32} onClick={onDelete} />
         </li>
     );

@@ -39,6 +39,10 @@ export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<bo
         setName('');
         setType(OrgTypes.CLIENT);
         setImage(null);
+
+        if (!editParam) {
+            router.push('/manage/organizations');
+        }
     };
 
     const onChangeName = (e: any) => setName(e.target.value);
