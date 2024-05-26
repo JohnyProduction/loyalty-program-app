@@ -13,7 +13,7 @@ import { InputSelect, OptionType } from '@/components/common/inputs/input-select
 import { OrganizationModel } from '@/types/organization-types';
 
 export function AddCreditsCreator() {
-    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount } = useAddCreditsCreator();
+    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm } = useAddCreditsCreator();
     const { setIsLoading } = useContext(ManageCreatorContext);
 
     const getOrganizationsAsOptions = (organizations: OrganizationModel[]): OptionType[] => {
@@ -31,6 +31,7 @@ export function AddCreditsCreator() {
             setIsLoading(true);
             await changeCreditsEnd(login, Number(amount));
             toastSuccess(`Pomyślnie dodano ${amount} kredytów dla użytkownika ${login}.`);
+            resetForm();
         } catch (e: any) {
             toastError(e.message);
         } finally {

@@ -47,6 +47,26 @@ export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<bo
 
     const onChangeImage = (e: any) => setImage(e.target.files[0]);
 
+    const onDeleteImage = async () => {
+        if (!editParam) {
+            return;
+        }
+
+        const { deleteOrganizationImageEnd } = Organization;
+        setIsLoading(true);
+
+        try {
+            const res = await deleteOrganizationImageEnd(editParam);
+
+            setImage(null);
+            toastSuccess(res);
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const onSubmit = async () => {
         const { addOrganizationEnd, setOrganizationImageEnd } = Organization;
 
@@ -81,6 +101,6 @@ export function useOrganizationsCreator(setIsLoading: Dispatch<SetStateAction<bo
         name, onChangeName,
         type, onChangeType,
         image, onChangeImage,
-        onSubmit, loadForm, resetForm
+        onDeleteImage, onSubmit, loadForm, resetForm
     };
 }

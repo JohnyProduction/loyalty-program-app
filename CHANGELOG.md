@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Refreshing object list after deleting.
 - [Marek Kurańda](https://github.com/mjkuranda): Inputs can be disabled.
 - [Marek Kurańda](https://github.com/mjkuranda): Filtering users by organization name.
+- [Marek Kurańda](https://github.com/mjkuranda): Deleting categories and organization images.
 - [Marek Kurańda](https://github.com/mjkuranda): and so on...
 
 ### Changed

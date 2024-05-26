@@ -25,10 +25,16 @@ export function useAddCreditsCreator() {
                     };
                 });
                 setUsernames(map);
+                setLogin(map[0].label);
             })
             .catch(() => {})
             .finally(() => setIsLoading(false));
     }, [organization]);
+
+    const resetForm = () => {
+        setLogin(usernames[0].label);
+        setAmount('');
+    };
 
     const onChangeOrganization = (e: any) => {
         setOrganization(e.target.value);
@@ -46,6 +52,7 @@ export function useAddCreditsCreator() {
         usernames, isLoading,
         organization, organizations, onChangeOrganization,
         login, onChangeLogin,
-        amount, onChangeAmount
+        amount, onChangeAmount,
+        resetForm
     };
 }

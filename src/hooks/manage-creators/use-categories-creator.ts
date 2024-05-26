@@ -33,6 +33,26 @@ export function useCategoriesCreator(setIsLoading: Dispatch<SetStateAction<boole
 
     const onImageChange = (e: any) => setImage(e.target.files[0]);
 
+    const onDeleteImage = async () => {
+        if (!editParam) {
+            return;
+        }
+
+        const { deleteCategoryImageEnd } = Categories;
+        setIsLoading(true);
+
+        try {
+            const res = await deleteCategoryImageEnd(editParam);
+
+            setImage(null);
+            toastSuccess(res);
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const onSubmit = async () => {
         const { addCategoryEnd, setCategoryImageEnd } = Categories;
         setIsLoading(true);
@@ -69,6 +89,6 @@ export function useCategoriesCreator(setIsLoading: Dispatch<SetStateAction<boole
     return {
         categoryName, onCategoryNameChange,
         image, onImageChange,
-        onSubmit, loadForm, resetForm
+        onDeleteImage, onSubmit, loadForm, resetForm
     };
 }

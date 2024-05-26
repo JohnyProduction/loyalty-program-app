@@ -16,6 +16,7 @@ import { Loader } from '@/components/common/loader';
 
 export function OrganizationsCreator() {
     const [isLoadingObject, setIsLoadingObject] = useState<boolean>(false);
+    const [hasImage, setHasImage] = useState<boolean>(false);
     const queryParams = useSearchParams();
     const objectParam = queryParams.get('object');
     const editParam = queryParams.get('edit');
@@ -24,7 +25,7 @@ export function OrganizationsCreator() {
     const router = useRouter();
     const formRef = useRef(null);
     const { setIsLoading, reFetch, needsToRefreshForm } = useContext(ManageCreatorContext);
-    const { name, onChangeName, type, onChangeType, onSubmit, image, onChangeImage, resetForm, loadForm } = useOrganizationsCreator(setIsLoading, reFetch, formRef, editParam, router);
+    const { name, onChangeName, type, onChangeType, onSubmit, image, onChangeImage, resetForm, loadForm, onDeleteImage } = useOrganizationsCreator(setIsLoading, reFetch, formRef, editParam, router);
     const typeOptions: OptionType[] = [
         { id: 1, label: OrgTypes.CLIENT, value: OrgTypes.CLIENT },
         { id: 2, label: OrgTypes.SHOP, value: OrgTypes.SHOP },
@@ -40,6 +41,7 @@ export function OrganizationsCreator() {
                 .getOrganizationImageEnd(editParam)
                 .then(img => {
                     file = new File([img.blob], `${editParam}-organization-image`, { type: img.blob.type });
+                    setHasImage(true);
                 })
                 .catch(err => {
                     if (err.message !== 'Image does not exist!') toastError(`Error: ${err.message}`);
@@ -68,6 +70,7 @@ export function OrganizationsCreator() {
             <InputSelect label={'Type'} name={'type'} value={type} onChange={onChangeType} options={typeOptions} disabled={disabled} />
             <InputImage label={'Image'} name={'image'} image={image} onChange={onChangeImage} />
             <div className={styles['navigation-box']}>
+                {image && editParam && hasImage ? <SubmitButton label={'Delete image'} onSubmit={onDeleteImage} size="small" /> : <div></div>}
                 <SubmitButton label={'Submit'} size="small" onSubmit={onSubmit} />
             </div>
         </form>

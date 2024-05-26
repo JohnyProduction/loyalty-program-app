@@ -50,7 +50,7 @@ export function DataContainer({ object }: DataContainerProps) {
             {isLoading ?
                 <Loader /> :
                 <div className={styles['data-container']}>
-                    {data && <h3>{object} list</h3>}
+                    {data && object !== 'credits' && <h3>{object} list</h3>}
                     {object === 'users' && (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <div style={{ margin: '0 auto', width: '300px' }}>

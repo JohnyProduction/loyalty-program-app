@@ -3,9 +3,9 @@ import { ApiError } from './api-error';
 export async function apiErrorFactory(res: Response): Promise<Error> {
     const { status, url } = res;
     const text = await res.text();
-    const message = getApiErrorMessage(status, url, text);
+    // const message = getApiErrorMessage(status, url, text);
 
-    return new ApiError(status, message);
+    return new ApiError(status, text);
 }
 
 // this might need an update in accordance with bugs encountered during the development
