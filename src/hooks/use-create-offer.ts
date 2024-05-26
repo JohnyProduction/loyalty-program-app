@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 
 export function useCreateOffer(organizationName: string) {
     const [name, setName] = useState<string>('');
     const [price, setPrice] = useState<number>(0.0);
     const [image, setImage] = useState<File | null>( null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const onNameChange = (e: any) => setName(e.target.value);
 
@@ -17,6 +18,7 @@ export function useCreateOffer(organizationName: string) {
 
     const onSubmit = async () => {
         const { addOfferEnd, setOfferImageEnd } = Offers;
+        setIsLoading(true);
 
         try {
             const newOfferId = await addOfferEnd({
@@ -40,6 +42,8 @@ export function useCreateOffer(organizationName: string) {
             toastSuccess('New offer has been added!');
         } catch (err: any) {
             toastError(`Error occurred while adding a new offer: ${err.message}`);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -47,6 +51,6 @@ export function useCreateOffer(organizationName: string) {
         name, onNameChange,
         price, onPriceChange,
         image, onImageChange,
-        onSubmit
+        onSubmit, isLoading
     };
 }

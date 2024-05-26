@@ -1,21 +1,29 @@
 .organization-offers-page {
     .offer-container {
-        display: flex;
-        flex-wrap: wrap;
+        margin: 1rem 0;
 
-        a {
-            margin: 1rem;
+        .offer-container__elements {
+            display: flex;
+            flex-wrap: wrap;
 
-            .offer-element {
-                .offer-element__image {
-                    width: 200px;
-                    height: 300px;
-                    border: 1px solid;
-                }
+            &[data-is-loading=true] {
+                display: block;
+            }
 
-                .offer-element__name {
-                    display: flex;
-                    justify-content: center;
+            a {
+                margin: 1rem;
+
+                .offer-element {
+                    .offer-element__image {
+                        width: 200px;
+                        height: 300px;
+                        border: 1px solid;
+                    }
+
+                    .offer-element__name {
+                        display: flex;
+                        justify-content: center;
+                    }
                 }
             }
         }

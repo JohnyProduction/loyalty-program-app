@@ -3,6 +3,7 @@
 import { useOffers } from '@/hooks/use-offers';
 import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
 import { Offer } from '@/app/organizations/[name]/offers/offer';
+import { Loader } from '@/components/common/loader';
 
 interface OfferContainerProps {
     organizationName: string;
@@ -17,8 +18,11 @@ export function OfferContainer({ organizationName }: OfferContainerProps) {
             <div className={styles['offer-container']}>
                 {
                     isLoading
-                        ? 'Loading offers...'
-                        : offers.map(offer => <Offer offer={offer} key={offer.name} />)
+                        ? <Loader />
+                        : <>
+                            <div className={styles['offer-container__elements']} data-is-loading={isLoading}>{offers.map(offer => <Offer offer={offer} key={offer.name} />)}</div>
+                            <p style={{ textAlign: 'center' }}>Found {offers.length} offer{offers.length > 1 ? 's' : ''}.</p>
+                        </>
                 }
             </div>
         </>

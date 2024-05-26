@@ -2,14 +2,16 @@
 
 import React, { useState } from 'react';
 import styles from '@/styles/app/login/page.module.scss';
-import { Login, User } from '../api/api';
+import { Login, User } from '@/api/api';
 import { useRouter } from 'next/navigation';
 import { createProfile } from '@/utils/user-utils';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
+import { Loader } from '@/components/common/loader';
 
 export default function LoginPage() {
     const [loginValue, setLoginValue] = useState<string>('');
     const [passValue, setPassValue] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const router = useRouter();
 
     const handleSubmit = async () => {
@@ -18,6 +20,7 @@ export default function LoginPage() {
         }
 
         try {
+            setIsLoading(true);
             await Login.loginEnd({
                 username: loginValue,
                 password: passValue
@@ -28,6 +31,8 @@ export default function LoginPage() {
             toastSuccess('Logged in succeed!');
         } catch (e: any) {
             toastError(e.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -41,6 +46,7 @@ export default function LoginPage() {
 
     return (
         <main className={styles['main-page']}>
+            {isLoading && <Loader isAbsolute={true} />}
             <div className={styles['login-page__container']}>
                 <div className={styles['login-page__leftbox']}>
                 </div>

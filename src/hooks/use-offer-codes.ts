@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { CodeModel } from '@/types/offer-types';
 
 export function useOfferCodes(offerId: number) {

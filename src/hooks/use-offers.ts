@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Offers } from '@/app/api/api';
+import { Offers } from '@/api/api';
 import { ShopOfferModel } from '@/types/offer-types';
 import { toastError } from '@/utils/toast-utils';
 

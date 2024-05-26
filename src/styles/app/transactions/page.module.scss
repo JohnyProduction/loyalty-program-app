@@ -1,0 +1,27 @@
+.transactions-page {
+    .transaction-container {
+        .transaction-container__header {
+            text-align: center;
+        }
+
+        .transaction-container__list {
+            margin: 2rem 0 1rem 0;
+
+            .transaction-container__list-container {
+                margin: 1rem 0;
+                width: 100%;
+
+                .transaction-element {
+                    border-spacing: 1rem;
+                    height: 6rem;
+                    border-top: 1px solid black;
+                    border-bottom: 1px solid black;
+                }
+            }
+
+            .transaction-container__list-summary {
+                text-align: center;
+            }
+        }
+    }
+}

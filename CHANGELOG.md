@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.23.1] - 2024-05-18
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Option to `TopBar` dropdown.
+- [Marek Kurańda](https://github.com/mjkuranda): View for `/transactions` page.
+- [Marek Kurańda](https://github.com/mjkuranda): View for `/transactions/:id` page.
+
+## [0.23.0] - 2024-05-16
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `/transactions` page to render all user's transactions.
+- [Marek Kurańda](https://github.com/mjkuranda): `/transactions/:id` page to render transaction details information.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `src/app/api` directory to `src/api`.
+
+## [0.22.2] - 2024-05-15
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): The most of the errors related to fetching images or to request in general.
+
+## [0.22.1] - 2024-05-15
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Error related to `sessionStorage` at main page.
+
+## [0.22.0] - 2024-05-15
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `Loader` component.
+- [Marek Kurańda](https://github.com/mjkuranda): `Loader`s to appropriate places in app.
+- [Marek Kurańda](https://github.com/mjkuranda): `SettingsCreatorContext` to store loading state while submitting any creator form.
+
 ## [0.21.0] - 2024-05-15
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `/manage` subpage.

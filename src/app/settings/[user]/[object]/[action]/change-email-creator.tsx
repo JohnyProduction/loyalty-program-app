@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Organization, User } from '@/app/api/api';
+import { useContext, useEffect, useState } from 'react';
+import { Organization, User } from '@/api/api';
 import styles from '@/styles/app/settings/[user]/[object]/[action]/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
@@ -9,6 +9,7 @@ import { toastSuccess } from '@/utils/toast-utils';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { UserDbModel } from '@/types/user-types';
 import { updateProfile } from '@/utils/user-utils';
+import { SettingsCreatorContext } from '@/contexts/settings-creator-context';
 
 export function ChangeEmailCreator() {
     const [username, setUsername] = useState<string>('');
@@ -16,6 +17,7 @@ export function ChangeEmailCreator() {
     const [email, setEmail] = useState<string>('');
     const [organization, setOrganization] = useState<string>('');
     const [organizations, setOrganizations] = useState<OptionType[]>([]);
+    const { setIsLoading } = useContext(SettingsCreatorContext);
 
     const { getUsersEnd, editUserMailEnd } = User;
     const { getOrganizationsEnd } = Organization;
@@ -60,6 +62,8 @@ export function ChangeEmailCreator() {
     };
 
     const onSubmit = async () => {
+        setIsLoading(true);
+
         const users = await getUsersEnd(organization);
         const user = users.find(user => user.login === username) as UserDbModel;
 
@@ -69,6 +73,7 @@ export function ChangeEmailCreator() {
 
         const res = await editUserMailEnd(user);
         toastSuccess(res);
+        setIsLoading(false);
     };
 
     return (

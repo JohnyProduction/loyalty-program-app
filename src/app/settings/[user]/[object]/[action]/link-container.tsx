@@ -37,7 +37,7 @@ export function LinkContainer({ user, object, action }: LinkContainerProps) {
 
     const renderLinks = () => {
         const profile: UserDbModel = getProfile() as UserDbModel;
-        const accountType = profile.type;
+        const accountType = profile ? profile.type : AccountType.WORKER;
 
         const links: LinkRecord[] = data[accountType];
 

@@ -7,6 +7,7 @@ import { PageBox } from '@/app/page-box';
 import { redirect } from 'next/navigation';
 import { areValidParams } from '@/utils/setting-utils';
 import { SubSettingsHeader } from '@/app/settings/[user]/[object]/[action]/sub-settings-header';
+import { SettingsCreatorProvider } from '@/contexts/settings-creator-context';
 
 interface SettingsPageProps {
     params: Record<string, any>;
@@ -25,8 +26,10 @@ export default function SettingsPage({ params }: SettingsPageProps) {
             <PageBox>
                 <SubSettingsHeader object={object} action={action} />
                 <div className={styles['content-box']}>
-                    <LinkContainer user={user} object={object} action={action} />
-                    <CreatorContainer user={user} object={object} action={action} />
+                    <SettingsCreatorProvider>
+                        <LinkContainer user={user} object={object} action={action} />
+                        <CreatorContainer user={user} object={object} action={action} />
+                    </SettingsCreatorProvider>
                 </div>
                 <Footer />
             </PageBox>

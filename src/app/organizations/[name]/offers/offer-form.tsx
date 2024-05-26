@@ -5,6 +5,7 @@ import { useCreateOffer } from '@/hooks/use-create-offer';
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputNumber } from '@/components/common/inputs/input-number';
 import { InputImage } from '@/components/common/inputs/input-image';
+import { Loader } from '@/components/common/loader';
 
 interface OfferFormProps {
     organizationName: string;
@@ -15,11 +16,12 @@ export function OfferForm({ organizationName }: OfferFormProps) {
         name, onNameChange,
         price, onPriceChange,
         image, onImageChange,
-        onSubmit
+        onSubmit, isLoading
     } = useCreateOffer(organizationName);
 
     return (
         <div>
+            {isLoading && <Loader isAbsolute={true} />}
             <InputString label={'Offer name'} name={'offer-name'} value={name} onChange={onNameChange} />
             <InputNumber label={'Offer price'} name={'offer-price'} value={price} onChange={onPriceChange} />
             <InputImage label={'Offer image (optional)'} name={'offer-image'} image={image} onChange={onImageChange} />
