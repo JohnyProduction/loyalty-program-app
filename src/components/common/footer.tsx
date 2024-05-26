@@ -8,18 +8,14 @@ export function Footer() {
     };
     const footerFragmentData: FooterFragmentDataType[] = [
         {
-            header: 'Categories',
+            header: 'Links',
             paragraphs: [
                 {
-                    label: 'Sport',
+                    label: 'Categories',
                     link: '#'
                 },
                 {
-                    label: 'Life',
-                    link: '#'
-                },
-                {
-                    label: 'Health',
+                    label: 'Shops',
                     link: '#'
                 },
             ]
