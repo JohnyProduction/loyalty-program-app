@@ -836,12 +836,12 @@ export const Transactions = {
 
         return res.json();
     },
-    /** Retrieves information about code availability in a given offer [Access: Logged in users]
+    /** Retrieves information about available code count [Access: Logged in users]
      *
      * offerID - Targeted offer ID
      */
-    async isCodeAvailable(offerID: number): Promise<boolean> {
-        const res = await fetch(`${API_BASE_URL}/Transactions/IsCodeAvailable/${offerID}`, {
+    async checkAvailableCodesEnd(offerID: number): Promise<number> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/CheckAvailableCodes/${offerID}`, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',
