@@ -6,7 +6,7 @@ import { OptionType } from '@/components/common/inputs/input-select';
 import { Organization } from '@/api/api';
 import { UserDbModel } from '@/types/user-types';
 
-export function useAddUsersCreator(formRef: any, router: any) {
+export function useAddUsersCreator(formRef: any, router: any, user?: UserDbModel) {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -18,6 +18,10 @@ export function useAddUsersCreator(formRef: any, router: any) {
     useEffect(() => {
         const { getOrganizationsEnd } = Organization;
 
+        if (user?.type !== AccountType.ADMINISTRATOR) {
+            return;
+        }
+
         getOrganizationsEnd()
             .then(data => {
                 const options: OptionType[] = data.map((model, idx) => ({
@@ -28,8 +32,9 @@ export function useAddUsersCreator(formRef: any, router: any) {
 
                 setOrganizationOptions(options);
                 setOrganization(data[0].name);
-            });
-    }, []);
+            })
+            .catch(() => {});
+    }, [user]);
 
     const loadUser = (user: UserDbModel) => {
         setUsername(user.login);

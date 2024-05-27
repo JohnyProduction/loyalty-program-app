@@ -7,8 +7,9 @@ import { DataLinkComponent } from '@/app/manage/[object]/data-link-component';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { useEffect, useState } from 'react';
 import { OrganizationModel } from '@/types/organization-types';
-import { Organization } from '@/api/api';
-import { toastError } from '@/utils/toast-utils';
+import { Organization, User } from '@/api/api';
+import { AccountType } from '@/types/login-types';
+import { UserDbModelOrg } from '@/types/user-types';
 
 interface DataContainerProps {
     object: string;
@@ -18,19 +19,28 @@ export function DataContainer({ object }: DataContainerProps) {
     const [organization, setOrganization] = useState<string>();
     const { data, isLoading } = useFetchCollection(object, organization);
     const [organizations, setOrganizations] = useState<OrganizationModel[]>([]);
+    const [user, setUser] = useState<UserDbModelOrg>();
 
     useEffect(() => {
         if (object !== 'users') {
             return;
         }
 
-        Organization
-            .getOrganizationsEnd()
-            .then(data => {
-                setOrganizations(data);
-                setOrganization(data[0].name);
-            })
-            .catch((err) => toastError(err.message));
+        User
+            .getCurrentUserEnd()
+            .then(user => {
+                setUser(user);
+
+                if (user.type === AccountType.ADMINISTRATOR) {
+                    Organization
+                        .getOrganizationsEnd()
+                        .then(data => {
+                            setOrganizations(data);
+                            setOrganization(data[0].name);
+                        })
+                        .catch(() => {});
+                }
+            });
     }, []);
 
     const getOrganizationOptions = (organizations: OrganizationModel[]): OptionType[] => {
@@ -51,7 +61,7 @@ export function DataContainer({ object }: DataContainerProps) {
                 <Loader /> :
                 <div className={styles['data-container']}>
                     {data && object !== 'credits' && <h3>{object} list</h3>}
-                    {object === 'users' && (
+                    {user?.type === AccountType.ADMINISTRATOR && object === 'users' && (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <div style={{ margin: '0 auto', width: '300px' }}>
                                 <InputSelect label={'Organization'} name={'organization'} options={getOrganizationOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />

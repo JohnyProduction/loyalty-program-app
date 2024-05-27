@@ -18,6 +18,10 @@ export function TopBar() {
     const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(true);
 
     useEffect(() => {
+        if (user?.type === AccountType.WORKER && location.pathname.startsWith('/manage')) {
+            router.push('/');
+        }
+
         User.getCurrentUserEnd()
             .then(data => {
                 setUser(data);

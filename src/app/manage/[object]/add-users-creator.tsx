@@ -16,8 +16,9 @@ import { UserDbModel } from '@/types/user-types';
 export function AddUsersCreator() {
     const router = useRouter();
     const formRef = useRef(null);
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef, router);
     const [user, setUser] = useState<UserDbModel>();
+    const [currentUser, setCurrentUser] = useState<UserDbModel>();
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef, router, user);
     const roleOptions: OptionType[] = [
         { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
@@ -35,20 +36,32 @@ export function AddUsersCreator() {
             return;
         }
 
-        const { getUsersEnd } = User;
+        const { getUsersEnd, getCurrentUserEnd } = User;
 
-        getUsersEnd(organizationParam ?? undefined)
-            .then(users => {
-                const filteredUser = users.find(u => u.login === editParam);
+        getCurrentUserEnd().then(current => {
+            setCurrentUser(current);
 
-                if (!filteredUser) {
-                    throw new Error(`There is no user with ${editParam} login.`);
-                }
+            getUsersEnd(organizationParam ?? undefined)
+                .then(users => {
+                    const filteredUser = users.find(u => u.login === editParam);
 
-                setUser(filteredUser);
-                loadUser(filteredUser);
-            })
-            .catch(err => toastError(`Error: ${err.message}.`));
+                    if (!filteredUser) {
+                        throw new Error(`There is no user with ${editParam} login.`);
+                    }
+
+                    if (current.type === AccountType.MANAGER && filteredUser.type === AccountType.ADMINISTRATOR) {
+                        toastError('Manager cannot manage admin account!');
+                        router.push('/manage/users');
+                        resetForm();
+
+                        return;
+                    }
+
+                    setUser(filteredUser);
+                    loadUser(filteredUser);
+                })
+                .catch(err => toastError(`Error: ${err.message}`));
+        });
     }, [editParam]);
 
     useEffect(() => {
@@ -72,15 +85,24 @@ export function AddUsersCreator() {
                 .finally(() => setIsLoading(false));
         } else {
             const { registerForAdminEnd } = Login;
+            const { addUserEnd } = User;
 
             setIsLoading(true);
-            registerForAdminEnd({
+            const createNewFunc = currentUser?.type === AccountType.ADMINISTRATOR ? registerForAdminEnd : addUserEnd;
+            const props = {
                 username,
                 password,
                 email,
                 accountType: role,
                 organizationName: organization
-            })
+            };
+
+            if (currentUser?.type === AccountType.ADMINISTRATOR) {
+                // @ts-ignore
+                delete props.organizationName;
+            }
+
+            createNewFunc(props)
                 .then(data => {
                     toastSuccess(data);
                     resetForm();
@@ -96,8 +118,8 @@ export function AddUsersCreator() {
             <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} />
             <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} />
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
-            <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />
-            <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={roleOptions} disabled={disabled} />
+            {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />}
+            <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={currentUser?.type === AccountType.ADMINISTRATOR ? roleOptions : roleOptions.slice(1)} disabled={disabled} />
             <div className={styles['navigation-box']}>
                 {!editParam && <div></div>}
                 <SubmitButton label={editParam ? 'Edit' : 'Create new'} size="small" onSubmit={onSubmit} />

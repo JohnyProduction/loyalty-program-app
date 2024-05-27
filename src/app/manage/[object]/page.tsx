@@ -8,7 +8,6 @@ import { LinkContainer } from '@/app/manage/[object]/link-container';
 import { CreatorContainer } from '@/app/manage/[object]/creator-container';
 import { DataContainer } from '@/app/manage/[object]/data-container';
 
-
 interface ManageObjectPageProps {
     params: Record<'object', any>;
     searchParams: Record<'edit', any>;

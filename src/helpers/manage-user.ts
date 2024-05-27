@@ -19,6 +19,6 @@ export async function deleteUser(login: string, organization?: string) {
 
         await deleteUserEnd(user);
     } catch (err: any) {
-        toastError(`Error: ${err.message}.`);
+        toastError(`Error: ${err.message}`);
     }
 }
