@@ -13,6 +13,7 @@ import { ProfileContext } from '@/contexts/profile-context';
 import { Offers, Transactions } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { Loader } from '@/components/common/loader';
+import { FormRefetchContext } from '@/contexts/form-refetch-context';
 
 interface ProductDetailsProps {
     productId: string;
@@ -22,6 +23,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
     const { name: organization, id: offerId } = useParams();
     const counterProps = useCounter(0);
     const { profile } = useContext(ProfileContext);
+    const { refetch } = useContext(FormRefetchContext);
     const { offer, isLoading, image, isLoadingImage } = useGetOffer(organization.toString(), Number(offerId));
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -60,6 +62,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
             }
 
             toastSuccess(`You have successfully bought ${counterProps.count} codes.`);
+            refetch();
         } finally {
             setIsSubmitting(false);
         }
