@@ -4,20 +4,30 @@ import { useEffect, useState } from 'react';
 import { User } from '@/api/api';
 import { OptionType } from '@/components/common/inputs/input-select';
 import { useOrganizations } from '@/hooks/use-organizations';
+import { UserDbModel } from '@/types/user-types';
+import { AccountType } from '@/types/login-types';
 
-export function useAddCreditsCreator() {
+export function useAddCreditsCreator(profile?: UserDbModel) {
     const { organizations } = useOrganizations();
     const [organization, setOrganization] = useState<string>();
     const [login, setLogin] = useState<string>('');
-    const [amount, setAmount] = useState<string>('');
+    const [amount, setAmount] = useState<number>(0);
     const [currentAmount, setCurrentAmount] = useState<number>(0);
 
     const [usernames, setUsernames] = useState<OptionType[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        User.getUsersEnd(organization)
+        if (!profile) {
+            return;
+        }
+
+        User.getUsersEnd(organization ?? undefined)
             .then(data => {
+                if (profile.type === AccountType.MANAGER) {
+                    data = data.filter(user => user.type !== AccountType.ADMINISTRATOR);
+                }
+
                 const map = data.map((user, idx) => {
                     return {
                         id: idx,
@@ -31,11 +41,12 @@ export function useAddCreditsCreator() {
             })
             .catch(() => {})
             .finally(() => setIsLoading(false));
-    }, [organization]);
+    }, [organization, profile]);
 
     const resetForm = () => {
         setLogin(usernames[0].label);
-        setAmount('');
+        setAmount(0);
+        setCurrentAmount(currentAmount + amount);
     };
 
     const onChangeOrganization = (e: any) => {
@@ -47,7 +58,7 @@ export function useAddCreditsCreator() {
     };
 
     const onChangeAmount = (e: any) => {
-        setAmount(e.target.value);
+        setAmount(Number(e.target.value));
     };
 
     return {

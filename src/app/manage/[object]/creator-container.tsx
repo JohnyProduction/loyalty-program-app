@@ -35,7 +35,7 @@ export function CreatorContainer({ object, edit }: CreatorContainerProps) {
         }
 
         if (user === AccountType.ADMINISTRATOR && object === 'credits') {
-            return <AddCreditsCreator />;
+            return <AddCreditsCreator profile={profile} />;
         }
 
         if (user === AccountType.ADMINISTRATOR && object === 'organizations') {
@@ -51,7 +51,7 @@ export function CreatorContainer({ object, edit }: CreatorContainerProps) {
         }
 
         if (user === AccountType.MANAGER && object === 'credits') {
-            return <AddCreditsCreator />;
+            return <AddCreditsCreator profile={profile} />;
         }
 
         return <>Unknown creator.</>;

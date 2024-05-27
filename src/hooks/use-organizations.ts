@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { OrganizationModel } from '@/types/organization-types';
 import { Organization } from '@/api/api';
-import { toastError } from '@/utils/toast-utils';
 
 export function useOrganizations() {
     const [isFetching, setIsFetching] = useState<boolean>(true);
@@ -13,7 +12,7 @@ export function useOrganizations() {
         Organization
             .getOrganizationsEnd()
             .then(data => setOrganizations(data))
-            .catch(err => toastError(`Error: ${err.message}.`))
+            .catch(() => {})
             .finally(() => setIsFetching(false));
     }, []);
 

@@ -4,16 +4,22 @@ import styles from '@/styles/app/manage/[object]/page.module.scss';
 import { User } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
-import { InputString } from '@/components/common/inputs/input-string';
 import { useAddCreditsCreator } from '@/hooks/manage-creators/use-add-credits-creator';
 import { useContext } from 'react';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { Loader } from '@/components/common/loader';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
 import { OrganizationModel } from '@/types/organization-types';
+import { UserDbModel } from '@/types/user-types';
+import { AccountType } from '@/types/login-types';
+import { InputNumber } from '@/components/common/inputs/input-number';
 
-export function AddCreditsCreator() {
-    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm, currentAmount } = useAddCreditsCreator();
+interface AddCreditsCreatorProps {
+    profile?: UserDbModel;
+}
+
+export function AddCreditsCreator({ profile }: AddCreditsCreatorProps) {
+    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm, currentAmount } = useAddCreditsCreator(profile);
     const { setIsLoading } = useContext(ManageCreatorContext);
 
     const getOrganizationsAsOptions = (organizations: OrganizationModel[]): OptionType[] => {
@@ -29,8 +35,8 @@ export function AddCreditsCreator() {
 
         try {
             setIsLoading(true);
-            await changeCreditsEnd(login, Number(amount));
-            toastSuccess(`Pomyślnie dodano ${amount} kredytów dla użytkownika ${login}.`);
+            await changeCreditsEnd(login, amount);
+            toastSuccess(`Pomyślnie ${amount > 0 ? 'dodano' : 'usunięto'} ${amount} kredytów dla użytkownika ${login}.`);
             resetForm();
         } catch (e: any) {
             toastError(e.message);
@@ -39,16 +45,26 @@ export function AddCreditsCreator() {
         }
     };
 
+    const renderCreditInfo = () => {
+        if (amount) {
+            const sum = currentAmount + amount;
+
+            return `Currently has: ${sum} credits. (${amount > 0 ? `+${amount}` : amount})`;
+        }
+
+        return `Currently has: ${currentAmount} credits.`;
+    };
+
     return (
         <>
             {isLoading ? <Loader isAbsolute={true} /> : (
                 <form className={styles['creator-form']}>
-                    <InputSelect label={'Organization'} name={'organization'} options={getOrganizationsAsOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />
+                    {profile?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} options={getOrganizationsAsOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />}
                     <InputSelect label={'Login'} name={'login'} options={usernames} value={login} onChange={onChangeLogin} />
-                    <InputString label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
-                    {`Currently has: ${currentAmount} credits.`}
+                    <InputNumber label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
+                    {renderCreditInfo()}
                     <div className={styles['navigation-box']}>
-                        <SubmitButton label={'Add'} size="small" onSubmit={onSubmit} />
+                        <SubmitButton label={'Add'} size="small" onSubmit={onSubmit} disabled={amount === 0} />
                     </div>
                 </form>
             )}
