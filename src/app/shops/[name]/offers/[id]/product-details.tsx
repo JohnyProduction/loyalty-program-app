@@ -8,6 +8,7 @@ import { useCounter } from '@/hooks/use-counter';
 import { useGetOffer } from '@/hooks/use-get-offer';
 import { Loader } from '@/components/common/loader';
 import { useParams } from 'next/navigation';
+import { OfferImage } from '@/app/shops/[name]/offers/[id]/offer-image';
 
 interface ProductDetailsProps {
     productId: string;
@@ -22,28 +23,13 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         return `${price * counterProps.count} PKT`;
     };
 
-    const imageLoadingStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    };
-
-    const imageStyle = {
-        backgroundImage: `url(${image ? URL.createObjectURL(image.blob) : '/pages/no-photo.png'})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-    };
-
     return (
         <div className={styles['product-details']}>
             {isLoading
                 ? <Loader isAbsolute={true} />
                 : (
                     <>
-                        <div className={styles['image-container']} style={isLoadingImage ? imageLoadingStyle : imageStyle}>
-                            {isLoadingImage && <Loader />}
-                        </div>
+                        <OfferImage image={image} isLoadingImage={isLoadingImage} />
                         <div className={styles['details-container']}>
                             <div className={styles['details-information']}>
                                 <div className={styles['details-information__container']}>
