@@ -1,5 +1,5 @@
 import { PageBox } from '@/app/page-box';
-import styles from '@/styles/app/categories/[name]/page.module.scss';
+import styles from '@/styles/app/categories/page.module.scss';
 import { TopBar } from '@/components/common/top-bar';
 import { Footer } from '@/components/common/footer';
 import { ShopContainer } from '@/app/categories/[name]/shop-container';

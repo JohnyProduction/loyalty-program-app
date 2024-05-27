@@ -1,7 +1,7 @@
 'use client';
 
 import { useShops } from '@/hooks/use-shops';
-import styles from '@/styles/app/categories/[name]/page.module.scss';
+import styles from '@/styles/app/categories/page.module.scss';
 import { Shop } from '@/app/categories/[name]/shop';
 import { Loader } from '@/components/common/loader';
 
