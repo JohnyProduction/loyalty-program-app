@@ -6,6 +6,9 @@ import { InputString } from '@/components/common/inputs/input-string';
 import { InputNumber } from '@/components/common/inputs/input-number';
 import { InputImage } from '@/components/common/inputs/input-image';
 import { Loader } from '@/components/common/loader';
+import { useContext } from 'react';
+import { ProfileContext } from '@/contexts/profile-context';
+import { AccountType } from '@/types/login-types';
 
 interface OfferFormProps {
     organizationName: string;
@@ -18,6 +21,11 @@ export function OfferForm({ organizationName }: OfferFormProps) {
         image, onImageChange,
         onSubmit, isLoading
     } = useCreateOffer(organizationName);
+    const { profile } = useContext(ProfileContext);
+
+    if (!profile || profile.type !== AccountType.ADMINISTRATOR) {
+        return <></>;
+    }
 
     return (
         <div>

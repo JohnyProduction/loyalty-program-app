@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/components/common/header.module.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Login, User } from '@/api/api';
 import { createProfile, deleteProfile, getProfile } from '@/utils/user-utils';
 import { useRouter } from 'next/navigation';
@@ -10,12 +10,14 @@ import { toastSuccess } from '@/utils/toast-utils';
 import Link from 'next/link';
 import { Loader } from '@/components/common/loader';
 import { AccountType } from '@/types/login-types';
+import { ProfileContext } from '@/contexts/profile-context';
 
 export function TopBar() {
     const router = useRouter();
     const [user, setUser] = useState<UserDbModel>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(true);
+    const profileProvider = useContext(ProfileContext);
 
     useEffect(() => {
         if (user?.type === AccountType.WORKER && location.pathname.startsWith('/manage')) {
@@ -34,6 +36,12 @@ export function TopBar() {
                 }
             });
     }, []);
+
+    useEffect(() => {
+        if (profileProvider) {
+            profileProvider.setProfile(user);
+        }
+    }, [user]);
 
     useEffect(() => {
         setIsLoadingProfile(true);
