@@ -1,3 +1,30 @@
+.shop-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+
+    > a {
+        margin: 8px 8px;
+        width: 400px;
+        height: 300px;
+
+        p {
+            text-align: center;
+        }
+
+        > div {
+            border-radius: 16px;
+            width: 400px;
+            height: 300px;
+
+            img {
+                width: 400px;
+                height: 300px;
+            }
+        }
+    }
+}
+
 .organization-offers-page {
     .offer-container {
         margin: 1rem 0;

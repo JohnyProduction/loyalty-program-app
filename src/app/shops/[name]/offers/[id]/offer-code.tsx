@@ -1,7 +1,7 @@
 'use client';
 
 import { CodeModel } from '@/types/offer-types';
-import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
+import styles from '@/styles/app/shops/[name]/offers/page.module.scss';
 
 interface OfferCodeProps {
     code: CodeModel;

@@ -1,8 +1,8 @@
 'use client';
 
 import { useOffers } from '@/hooks/use-offers';
-import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
-import { Offer } from '@/app/organizations/[name]/offers/offer';
+import styles from '@/styles/app/shops/[name]/offers/page.module.scss';
+import { Offer } from '@/app/shops/[name]/offers/offer';
 import { Loader } from '@/components/common/loader';
 
 interface OfferContainerProps {
