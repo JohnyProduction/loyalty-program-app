@@ -14,7 +14,9 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
         if (loginValue.trim() === '' || passValue.trim() === '') {
             return;
         }
@@ -30,6 +32,12 @@ export default function LoginPage() {
             router.push('/');
             toastSuccess('Logged in succeed!');
         } catch (e: any) {
+            if (e.status === 401) {
+                toastError('Wrong login or password. Try again.');
+
+                return;
+            }
+
             toastError(e.message);
         } finally {
             setIsLoading(false);
@@ -51,7 +59,7 @@ export default function LoginPage() {
                 <div className={styles['login-page__leftbox']}>
                 </div>
                 <div className={styles['login-page__rightbox']}>
-                    <div className={styles['form-container']}>
+                    <form className={styles['form-container']} onSubmit={handleSubmit}>
                         <h4>System <span>lojalnościowy</span></h4>
                         <p>Witaj ponownie! Zaloguj się aby poznać nowości w naszej ofercie:</p>
                         <div className={styles['login-page__floating-labels']}>
@@ -63,7 +71,7 @@ export default function LoginPage() {
                             <label htmlFor="password">Hasło:</label>
                         </div>
                         <button type="submit" onClick={handleSubmit}>Zaloguj</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </main>
