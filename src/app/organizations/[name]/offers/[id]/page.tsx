@@ -4,6 +4,7 @@ import { PageBox } from '@/app/page-box';
 import { Footer } from '@/components/common/footer';
 import { OfferCodeContainer } from '@/app/organizations/[name]/offers/[id]/offer-id-container';
 import { OfferCodeForm } from '@/app/organizations/[name]/offers/[id]/offer-code-form';
+import { ProfileProvider } from '@/contexts/profile-context';
 
 interface OfferIdPageProps {
     params: Record<string, any>;
@@ -14,12 +15,14 @@ export default function OfferIdPage({ params }: OfferIdPageProps) {
 
     return (
         <main className={styles['offer-id-page']}>
-            <TopBar />
-            <PageBox>
-                <OfferCodeForm offerId={id} />
-                <OfferCodeContainer offerId={Number(id)} />
-                <Footer />
-            </PageBox>
+            <ProfileProvider>
+                <TopBar />
+                <PageBox>
+                    <OfferCodeForm offerId={id} />
+                    <OfferCodeContainer offerId={Number(id)} />
+                    <Footer />
+                </PageBox>
+            </ProfileProvider>
         </main>
     );
 }
