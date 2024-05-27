@@ -49,20 +49,27 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
 
             const totalCost = (offer?.price ?? 0) * counterProps.count;
 
-            if (profile?.credits ?? 0 < totalCost) {
+            if ((profile?.credits ?? 0) < totalCost) {
                 toastError('Insufficient amount of credits.');
 
                 return;
             }
 
             const { buyCode } = Transactions;
+            const codesToBuy = availableCodes.slice(0, counterProps.count).map(() => buyCode(id));
 
-            for (let i = 0; i < counterProps.count; i++) {
-                await buyCode(id);
-            }
+            const x = await Promise.allSettled(codesToBuy);
+
+            console.log(x);
+
+            // for (let i = 0; i < counterProps.count; i++) {
+            //     await buyCode(id);
+            // }
 
             toastSuccess(`You have successfully bought ${counterProps.count} codes.`);
             refetch();
+        } catch (err: any) {
+            toastError(`Error: ${err.message}`);
         } finally {
             setIsSubmitting(false);
         }
