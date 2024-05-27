@@ -9,7 +9,7 @@ interface TransactionProps {
 export function Transaction({ transaction }: TransactionProps) {
     return (
         <tr className={styles['transaction-element']}>
-            <td>{transaction.date.toISOString()}</td>
+            <td>{new Date(transaction.date).toISOString()}</td>
             <td>{transaction.code.expiry.toISOString()}</td>
             <td>{transaction.code.code}</td>
             <td>

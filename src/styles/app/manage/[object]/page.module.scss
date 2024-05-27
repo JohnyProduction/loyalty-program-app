@@ -1,4 +1,4 @@
-.settings-page {
+.manage-page {
     .sub-settings-header {
         text-align: center;
         text-transform: capitalize;
@@ -42,18 +42,46 @@
         }
 
         .creator-container {
-            width: 70%;
+            width: 100%;
             display: flex;
             justify-content: center;
 
             .creator-form {
-                width: 50%;
+                width: 80%;
+
+                div + div {
+                    margin-top: .618rem;
+                }
 
                 .navigation-box {
                     margin-top: 1rem;
                     display: flex;
-                    justify-content: flex-end;
+                    justify-content: space-between;
                 }
+            }
+        }
+    }
+
+    .data-container {
+        h3 {
+            text-transform: capitalize;
+            text-align: center;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                width: 256px;
+                padding: 8px;
+                margin: 8px;
+                background-color: bisque;
+                border-radius: 1rem;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

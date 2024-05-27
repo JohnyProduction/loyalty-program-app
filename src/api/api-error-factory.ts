@@ -3,9 +3,9 @@ import { ApiError } from './api-error';
 export async function apiErrorFactory(res: Response): Promise<Error> {
     const { status, url } = res;
     const text = await res.text();
-    const message = getApiErrorMessage(status, url, text);
+    // const message = getApiErrorMessage(status, url, text);
 
-    return new ApiError(status, message);
+    return new ApiError(status, text);
 }
 
 // this might need an update in accordance with bugs encountered during the development
@@ -20,12 +20,8 @@ function getApiErrorMessage(status: number, url: string, text: string): string {
         return 'Wystąpił nieznany błąd';
     }
 
-    if (text === 'Username is taken!') {
-        return 'Użytkownik o podanej nazwie już istnieje.';
-    }
-
     if (status === 400) {
-        return 'Bad request błąd.';
+        return text;
     }
 
     if (status === 401) {

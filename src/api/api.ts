@@ -131,7 +131,7 @@ export const User = {
      * organization - Targeted organization only for administration (null will get the user's organization)
      */
     async getUsersEnd(organization?: string): Promise<UserTypes.UserDbModel[]> {
-        const res = await fetch(`${API_BASE_URL}/User/GetUsers${organization !== undefined ? '?organization=' + organization : '' }`, {
+        const res = await fetch(`${API_BASE_URL}/User/GetUsers${organization !== undefined && organization !== 'undefined' ? '?organization=' + organization : '' }`, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',

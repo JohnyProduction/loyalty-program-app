@@ -9,6 +9,7 @@ import { UserDbModel } from '@/types/user-types';
 import { toastSuccess } from '@/utils/toast-utils';
 import Link from 'next/link';
 import { Loader } from '@/components/common/loader';
+import { AccountType } from '@/types/login-types';
 
 export function TopBar() {
     const router = useRouter();
@@ -17,6 +18,10 @@ export function TopBar() {
     const [isLoadingProfile, setIsLoadingProfile] = useState<boolean>(true);
 
     useEffect(() => {
+        if (user?.type === AccountType.WORKER && location.pathname.startsWith('/manage')) {
+            router.push('/');
+        }
+
         User.getCurrentUserEnd()
             .then(data => {
                 setUser(data);
@@ -79,8 +84,8 @@ export function TopBar() {
                                         <li>
                                             <a href="#">{user?.login}</a>
                                             <ul>
-                                                <li><a href={`/settings/${user?.type}/users/add`}>Settings</a></li>
-                                                <li><Link href={'/manage'}>Manage</Link></li>
+                                                <li><a href={'/settings'}>Settings</a></li>
+                                                {user.type !== AccountType.WORKER && <li><Link href={'/manage'}>Manage</Link></li>}
                                                 <li><Link href={'/transactions'}>View transactions</Link></li>
                                                 <li onClick={onLogOut}><a href='#'>Logout</a></li>
                                             </ul>
