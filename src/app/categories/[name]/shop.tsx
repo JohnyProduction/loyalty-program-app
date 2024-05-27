@@ -12,7 +12,7 @@ export function Shop({ shop }: ShopsProps) {
     const { isLoading, url } = useShopImage(shop);
 
     return (
-        <Link href={`/organizations/${shop.name}/offers`}>
+        <Link href={`/shops/${shop.name}/offers`}>
             <div className={styles['shop-element']}>
                 <div className={styles['shop-element__image']}>
                     {isLoading

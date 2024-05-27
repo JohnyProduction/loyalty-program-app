@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Offers } from '@/api/api';
 import { ShopModel } from '@/types/offer-types';
 
-export function useShops(categoryName: string) {
+export function useShops(categoryName?: string) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [shops, setShops] = useState<ShopModel[]>([]);
 

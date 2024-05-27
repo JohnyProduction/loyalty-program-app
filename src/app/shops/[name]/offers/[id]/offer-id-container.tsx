@@ -1,8 +1,8 @@
 'use client';
 
-import styles from '@/styles/app/organizations/[name]/offers/[id]/page.module.scss';
+import styles from '@/styles/app/shops/[name]/offers/[id]/page.module.scss';
 import { useOfferCodes } from '@/hooks/use-offer-codes';
-import { OfferCode } from '@/app/organizations/[name]/offers/[id]/offer-code';
+import { OfferCode } from '@/app/shops/[name]/offers/[id]/offer-code';
 import { Loader } from '@/components/common/loader';
 
 interface OfferCodeContainerProps {

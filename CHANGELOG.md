@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.27.0] - 2024-05-27
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): `/categories` page.
+- [Marek Kurańda](https://github.com/mjkuranda): `/shops` page.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `/organizations/:name/offers/:id` to `/shops/:name/offers/:id` page.
 
 ## [0.26.0] - 2024-05-27
 ### Added

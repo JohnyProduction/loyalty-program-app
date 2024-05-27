@@ -1,7 +1,7 @@
 'use client';
 
 import { OfferModel } from '@/types/offer-types';
-import styles from '@/styles/app/organizations/[name]/offers/page.module.scss';
+import styles from '@/styles/app/shops/[name]/offers/page.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Offers } from '@/api/api';
