@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/app/products/[id]/page.module.scss';
+import styles from '@/styles/app/shops/[name]/offers/[id]/product.module.scss';
 import { InputCounter } from '@/components/common/inputs/input-counter';
 import { RectangularButton } from '@/components/common/buttons/rectangular-button';
 import Link from 'next/link';

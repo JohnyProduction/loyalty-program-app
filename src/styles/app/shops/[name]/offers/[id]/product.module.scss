@@ -1,0 +1,89 @@
+.product-container {
+    .product-details {
+        margin-top: 4rem;
+        display: flex;
+        justify-content: center;
+        $size: 30vw;
+
+        .image-container {
+            background-color: #F1F1F1;
+            width: $size;
+            height: $size;
+        }
+
+        .details-container {
+            width: $size;
+            margin-left: 1rem;
+
+            > div {
+                height: 50%;
+            }
+
+            > hr {
+                width: 100%;
+                border-color: #F1F1F133;
+                margin: 1rem 0;
+            }
+
+            .details-information {
+                > div {
+                    height: 50%;
+                }
+
+                .details-information__container {
+                    display: flex;
+                    align-items: center;
+
+                    :nth-child(n+2) {
+                        margin-top: 8px;
+                    }
+
+                    .details-information__information-box {
+                        display: flex;
+                        align-items: center;
+
+                        p {
+                            margin: 0;
+                            font-weight: 500;
+                        }
+
+                        img {
+                            width: 1.5rem;
+                        }
+                    }
+                }
+
+                .details-information__product-name {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        .details-transaction {
+            .product-cost {
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+
+            .transaction-box {
+                display: flex;
+
+                > :nth-child(2) {
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
+
+    .related-product-container {
+        margin: 2rem 0;
+
+        > h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+}
