@@ -114,9 +114,9 @@ export function AddUsersCreator() {
     };
 
     return (
-        <form className={styles['creator-form']} ref={formRef}>
+        <form className={styles['creator-form']}  onSubmit={(e) => e.preventDefault()} ref={formRef}>
             <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} />
-            <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} />
+            {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} />}
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
             {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />}
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={currentUser?.type === AccountType.ADMINISTRATOR ? roleOptions : roleOptions.slice(1)} disabled={disabled} />

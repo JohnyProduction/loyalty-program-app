@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { User } from '@/api/api';
 import { OptionType } from '@/components/common/inputs/input-select';
 import { useOrganizations } from '@/hooks/use-organizations';
 import { UserDbModel } from '@/types/user-types';
 import { AccountType } from '@/types/login-types';
+import { FormRefetchContext } from '@/contexts/form-refetch-context';
 
 export function useAddCreditsCreator(profile?: UserDbModel) {
     const { organizations } = useOrganizations();
@@ -16,6 +17,9 @@ export function useAddCreditsCreator(profile?: UserDbModel) {
 
     const [usernames, setUsernames] = useState<OptionType[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const { refetch, forceRefetch } = useContext(FormRefetchContext);
+    const [isRefetching, setIsRefetching] = useState<boolean>(false);
 
     useEffect(() => {
         if (!profile) {
@@ -43,8 +47,22 @@ export function useAddCreditsCreator(profile?: UserDbModel) {
             .finally(() => setIsLoading(false));
     }, [organization, profile]);
 
+    useEffect(() => {
+        const { getUsersEnd } = User;
+
+        setIsRefetching(true);
+        getUsersEnd(organization)
+            .then(users => {
+                const user = users.find(user => user.login === login);
+
+                setAmount(0);
+                setCurrentAmount(user?.credits ?? 0);
+            })
+            .catch(() => {})
+            .finally(() => setIsRefetching(false));
+    }, [forceRefetch, organization]);
+
     const resetForm = () => {
-        setLogin(usernames[0].label);
         setAmount(0);
         setCurrentAmount(currentAmount + amount);
     };
@@ -55,6 +73,7 @@ export function useAddCreditsCreator(profile?: UserDbModel) {
 
     const onChangeLogin = (e: any) => {
         setLogin(e.target.value);
+        refetch();
     };
 
     const onChangeAmount = (e: any) => {
@@ -66,6 +85,6 @@ export function useAddCreditsCreator(profile?: UserDbModel) {
         organization, organizations, onChangeOrganization,
         login, onChangeLogin,
         amount, onChangeAmount,
-        resetForm, currentAmount
+        resetForm, currentAmount, isRefetching
     };
 }

@@ -60,7 +60,7 @@ export function TopBar() {
         } catch (e) { /* empty */ } finally {
             router.push('/login');
             router.refresh();
-            toastSuccess('Logged out succeed!');
+            toastSuccess('Logged out in succeed!');
             setIsLoading(false);
         }
     };

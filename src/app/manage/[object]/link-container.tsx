@@ -13,7 +13,7 @@ export const linksData: LinkDataType = {
     [AccountType.ADMINISTRATOR]: [
         { label: 'Users', path: '/users' },
         { label: 'Credits', path: '/credits' },
-        { label: 'Organizations', path: '/shops' },
+        { label: 'Organizations', path: '/organizations' },
         { label: 'Categories', path: '/categories' }
     ],
     [AccountType.MANAGER]: [

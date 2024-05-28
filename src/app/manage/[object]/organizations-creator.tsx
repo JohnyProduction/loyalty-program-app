@@ -64,7 +64,7 @@ export function OrganizationsCreator() {
     }, [needsToRefreshForm]);
 
     return (
-        <form className={styles['creator-form']} ref={formRef}>
+        <form className={styles['creator-form']} onSubmit={(e) => e.preventDefault()} ref={formRef}>
             {isLoadingObject && <Loader isAbsolute={true} />}
             <InputString label={'Name'} name={'name'} value={name} onChange={onChangeName} disabled={disabled} />
             <InputSelect label={'Type'} name={'type'} value={type} onChange={onChangeType} options={typeOptions} disabled={disabled} />
