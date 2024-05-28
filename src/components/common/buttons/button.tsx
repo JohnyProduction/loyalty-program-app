@@ -14,7 +14,7 @@ export interface ButtonProps {
 }
 
 export function Button({ label, link, size = 'normal', btype = 'normal', bgcolor = 'blue', disabled = false, onClick = (e) => { e.stopPropagation(); } }: ButtonProps) {
-    if (disabled) {
+    if (disabled || link.length === 0) {
         return (
             <button className={styles['button']} data-size={size} data-btype={btype} data-bgcolor={bgcolor} onClick={onClick} disabled={disabled}>
                 <p>{label}</p>

@@ -86,7 +86,7 @@ export function TopBar() {
                     (
                         user ?
                             <>
-                                <p>{user?.credits} PKT</p>
+                                <p>{profileProvider ? profileProvider.profile?.credits : user?.credits} PKT</p>
                                 <div className={styles['header__user-profile']}>
                                     <ul>
                                         <li>

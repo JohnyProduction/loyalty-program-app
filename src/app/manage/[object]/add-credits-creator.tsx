@@ -19,8 +19,8 @@ interface AddCreditsCreatorProps {
 }
 
 export function AddCreditsCreator({ profile }: AddCreditsCreatorProps) {
-    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm, currentAmount } = useAddCreditsCreator(profile);
     const { setIsLoading } = useContext(ManageCreatorContext);
+    const { usernames, isLoading, organizations, organization, onChangeOrganization, login, onChangeLogin, amount, onChangeAmount, resetForm, currentAmount, isRefetching } = useAddCreditsCreator(profile);
 
     const getOrganizationsAsOptions = (organizations: OrganizationModel[]): OptionType[] => {
         return organizations.map(((organization, idx) => ({
@@ -32,9 +32,9 @@ export function AddCreditsCreator({ profile }: AddCreditsCreatorProps) {
 
     const onSubmit = async () => {
         const { changeCreditsEnd } = User;
+        setIsLoading(true);
 
         try {
-            setIsLoading(true);
             await changeCreditsEnd(login, amount);
             toastSuccess(`Pomyślnie ${amount > 0 ? 'dodano' : 'usunięto'} ${amount} kredytów dla użytkownika ${login}.`);
             resetForm();
@@ -57,15 +57,23 @@ export function AddCreditsCreator({ profile }: AddCreditsCreatorProps) {
 
     return (
         <>
-            {isLoading ? <Loader isAbsolute={true} /> : (
-                <form className={styles['creator-form']}>
+            {isLoading ? <Loader /> : (
+                <form className={styles['creator-form']} onSubmit={(e) => e.preventDefault()}>
                     {profile?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} options={getOrganizationsAsOptions(organizations)} value={organization || ''} onChange={onChangeOrganization} />}
-                    <InputSelect label={'Login'} name={'login'} options={usernames} value={login} onChange={onChangeLogin} />
-                    <InputNumber label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
-                    {renderCreditInfo()}
-                    <div className={styles['navigation-box']}>
-                        <SubmitButton label={'Add'} size="small" onSubmit={onSubmit} disabled={amount === 0} />
-                    </div>
+                    {usernames.length === 0
+                        ? 'There is no users in this organization.'
+                        : (
+                            <>
+                                <InputSelect label={'Login'} name={'login'} options={usernames} value={login}
+                                    onChange={onChangeLogin} />
+                                <InputNumber label={'Amount'} name={'amount'} value={amount} onChange={onChangeAmount} />
+                                {isRefetching ? <Loader /> : renderCreditInfo()}
+                                <div className={styles['navigation-box']}>
+                                    <SubmitButton label={'Add'} size="small" onSubmit={onSubmit} disabled={amount === 0} />
+                                </div>
+                            </>
+                        )
+                    }
                 </form>
             )}
         </>

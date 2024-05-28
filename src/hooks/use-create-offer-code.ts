@@ -2,13 +2,15 @@
 
 import { Offers } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NewCodeModel } from '@/types/offer-types';
+import { FormRefetchContext } from '@/contexts/form-refetch-context';
 
 export function useCreateOfferCode(offerId: number) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [codeNumber, setCodeNumber] = useState<number>(0);
     const [expiry, setExpiry] = useState<Date>(new Date());
+    const formRefetchProvider = useContext(FormRefetchContext);
 
     const onSubmit = async () => {
         const { addCodesEnd } = Offers;
@@ -22,6 +24,10 @@ export function useCreateOfferCode(offerId: number) {
         try {
             const res = await addCodesEnd(offerId, [code]);
             toastSuccess(res);
+
+            if (formRefetchProvider) {
+                formRefetchProvider.refetch();
+            }
         } catch (err: any) {
             toastError(`Error occurred while adding a new code: ${err.message}`);
         } finally {

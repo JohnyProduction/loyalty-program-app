@@ -45,7 +45,7 @@ export function Offer({ offer }: OfferProps) {
     };
 
     return (
-        <Link href={`/organizations/${offer.organization}/offers/${offer.id}`}>
+        <Link href={`/shops/${offer.organization}/offers/${offer.id}`}>
             <div className={styles['offer-element']}>
                 <div className={styles['offer-element__image']} style={isLoading ? loaderStyle : style}>
                     {isLoading && <Loader />}

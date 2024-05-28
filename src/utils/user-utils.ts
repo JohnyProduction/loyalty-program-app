@@ -25,8 +25,18 @@ export function getProfile(): UserDbModel | null {
     return JSON.parse(userJson);
 }
 
-export function updateProfile(user: UserDbModel) {
+export function updateProfile(user: UserDbModel): void {
     createProfile(user);
+}
+
+export function changeUserCredits(amount: number): void {
+    const userString = sessionStorage.getItem('user') ?? '{}';
+    const user = JSON.parse(userString);
+
+    user.credits += -amount;
+
+    sessionStorage.setItem('user', JSON.stringify(user));
+    window.dispatchEvent(new Event('storage'));
 }
 
 export function isLoggedIn(): boolean {
