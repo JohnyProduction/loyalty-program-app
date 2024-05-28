@@ -56,15 +56,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
             }
 
             const { buyCode } = Transactions;
-            const codesToBuy = availableCodes.slice(0, counterProps.count).map(() => buyCode(id));
-
-            const x = await Promise.allSettled(codesToBuy);
-
-            console.log(x);
-
-            // for (let i = 0; i < counterProps.count; i++) {
-            //     await buyCode(id);
-            // }
+            await buyCode(id, counterProps.count);
 
             toastSuccess(`You have successfully bought ${counterProps.count} codes.`);
             refetch();
