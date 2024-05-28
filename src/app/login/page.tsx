@@ -30,7 +30,7 @@ export default function LoginPage() {
             const user = await User.getCurrentUserEnd();
             createProfile(user);
             router.push('/');
-            toastSuccess('Logged in in succeed!');
+            toastSuccess('Logged in succeed!');
         } catch (e: any) {
             if (e.status === 401) {
                 toastError('Wrong login or password. Try again.');

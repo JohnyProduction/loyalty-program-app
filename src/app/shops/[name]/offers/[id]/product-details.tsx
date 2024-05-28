@@ -8,12 +8,14 @@ import { useCounter } from '@/hooks/use-counter';
 import { useGetOffer } from '@/hooks/use-get-offer';
 import { useParams } from 'next/navigation';
 import { OfferImage } from '@/app/shops/[name]/offers/[id]/offer-image';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProfileContext } from '@/contexts/profile-context';
 import { Offers, Transactions } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { Loader } from '@/components/common/loader';
 import { FormRefetchContext } from '@/contexts/form-refetch-context';
+import { useCodes } from '@/hooks/use-codes';
+import { UserDbModel } from '@/types/user-types';
 
 interface ProductDetailsProps {
     productId: string;
@@ -22,10 +24,15 @@ interface ProductDetailsProps {
 export function ProductDetails({ productId }: ProductDetailsProps) {
     const { name: organization, id: offerId } = useParams();
     const counterProps = useCounter(0);
-    const { profile } = useContext(ProfileContext);
-    const { refetch } = useContext(FormRefetchContext);
+    const { profile, setProfile } = useContext(ProfileContext);
+    const { refetch, forceRefetch } = useContext(FormRefetchContext);
     const { offer, isLoading, image, isLoadingImage } = useGetOffer(organization.toString(), Number(offerId));
+    const { codes, refetch: refetchCodes } = useCodes(Number(offerId));
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+    useEffect(() => {
+        refetchCodes();
+    }, [forceRefetch]);
 
     const renderTotalPrice = (price?: number) => {
         return `${(price ?? 0) * counterProps.count} PKT`;
@@ -58,13 +65,27 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
             const { buyCode } = Transactions;
             await buyCode(id, counterProps.count);
 
+            const newProfile: UserDbModel = {
+                ...profile as UserDbModel,
+                credits: (profile?.credits ?? 0) - totalCost
+            };
+            setProfile(newProfile);
+
             toastSuccess(`You have successfully bought ${counterProps.count} codes.`);
             refetch();
+            refetchCodes();
         } catch (err: any) {
             toastError(`Error: ${err.message}`);
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const isDisabledPurchase = () => {
+        const pointsLimit = (offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1);
+        const amountLimit = counterProps.count > codes;
+
+        return pointsLimit || amountLimit;
     };
 
     return (
@@ -98,7 +119,10 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                 <p className={styles['product-cost']}>{renderTotalPrice(offer?.price)}</p>
                                 <div className={styles['transaction-box']}>
                                     <InputCounter {...counterProps} />
-                                    <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange" disabled={(offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1)} onClick={onBuy} />
+                                    <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange" disabled={isDisabledPurchase()} onClick={onBuy} />
+                                </div>
+                                <div className={styles['available-codes-amount']}>
+                                    {codes ? `${codes} code${codes > 1 ? 's' : ''} available` : 'There is no code available.'}
                                 </div>
                             </div>
                         </div>

@@ -60,7 +60,7 @@ export function TopBar() {
         } catch (e) { /* empty */ } finally {
             router.push('/login');
             router.refresh();
-            toastSuccess('Logged out in succeed!');
+            toastSuccess('Logged out succeed!');
             setIsLoading(false);
         }
     };
@@ -86,7 +86,7 @@ export function TopBar() {
                     (
                         user ?
                             <>
-                                <p>{user?.credits} PKT</p>
+                                <p>{profileProvider ? profileProvider.profile?.credits : user?.credits} PKT</p>
                                 <div className={styles['header__user-profile']}>
                                     <ul>
                                         <li>

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Marek Kurańda](https://github.com/mjkuranda): Integration `/products/:id` with `/shops/:name/offers/:id`.
 - [Marek Kurańda](https://github.com/mjkuranda): Capability to buy codes.
 - [Marek Kurańda](https://github.com/mjkuranda): Selection code number and points refreshing.
+- [Marek Kurańda](https://github.com/mjkuranda): Code table with available codes.
+- [Marek Kurańda](https://github.com/mjkuranda): Code information.
 
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): Some errors and bugs at creator subpage.
