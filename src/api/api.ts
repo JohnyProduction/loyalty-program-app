@@ -859,9 +859,11 @@ export const Transactions = {
     /** Buys a code from a given offer for the current user [Access: Logged in users]
      *
      * offerID - Targeted offer ID
+     * 
+     * amount - Amount of codes to buy (default is 1)
      */
-    async buyCode(offerID: number): Promise<OfferTypes.NewCodeModel> {
-        const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}`, {
+    async buyCode(offerID: number, amount?: number): Promise<OfferTypes.NewCodeModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}${amount !== undefined ? '?amount=' + amount : '' }`, {
             mode: 'cors',
             method: 'POST',
             credentials: 'include',
