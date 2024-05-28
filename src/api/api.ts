@@ -862,7 +862,7 @@ export const Transactions = {
      * 
      * amount - Amount of codes to buy (default is 1)
      */
-    async buyCode(offerID: number, amount?: number): Promise<OfferTypes.NewCodeModel> {
+    async buyCode(offerID: number, amount?: number): Promise<OfferTypes.NewCodeModel[]> {
         const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}${amount !== undefined ? '?amount=' + amount : '' }`, {
             mode: 'cors',
             method: 'POST',
