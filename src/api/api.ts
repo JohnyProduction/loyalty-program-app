@@ -836,12 +836,12 @@ export const Transactions = {
 
         return res.json();
     },
-    /** Retrieves information about code availability in a given offer [Access: Logged in users]
+    /** Retrieves information about available code count [Access: Logged in users]
      *
      * offerID - Targeted offer ID
      */
-    async isCodeAvailable(offerID: number): Promise<boolean> {
-        const res = await fetch(`${API_BASE_URL}/Transactions/IsCodeAvailable/${offerID}`, {
+    async checkAvailableCodesEnd(offerID: number): Promise<number> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/CheckAvailableCodes/${offerID}`, {
             mode: 'cors',
             method: 'GET',
             credentials: 'include',
@@ -859,9 +859,11 @@ export const Transactions = {
     /** Buys a code from a given offer for the current user [Access: Logged in users]
      *
      * offerID - Targeted offer ID
+     * 
+     * amount - Amount of codes to buy (default is 1)
      */
-    async buyCode(offerID: number): Promise<OfferTypes.NewCodeModel> {
-        const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}`, {
+    async buyCode(offerID: number, amount?: number): Promise<OfferTypes.NewCodeModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Transactions/BuyCode/${offerID}${amount !== undefined ? '?amount=' + amount : '' }`, {
             mode: 'cors',
             method: 'POST',
             credentials: 'include',
