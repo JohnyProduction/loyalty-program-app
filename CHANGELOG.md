@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.30.0] - 2024-05-28
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Integration `/products/:id` with `/shops/:name/offers/:id`.
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to buy codes.
+- [Marek Kurańda](https://github.com/mjkuranda): Selection code number and points refreshing.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Some errors and bugs at creator subpage.
+
 ## [0.29.0] - 2024-05-28
 ### Changed
 - [Kamil Wojciechowski](https://github.com/kmlwoj): BuyCode endpoint now also accepts desired amount.
