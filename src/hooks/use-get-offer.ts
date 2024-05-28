@@ -12,6 +12,10 @@ export function useGetOffer(organization: string, offerId: number) {
     const [image, setImage] = useState<FileModel>();
     const [isLoadingImage, setIsLoadingImage] = useState<boolean>(false);
 
+    const [forceRefetch, setForceRefetch] = useState<boolean>(false);
+
+    const refetchOffer = () => setForceRefetch(!forceRefetch);
+
     useEffect(() => {
         const { getOffersEnd } = Offers;
 
@@ -43,7 +47,7 @@ export function useGetOffer(organization: string, offerId: number) {
             })
             .catch(err => toastError(err.message))
             .finally(() => setIsLoading(false));
-    }, []);
+    }, [forceRefetch]);
 
-    return { offer, isLoading, isLoadingImage, image };
+    return { offer, isLoading, isLoadingImage, image, refetchOffer };
 }
