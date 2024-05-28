@@ -16,6 +16,11 @@ import { Loader } from '@/components/common/loader';
 import { FormRefetchContext } from '@/contexts/form-refetch-context';
 import { useCodes } from '@/hooks/use-codes';
 import { UserDbModel } from '@/types/user-types';
+import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
+import { DiscountType, ShopDiscountModel } from '@/types/offer-types';
+import { InputNumber } from '@/components/common/inputs/input-number';
+import { SubmitButton } from '@/components/common/buttons/submit-button';
+import { InputDate } from '@/components/common/inputs/input-date';
 
 interface ProductDetailsProps {
     productId: string;
@@ -26,15 +31,54 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
     const counterProps = useCounter(0);
     const { profile, setProfile } = useContext(ProfileContext);
     const { refetch, forceRefetch } = useContext(FormRefetchContext);
-    const { offer, isLoading, image, isLoadingImage } = useGetOffer(organization.toString(), Number(offerId));
+    const { offer, isLoading, image, isLoadingImage, refetchOffer } = useGetOffer(organization.toString(), Number(offerId));
     const { codes, refetch: refetchCodes } = useCodes(Number(offerId));
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+    const [promotion, setPromotion] = useState<DiscountType>(DiscountType.PERCENT);
+    const onChangePromotion = (e: any) => setPromotion(e.target.value);
+    const [promotionValue, setPromotionValue] = useState<number>(0);
+    const onChangePromotionValue = (e: any) => setPromotionValue(Number(e.target.value));
+    const [promotionExpiry, setPromotionExpiry] = useState<Date>(new Date());
+    const onChangePromotionExpiry = (e: any) => setPromotionExpiry(e.target.value);
+    const promotionOptions: OptionType[] = [
+        { id: 1, label: 'Percentage', value: DiscountType.PERCENT },
+        { id: 2, label: 'Absolute', value: DiscountType.ABSOLUTE }
+    ];
+
+    const onSetPromotion = async () => {
+        const { setOfferDiscountEnd } = Offers;
+        const discount: ShopDiscountModel = {
+            amount: promotionValue,
+            type: promotion,
+            expiry: promotionExpiry
+        };
+        setIsSubmitting(true);
+
+        try {
+            const res = await setOfferDiscountEnd(Number(offerId), discount);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     useEffect(() => {
         refetchCodes();
     }, [forceRefetch]);
 
     const renderTotalPrice = (price?: number) => {
+        if (offer?.discount?.newPrice) {
+            const diff = offer.price - offer.discount.newPrice;
+            const totalDiff = diff * counterProps.count;
+
+            return `${offer.discount.newPrice * counterProps.count} PKT (-${totalDiff} PKT)`;
+        }
+
         return `${(price ?? 0) * counterProps.count} PKT`;
     };
 
@@ -82,53 +126,74 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
     };
 
     const isDisabledPurchase = () => {
-        const pointsLimit = (offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1);
-        const amountLimit = counterProps.count > codes;
+        if (counterProps.count > codes) {
+            return true;
+        }
 
-        return pointsLimit || amountLimit;
+        if (offer?.discount?.newPrice) {
+            const pointsLimit = offer.discount.newPrice * counterProps.count > (profile?.credits ?? 1);
+
+            if (pointsLimit) {
+                return true;
+            }
+        }
+
+        return (offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1);
     };
 
     return (
-        <div className={styles['product-details']}>
-            {isSubmitting && <Loader isAbsolute={true} />}
-            {isLoading
-                ? <></>
-                : (
-                    <>
-                        <OfferImage image={image} isLoadingImage={isLoadingImage} />
-                        <div className={styles['details-container']}>
-                            <div className={styles['details-information']}>
-                                <div className={styles['details-information__container']}>
-                                    <div>
-                                        <p className={styles['details-information__brand']}>Brand: {organization}</p>
-                                        <p className={styles['details-information__product-id']}>ID produktu: {productId}</p>
-                                        <p className={styles['details-information__product-name']}>{offer?.name}</p>
+        <>
+            <div className={styles['product-details']}>
+                {isSubmitting && <Loader isAbsolute={true} />}
+                {isLoading
+                    ? <></>
+                    : (
+                        <>
+                            <OfferImage image={image} isLoadingImage={isLoadingImage} />
+                            <div className={styles['details-container']}>
+                                <div className={styles['details-information']}>
+                                    <div className={styles['details-information__container']}>
+                                        <div>
+                                            <p className={styles['details-information__brand']}>Brand: {organization}</p>
+                                            <p className={styles['details-information__product-id']}>ID
+                                            produktu: {productId}</p>
+                                            <p className={styles['details-information__product-name']}>{offer?.name}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={styles['details-information__container']}>
-                                    <div>
-                                        <div className={styles['details-information__information-box']}>
-                                            <img src="/pages/products/web.png" alt="Web" />
-                                            <p><Link href={`/shops/${organization}/offers`}>More offers</Link></p>
+                                    <div className={styles['details-information__container']}>
+                                        <div>
+                                            <div className={styles['details-information__information-box']}>
+                                                <img src="/pages/products/web.png" alt="Web" />
+                                                <p><Link href={`/shops/${organization}/offers`}>More offers</Link></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div className={styles['details-transaction']}>
-                                <p className={styles['product-cost']}>{renderTotalPrice(offer?.price)}</p>
-                                <div className={styles['transaction-box']}>
-                                    <InputCounter {...counterProps} />
-                                    <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange" disabled={isDisabledPurchase()} onClick={onBuy} />
+                                <hr />
+                                <div className={styles['details-transaction']}>
+                                    <p className={styles['product-cost']}>{renderTotalPrice(offer?.price)}</p>
+                                    <div className={styles['transaction-box']}>
+                                        <InputCounter {...counterProps} />
+                                        <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange"
+                                            disabled={isDisabledPurchase()} onClick={onBuy} />
+                                    </div>
+                                    <div className={styles['available-codes-amount']}>
+                                        {codes ? `${codes} code${codes > 1 ? 's' : ''} available` : 'There is no code available.'}
+                                    </div>
                                 </div>
-                                <div className={styles['available-codes-amount']}>
-                                    {codes ? `${codes} code${codes > 1 ? 's' : ''} available` : 'There is no code available.'}
-                                </div>
                             </div>
-                        </div>
-                    </>
-                )
-            }
-        </div>
+                        </>
+                    )
+                }
+            </div>
+            <div className={styles['product-promotion-container']}>
+                <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions} value={promotion}
+                    onChange={onChangePromotion} />
+                <InputNumber label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`} name={'promotion-value'} value={promotionValue}
+                    onChange={onChangePromotionValue} />
+                <InputDate label={'Promotion expiry'} name={'promotion-expiry'} value={promotionExpiry} onChange={onChangePromotionExpiry} />
+                <SubmitButton label={'Set promotion'} onSubmit={onSetPromotion} size={'small'} />
+            </div>
+        </>
     );
 }
