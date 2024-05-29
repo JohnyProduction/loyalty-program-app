@@ -14,9 +14,18 @@ $orange: #E73C17;
         padding: 1rem 2rem;
     }
 
-    &:hover {
+    &:not(:disabled):hover {
         box-shadow: 0 4px 8px gray;
         transition: 382ms;
+    }
+
+    &[disabled] {
+        opacity: .5;
+        cursor: not-allowed;
+
+        p {
+            margin: 0;
+        }
     }
 
     // Size
@@ -33,7 +42,7 @@ $orange: #E73C17;
         background-color: $blue;
         border: 2px solid $blue;
 
-        &:hover {
+        &:not(:disabled):hover {
             background-color: white;
             color: $blue;
         }
@@ -43,7 +52,7 @@ $orange: #E73C17;
         background-color: $orange;
         border: 2px solid $orange;
 
-        &:hover {
+        &:not(:disabled):hover {
             background-color: white;
             color: $orange;
         }
@@ -58,6 +67,14 @@ $orange: #E73C17;
         >a {
             padding: .5rem 2rem;
         }
+
+        p {
+            margin: 0;
+        }
+
+        &[disabled] p {
+            padding: 0 2rem;
+        }
     }
 
     // Rectangular type
@@ -68,6 +85,10 @@ $orange: #E73C17;
 
         >a {
             padding: .5rem 2rem;
+        }
+
+        p {
+            margin: 0;
         }
     }
 }

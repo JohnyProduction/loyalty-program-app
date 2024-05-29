@@ -7,14 +7,16 @@ interface InputStringProps {
     name: string;
     width?: string;
     value: string;
+    isPassword?: boolean;
+    disabled?: boolean;
     onChange: (event: any) => void;
 }
 
-export function InputString({ label, name, width = '100%', value, onChange }: InputStringProps) {
+export function InputString({ label, name, width = '100%', value, onChange, isPassword = false, disabled = false }: InputStringProps) {
     return (
         <div className={styles['input-string']}>
             <label htmlFor={name}>{label}:</label>
-            <input type="string" name={name} style={{ width }} value={value} onChange={onChange} />
+            <input type={isPassword ? 'password' : 'string'} name={name} style={{ width }} value={value} onChange={onChange} disabled={disabled} />
         </div>
     );
 }

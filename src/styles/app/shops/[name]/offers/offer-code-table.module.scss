@@ -1,0 +1,41 @@
+.table {
+    width: 100%;
+
+    thead {
+        tr {
+            background-color: grey;
+        }
+    }
+
+    tbody {
+        tr:nth-child(2n) {
+            background-color: lightgrey;
+        }
+    }
+
+    tr {
+        border: 1px solid black;
+        height: 2rem;
+
+        th {
+            text-align: center;
+            padding: .5rem;
+        }
+
+        .code {
+            text-align: end;
+        }
+
+        .expiration {
+            text-align: center;
+        }
+
+        .availability {
+            text-align: center;
+        }
+    }
+
+    tr[data-availability=false], tr[data-is-expired=true] {
+        opacity: .5;
+    }
+}

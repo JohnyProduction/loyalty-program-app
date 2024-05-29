@@ -4,11 +4,11 @@ type SubmitButton = Omit<OblongButtonProps, 'onClick' | 'link'> & {
     onSubmit: () => void;
 };
 
-export function SubmitButton({ label, bgcolor, size, onSubmit }: SubmitButton) {
+export function SubmitButton({ label, bgcolor, size, disabled, onSubmit }: SubmitButton) {
     const onClick = (e: any) => {
         e.stopPropagation();
         onSubmit();
     };
 
-    return <OblongButton label={label} link={''} bgcolor={bgcolor} size={size} onClick={onClick} />;
+    return <OblongButton label={label} link={''} bgcolor={bgcolor} size={size} disabled={disabled} onClick={onClick} />;
 }

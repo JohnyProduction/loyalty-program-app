@@ -1,0 +1,54 @@
+.shops-page, .categories-page {
+    .shop-container, .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2rem 0;
+
+        a {
+            margin: 8px 8px;
+
+            > div {
+                border-radius: 16px;
+            }
+        }
+    }
+}
+
+.shop-container {
+    margin: 1rem 0;
+
+    .shop-container__elements {
+        display: flex;
+        flex-wrap: wrap;
+
+        &[data-is-loading=true] {
+            display: block;
+        }
+
+        .shop-element {
+            width: 400px;
+            height: 300px;
+            background-color: black;
+
+            .shop-element__image {
+                width: 400px;
+                height: 300px;
+
+                border: 1px solid;
+                border-radius: 16px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+    }
+}

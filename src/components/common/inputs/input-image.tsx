@@ -16,7 +16,7 @@ export function InputImage({ label, name, width = '100%', image, onChange }: Inp
             {image && (
                 <div>
                     <img src={URL.createObjectURL(image)} alt="Wybrany obraz"
-                        style={{ width, maxHeight: '200px' }} />
+                        style={{ width }} />
                 </div>
             )}
         </div>

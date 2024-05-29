@@ -5,6 +5,65 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.31.0] - 2024-05-28
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to set promotions.
+
+## [0.30.0] - 2024-05-28
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Integration `/products/:id` with `/shops/:name/offers/:id`.
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to buy codes.
+- [Marek Kurańda](https://github.com/mjkuranda): Selection code number and points refreshing.
+- [Marek Kurańda](https://github.com/mjkuranda): Code table with available codes.
+- [Marek Kurańda](https://github.com/mjkuranda): Code information.
+
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Some errors and bugs at creator subpage.
+
+## [0.29.0] - 2024-05-28
+### Changed
+- [Kamil Wojciechowski](https://github.com/kmlwoj): BuyCode endpoint now also accepts desired amount.
+
+## [0.28.0] - 2024-05-27
+### Changed
+- [Kamil Wojciechowski](https://github.com/kmlwoj): Changed isCodeAvailable endpoint to checkAvailableCodesEnd with different return type.
+
+## [0.27.0] - 2024-05-27
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `/categories` page.
+- [Marek Kurańda](https://github.com/mjkuranda): `/shops` page.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `/organizations/:name/offers/:id` to `/shops/:name/offers/:id` page.
+
+## [0.26.0] - 2024-05-27
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): `ProfileProvider` to store user profile.
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): Visibility for offers and codes creator forms.
+
+## [0.25.0] - 2024-05-27
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to click `Enter` while logging in.
+
+## [0.24.0] - 2024-05-27
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Each object list at `manage` page.
+- [Marek Kurańda](https://github.com/mjkuranda): Editing and deleting users, categories and organizations.
+- [Marek Kurańda](https://github.com/mjkuranda): Refreshing object list after deleting.
+- [Marek Kurańda](https://github.com/mjkuranda): Inputs can be disabled.
+- [Marek Kurańda](https://github.com/mjkuranda): Filtering users by organization name.
+- [Marek Kurańda](https://github.com/mjkuranda): Deleting categories and organization images.
+- [Marek Kurańda](https://github.com/mjkuranda): and so on...
+
+### Changed
+- [Marek Kurańda](https://github.com/mjkuranda): `Manage` bookmark is not available for workers.
+- [Marek Kurańda](https://github.com/mjkuranda): Settings subpage to Manage and settings page content moved to `/manage` page.
+- [Marek Kurańda](https://github.com/mjkuranda): Settings page allows changing user email and password.
+- [Marek Kurańda](https://github.com/mjkuranda): `/manage/:object` allows displaying creator for a specific object, e.g. organizations, users etc.
+- [Marek Kurańda](https://github.com/mjkuranda): InputString can contain password as well.
+
 ## [0.23.1] - 2024-05-18
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Option to `TopBar` dropdown.
