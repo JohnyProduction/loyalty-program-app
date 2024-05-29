@@ -17,11 +17,12 @@ import { FormRefetchContext } from '@/contexts/form-refetch-context';
 import { useCodes } from '@/hooks/use-codes';
 import { UserDbModel } from '@/types/user-types';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
-import { DiscountType, ShopDiscountModel } from '@/types/offer-types';
+import { DiscountType, ShopDiscountModel, ShopOfferModel } from '@/types/offer-types';
 import { InputNumber } from '@/components/common/inputs/input-number';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputDate } from '@/components/common/inputs/input-date';
 import { OfferImageForm } from '@/app/shops/[name]/offers/[id]/offer-image-form';
+import { Icon } from '@/components/common/icon';
 
 interface ProductDetailsProps {
     productId: string;
@@ -142,6 +143,33 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         return (offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1);
     };
 
+    const onEditOfferName = async () => {
+        const name = prompt('Type a new offer name');
+
+        if (!name || name.length === 0) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, name };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <div className={styles['product-details']}>
@@ -158,7 +186,10 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                             <p className={styles['details-information__brand']}>Brand: {organization}</p>
                                             <p className={styles['details-information__product-id']}>ID
                                             produktu: {productId}</p>
-                                            <p className={styles['details-information__product-name']}>{offer?.name}</p>
+                                            <p className={styles['details-information__product-name']}>
+                                                {offer?.name}
+                                                {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferName} />}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className={styles['details-information__container']}>
