@@ -23,6 +23,7 @@ import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputDate } from '@/components/common/inputs/input-date';
 import { OfferImageForm } from '@/app/shops/[name]/offers/[id]/offer-image-form';
 import { Icon } from '@/components/common/icon';
+import { AccountType } from '@/types/login-types';
 
 interface ProductDetailsProps {
     productId: string;
