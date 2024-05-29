@@ -198,6 +198,60 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         }
     };
 
+    const onEditOfferCategory = async () => {
+        const category = prompt('Type a new offer category');
+
+        if (!category || category.length === 0) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, category: category };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const onActivate = async () => {
+        const decision = confirm(`Do you want to ${offer?.isActive ? 'deactivate' : 'activate'} this offer?`);
+
+        if (!decision) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, isActive: !offer.isActive };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <div className={styles['product-details']}>
@@ -212,8 +266,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                     <div className={styles['details-information__container']}>
                                         <div>
                                             <p className={styles['details-information__brand']}>Brand: {organization}</p>
-                                            <p className={styles['details-information__product-id']}>ID
-                                            produktu: {productId}</p>
+                                            <p className={styles['details-information__product-id']}>Product ID: {productId}</p>
                                             <p className={styles['details-information__product-name']}>
                                                 {offer?.name}
                                                 {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferName} />}
@@ -222,6 +275,16 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                     </div>
                                     <div className={styles['details-information__container']}>
                                         <div>
+                                            <p style={{ display: 'flex' }}>
+                                                Offer is {offer?.isActive ? 'active' : 'inactive'}
+                                                {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onActivate} />}
+                                            </p>
+                                            <p className={styles['details-information__product-category']}>
+                                                Category: {offer?.category ?? '-'}
+                                                {profile?.type === AccountType.ADMINISTRATOR &&
+                                                    <Icon src={'/pages/edit.png'} size={32}
+                                                        onClick={onEditOfferCategory} />}
+                                            </p>
                                             <div className={styles['details-information__information-box']}>
                                                 <img src="/pages/products/web.png" alt="Web" />
                                                 <p><Link href={`/shops/${organization}/offers`}>More offers</Link></p>
@@ -233,7 +296,8 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                 <div className={styles['details-transaction']}>
                                     <p className={styles['product-cost']}>
                                         {renderTotalPrice(offer?.price)}
-                                        {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferPrice} />}
+                                        {profile?.type === AccountType.ADMINISTRATOR &&
+                                            <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferPrice} />}
                                     </p>
                                     <div className={styles['transaction-box']}>
                                         <InputCounter {...counterProps} />
@@ -249,15 +313,21 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     )
                 }
             </div>
-            <div className={styles['product-promotion-container']}>
-                <OfferImageForm />
-                <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions} value={promotion}
-                    onChange={onChangePromotion} />
-                <InputNumber label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`} name={'promotion-value'} value={promotionValue}
-                    onChange={onChangePromotionValue} />
-                <InputDate label={'Promotion expiry'} name={'promotion-expiry'} value={promotionExpiry} onChange={onChangePromotionExpiry} />
-                <SubmitButton label={'Set promotion'} onSubmit={onSetPromotion} size={'small'} />
-            </div>
+            {profile?.type === AccountType.ADMINISTRATOR && (
+                <div className={styles['product-promotion-container']}>
+                    <OfferImageForm refetchOffer={refetchOffer} />
+                    <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions}
+                        value={promotion}
+                        onChange={onChangePromotion} />
+                    <InputNumber
+                        label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`}
+                        name={'promotion-value'} value={promotionValue}
+                        onChange={onChangePromotionValue} />
+                    <InputDate label={'Promotion expiry'} name={'promotion-expiry'} value={promotionExpiry}
+                        onChange={onChangePromotionExpiry} />
+                    <SubmitButton label={'Set promotion'} onSubmit={onSetPromotion} size={'small'} />
+                </div>
+            )}
         </>
     );
 }

@@ -22,7 +22,7 @@ export function OfferCodeContainer({ offerId }: OfferCodeContainerProps) {
         refetch();
     }, [forceRefetch]);
 
-    if (profile?.type === AccountType.MANAGER) {
+    if (profile?.type !== AccountType.ADMINISTRATOR) {
         return <></>;
     }
 

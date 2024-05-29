@@ -8,13 +8,15 @@ import { AccountType } from '@/types/login-types';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { Offers } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
-import { FormRefetchContext } from '@/contexts/form-refetch-context';
 import { Loader } from '@/components/common/loader';
 
-export function OfferImageForm() {
+interface OfferImageFormProps {
+    refetchOffer: () => void;
+}
+
+export function OfferImageForm({ refetchOffer }: OfferImageFormProps) {
     const { id } = useParams();
     const { profile } = useContext(ProfileContext);
-    const { refetch } = useContext(FormRefetchContext);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [image, setImage] = useState<File | null>( null);
@@ -35,7 +37,7 @@ export function OfferImageForm() {
             const res = await setOfferImageEnd(Number(id), data);
 
             toastSuccess(res);
-            refetch();
+            refetchOffer();
         } catch (err: any) {
             toastError(err.message);
         } finally {
