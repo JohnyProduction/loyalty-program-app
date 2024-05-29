@@ -33,9 +33,18 @@
         .availability {
             text-align: center;
         }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+        }
     }
 
     tr[data-availability=false], tr[data-is-expired=true] {
-        opacity: .5;
+        & > td:not(.actions) {
+            opacity: .5;
+        }
     }
 }

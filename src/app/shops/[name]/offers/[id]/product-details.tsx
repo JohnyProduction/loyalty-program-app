@@ -17,10 +17,13 @@ import { FormRefetchContext } from '@/contexts/form-refetch-context';
 import { useCodes } from '@/hooks/use-codes';
 import { UserDbModel } from '@/types/user-types';
 import { InputSelect, OptionType } from '@/components/common/inputs/input-select';
-import { DiscountType, ShopDiscountModel } from '@/types/offer-types';
+import { DiscountType, ShopDiscountModel, ShopOfferModel } from '@/types/offer-types';
 import { InputNumber } from '@/components/common/inputs/input-number';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputDate } from '@/components/common/inputs/input-date';
+import { OfferImageForm } from '@/app/shops/[name]/offers/[id]/offer-image-form';
+import { Icon } from '@/components/common/icon';
+import { AccountType } from '@/types/login-types';
 
 interface ProductDetailsProps {
     productId: string;
@@ -98,7 +101,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 return;
             }
 
-            const totalCost = (offer?.price ?? 0) * counterProps.count;
+            const totalCost = (offer?.discount?.newPrice ?? offer?.price ?? 0) * counterProps.count;
 
             if ((profile?.credits ?? 0) < totalCost) {
                 toastError('Insufficient amount of credits.');
@@ -141,6 +144,114 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         return (offer?.price ?? 1) * counterProps.count > (profile?.credits ?? 1);
     };
 
+    const onEditOfferName = async () => {
+        const name = prompt('Type a new offer name');
+
+        if (!name || name.length === 0) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, name };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const onEditOfferPrice = async () => {
+        const price = prompt('Type a new offer price');
+
+        if (!price || price.length === 0 || isNaN(Number(price))) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, price: Number(price) };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const onEditOfferCategory = async () => {
+        const category = prompt('Type a new offer category');
+
+        if (!category || category.length === 0) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, category: category };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const onActivate = async () => {
+        const decision = confirm(`Do you want to ${offer?.isActive ? 'deactivate' : 'activate'} this offer?`);
+
+        if (!decision) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, isActive: !offer.isActive };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <div className={styles['product-details']}>
@@ -155,13 +266,25 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                     <div className={styles['details-information__container']}>
                                         <div>
                                             <p className={styles['details-information__brand']}>Brand: {organization}</p>
-                                            <p className={styles['details-information__product-id']}>ID
-                                            produktu: {productId}</p>
-                                            <p className={styles['details-information__product-name']}>{offer?.name}</p>
+                                            <p className={styles['details-information__product-id']}>Product ID: {productId}</p>
+                                            <p className={styles['details-information__product-name']}>
+                                                {offer?.name}
+                                                {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferName} />}
+                                            </p>
                                         </div>
                                     </div>
                                     <div className={styles['details-information__container']}>
                                         <div>
+                                            <p style={{ display: 'flex' }}>
+                                                Offer is {offer?.isActive ? 'active' : 'inactive'}
+                                                {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onActivate} />}
+                                            </p>
+                                            <p className={styles['details-information__product-category']}>
+                                                Category: {offer?.category ?? '-'}
+                                                {profile?.type === AccountType.ADMINISTRATOR &&
+                                                    <Icon src={'/pages/edit.png'} size={32}
+                                                        onClick={onEditOfferCategory} />}
+                                            </p>
                                             <div className={styles['details-information__information-box']}>
                                                 <img src="/pages/products/web.png" alt="Web" />
                                                 <p><Link href={`/shops/${organization}/offers`}>More offers</Link></p>
@@ -171,7 +294,11 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                 </div>
                                 <hr />
                                 <div className={styles['details-transaction']}>
-                                    <p className={styles['product-cost']}>{renderTotalPrice(offer?.price)}</p>
+                                    <p className={styles['product-cost']}>
+                                        {renderTotalPrice(offer?.price)}
+                                        {profile?.type === AccountType.ADMINISTRATOR &&
+                                            <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferPrice} />}
+                                    </p>
                                     <div className={styles['transaction-box']}>
                                         <InputCounter {...counterProps} />
                                         <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange"
@@ -186,14 +313,21 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                     )
                 }
             </div>
-            <div className={styles['product-promotion-container']}>
-                <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions} value={promotion}
-                    onChange={onChangePromotion} />
-                <InputNumber label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`} name={'promotion-value'} value={promotionValue}
-                    onChange={onChangePromotionValue} />
-                <InputDate label={'Promotion expiry'} name={'promotion-expiry'} value={promotionExpiry} onChange={onChangePromotionExpiry} />
-                <SubmitButton label={'Set promotion'} onSubmit={onSetPromotion} size={'small'} />
-            </div>
+            {profile?.type === AccountType.ADMINISTRATOR && (
+                <div className={styles['product-promotion-container']}>
+                    <OfferImageForm refetchOffer={refetchOffer} />
+                    <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions}
+                        value={promotion}
+                        onChange={onChangePromotion} />
+                    <InputNumber
+                        label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`}
+                        name={'promotion-value'} value={promotionValue}
+                        onChange={onChangePromotionValue} />
+                    <InputDate label={'Promotion expiry'} name={'promotion-expiry'} value={promotionExpiry}
+                        onChange={onChangePromotionExpiry} />
+                    <SubmitButton label={'Set promotion'} onSubmit={onSetPromotion} size={'small'} />
+                </div>
+            )}
         </>
     );
 }
