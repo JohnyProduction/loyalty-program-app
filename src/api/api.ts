@@ -5,6 +5,7 @@ import * as OrganizationTypes from '../types/organization-types';
 import * as CategoriesTypes from '../types/categories-types';
 import * as AttachmentTypes from '../types/attachment-types';
 import * as OfferTypes from '../types/offer-types';
+import * as ContactTypes from '../types/contact-types';
 import { apiErrorFactory } from './api-error-factory';
 import { TransactionModel } from '@/types/transaction-types';
 
@@ -877,5 +878,107 @@ export const Transactions = {
             });
 
         return res.json();
+    }
+};
+export const Contact = {
+    async getContactsEnd(): Promise<ContactTypes.ContactInfoModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Contact/GetContacts`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    async addContactEnd(contact: ContactTypes.ContactInfoModel): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Contact/AddContact`, {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' },
+            body: JSON.stringify(contact)
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    async deleteContactEnd(id: number): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Conctact/DeleteContact`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' },
+            body: JSON.stringify(id)
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
+    },
+    async getAllContactRequestsEnd(): Promise<ContactTypes.ContactRequestModel[]> {
+        const res = await fetch(`${API_BASE_URL}/Contact/GetAllContactRequests`, {
+            mode: 'cors',
+            method: 'GET',
+            credentials: 'include',
+            headers: { 'accept': '*/*' }
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    async addContactRequestEnd(contactRequest: ContactTypes.ContactRequestModel): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Contact/AddContactRequest`, {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' },
+            body: JSON.stringify(contactRequest)
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.json();
+    },
+    async deleteContactRequestEnd(id: number): Promise<string> {
+        const res = await fetch(`${API_BASE_URL}/Conctact/DeleteContactRequest`, {
+            mode: 'cors',
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'accept': '*/*', 'Content-Type': 'application/json' },
+            body: JSON.stringify(id)
+        })
+            .then(async (response) => {
+                if (!response.ok)
+                    throw await apiErrorFactory(response);
+
+                return response;
+            });
+
+        return res.text();
     }
 };
