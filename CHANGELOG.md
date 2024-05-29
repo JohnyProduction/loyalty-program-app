@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Capability to change code state and delete code.
 
+### Fixed
+- [Marek Kurańda](https://github.com/mjkuranda): Loader absolute position.
+
 ## [0.31.0] - 2024-05-28
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Capability to set promotions.
