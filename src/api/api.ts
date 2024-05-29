@@ -881,6 +881,7 @@ export const Transactions = {
     }
 };
 export const Contact = {
+    /** Retrieves list of every CONTACT_INFO in the system [Access: Everyone] */
     async getContactsEnd(): Promise<ContactTypes.ContactInfoModel[]> {
         const res = await fetch(`${API_BASE_URL}/Contact/GetContacts`, {
             mode: 'cors',
@@ -897,6 +898,10 @@ export const Contact = {
 
         return res.json();
     },
+    /** Adds new contact to the system [Access: Administrator]
+     * 
+     * contact - New contact
+     */
     async addContactEnd(contact: ContactTypes.ContactInfoModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Contact/AddContact`, {
             mode: 'cors',
@@ -914,6 +919,10 @@ export const Contact = {
 
         return res.json();
     },
+    /** Deletes contact from the system [Access: Administrator]
+     * 
+     * id - ID of contact to delete
+     */
     async deleteContactEnd(id: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Conctact/DeleteContact`, {
             mode: 'cors',
@@ -931,6 +940,7 @@ export const Contact = {
 
         return res.text();
     },
+    /** etrieves list of every CONTACT_REQUEST in the system [Access: Administrator] */
     async getAllContactRequestsEnd(): Promise<ContactTypes.ContactRequestModel[]> {
         const res = await fetch(`${API_BASE_URL}/Contact/GetAllContactRequests`, {
             mode: 'cors',
@@ -947,6 +957,10 @@ export const Contact = {
 
         return res.json();
     },
+    /** Adds new contact request to the system [Access: Everyone]
+     * 
+     * contactRequest - New request for contact
+     */
     async addContactRequestEnd(contactRequest: ContactTypes.ContactRequestModel): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Contact/AddContactRequest`, {
             mode: 'cors',
@@ -964,6 +978,10 @@ export const Contact = {
 
         return res.json();
     },
+    /** Deletes contact from the system [Access: Administrator]
+     * 
+     * id - Id of contact request to delete
+     */
     async deleteContactRequestEnd(id: number): Promise<string> {
         const res = await fetch(`${API_BASE_URL}/Conctact/DeleteContactRequest`, {
             mode: 'cors',
