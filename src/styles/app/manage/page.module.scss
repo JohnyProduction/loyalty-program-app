@@ -1,5 +1,9 @@
 .manage-page {
     .creator-container {
+        .manage-container{
+            display: flex;
+            justify-content: center;
+        }
         h3 {
             margin: 2rem 0;
             text-align: center;
@@ -8,7 +12,34 @@
         li {
             border: 1px solid;
             padding: 8px;
+            min-width: 60%;
             text-transform: capitalize;
+            
         }
+        a{
+            li{
+                transition: 382ms;
+                background-color: white;
+                color: grey;
+
+                padding: 1rem;
+                border: 1px solid grey;
+            }
+        }
+        a:hover{
+            li {
+                transition: 618ms;
+                background-color: grey;
+                color: white;
+            }
+        }
+        a + a > li {
+            margin-top: 1px;
+        h3 {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
     }
+}
 }

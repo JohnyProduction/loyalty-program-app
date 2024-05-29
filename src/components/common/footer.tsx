@@ -8,35 +8,25 @@ export function Footer() {
     };
     const footerFragmentData: FooterFragmentDataType[] = [
         {
-            header: 'What we do',
+            header: 'Links',
             paragraphs: [
-                'Web Design',
-                'App Design',
-                'Social Media Manage',
-                'Market Analysis Project'
-            ]
-        },
-        {
-            header: 'My account',
-            paragraphs: [
-                'About Us',
-                'Career',
-                'Become Investor'
-            ]
-        },
-        {
-            header: 'Support',
-            paragraphs: [
-                'FAQ',
-                'Policy',
-                'Business'
+                {
+                    label: 'Categories',
+                    link: '#'
+                },
+                {
+                    label: 'Shops',
+                    link: '#'
+                },
             ]
         },
         {
             header: 'Contact',
             paragraphs: [
-                'WhatsApp',
-                'Support 24'
+                {
+                    label: 'Support 24',
+                    link: '/contact-us'
+                },
             ]
         }
     ];
