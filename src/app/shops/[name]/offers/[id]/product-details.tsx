@@ -21,6 +21,7 @@ import { DiscountType, ShopDiscountModel } from '@/types/offer-types';
 import { InputNumber } from '@/components/common/inputs/input-number';
 import { SubmitButton } from '@/components/common/buttons/submit-button';
 import { InputDate } from '@/components/common/inputs/input-date';
+import { OfferImageForm } from '@/app/shops/[name]/offers/[id]/offer-image-form';
 
 interface ProductDetailsProps {
     productId: string;
@@ -187,6 +188,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 }
             </div>
             <div className={styles['product-promotion-container']}>
+                <OfferImageForm />
                 <InputSelect label={'Select promotion'} name={'promotion'} options={promotionOptions} value={promotion}
                     onChange={onChangePromotion} />
                 <InputNumber label={`Promotion value (${promotion === DiscountType.ABSOLUTE ? `1-${(offer?.price ?? 0) * counterProps.count}PKT` : '1-100%'})`} name={'promotion-value'} value={promotionValue}
