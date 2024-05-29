@@ -1,5 +1,6 @@
 import { CodeModel } from '@/types/offer-types';
 import styles from '@/styles/app/shops/[name]/offers/offer-code-table.module.scss';
+import { OfferCodeAction } from '@/app/shops/[name]/offers/[id]/offer-code-action';
 
 interface OfferCodeTableProps {
     codes: CodeModel[];
@@ -25,6 +26,7 @@ export function OfferCodeTable({ codes }: OfferCodeTableProps) {
                     <th>Code</th>
                     <th>Expiration</th>
                     <th>Was used?</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +35,7 @@ export function OfferCodeTable({ codes }: OfferCodeTableProps) {
                         <td className={styles['code']}>{code.code}</td>
                         <td className={styles['expiration']}>{proceedDate(code)}</td>
                         <td className={styles['availability']}>{code.isUsed && 'Yes'}</td>
+                        <OfferCodeAction code={code} />
                     </tr>
                 )}
             </tbody>
