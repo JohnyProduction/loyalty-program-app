@@ -171,6 +171,33 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         }
     };
 
+    const onEditOfferPrice = async () => {
+        const price = prompt('Type a new offer price');
+
+        if (!price || price.length === 0 || isNaN(Number(price))) {
+            return;
+        }
+
+        if (!offer) {
+            return;
+        }
+
+        const { changeOfferEnd } = Offers;
+        const newOffer: ShopOfferModel = { ...offer, price: Number(price) };
+        setIsSubmitting(true);
+
+        try {
+            const res = await changeOfferEnd(newOffer);
+
+            toastSuccess(res);
+            refetchOffer();
+        } catch (err: any) {
+            toastError(err.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <div className={styles['product-details']}>
@@ -204,7 +231,10 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                                 </div>
                                 <hr />
                                 <div className={styles['details-transaction']}>
-                                    <p className={styles['product-cost']}>{renderTotalPrice(offer?.price)}</p>
+                                    <p className={styles['product-cost']}>
+                                        {renderTotalPrice(offer?.price)}
+                                        {profile?.type === AccountType.ADMINISTRATOR && <Icon src={'/pages/edit.png'} size={32} onClick={onEditOfferPrice} />}
+                                    </p>
                                     <div className={styles['transaction-box']}>
                                         <InputCounter {...counterProps} />
                                         <RectangularButton label={'Buy now'} link={''} size="small" bgcolor="orange"
