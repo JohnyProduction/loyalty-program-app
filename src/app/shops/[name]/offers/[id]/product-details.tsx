@@ -101,7 +101,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
                 return;
             }
 
-            const totalCost = (offer?.price ?? 0) * counterProps.count;
+            const totalCost = (offer?.discount?.newPrice ?? offer?.price ?? 0) * counterProps.count;
 
             if ((profile?.credits ?? 0) < totalCost) {
                 toastError('Insufficient amount of credits.');
