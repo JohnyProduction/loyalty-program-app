@@ -1,13 +1,14 @@
 import { ApiError } from './api-error';
 
 export async function apiErrorFactory(res: Response): Promise<Error> {
-    const { status, url } = res;
+    const status = res.status;
     const text = await res.text();
     // const message = getApiErrorMessage(status, url, text);
 
     return new ApiError(status, text);
 }
 
+/*
 // this might need an update in accordance with bugs encountered during the development
 function getApiErrorMessage(status: number, url: string, text: string): string {
     const [, apiEndpoint] = url.split('api/');
@@ -44,3 +45,4 @@ function getApiErrorMessage(status: number, url: string, text: string): string {
 
     return 'Wystąpił nieznany błąd.';
 }
+*/

@@ -7,9 +7,9 @@ interface FormRefetchProviderType {
     refetch: () => void;
 }
 
-export const FormRefetchContext: Context<FormRefetchProviderType> = createContext(null);
+export const FormRefetchContext: Context<FormRefetchProviderType> = createContext(null as any);
 
-export function FormRefetchProvider({ children }) {
+export function FormRefetchProvider({ children }: {children: any}) {
     const [forceRefetch, setForceRefetch] = useState<boolean>(false);
 
     const refetch = () => {
