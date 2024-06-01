@@ -115,16 +115,23 @@ export function AddUsersCreator() {
         }
     };
 
+    const isValidUsername = username.length > 3;
+    const isValidPassword = password.length > 7;
+    const emailRegexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isValidEmail = emailRegexp.test(email);
+
+    const isDisabledSubmit = !isValidUsername || !isValidPassword || !isValidEmail;
+
     return (
         <form className={styles['creator-form']}  onSubmit={(e) => e.preventDefault()} ref={formRef}>
-            <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} />
-            {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} />}
-            <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} />
+            <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} isValid={isValidUsername} isRequired={true} />
+            {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} isValid={isValidPassword} isRequired={true} />}
+            <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} isValid={isValidEmail} isRequired={true} />
             {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />}
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={currentUser?.type === AccountType.ADMINISTRATOR ? roleOptions : roleOptions.slice(1)} disabled={disabled} />
             <div className={styles['navigation-box']}>
                 {!editParam && <div></div>}
-                <SubmitButton label={editParam ? 'Edit' : 'Create new'} size="small" onSubmit={onSubmit} />
+                <SubmitButton label={editParam ? 'Edit' : 'Create new'} size="small" onSubmit={onSubmit} disabled={isDisabledSubmit} />
                 {editParam && <SubmitButton label={'Back to creation'} size="small" onSubmit={resetForm} />}
             </div>
         </form>

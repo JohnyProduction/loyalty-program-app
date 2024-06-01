@@ -27,13 +27,18 @@ export function OfferForm({ organizationName }: OfferFormProps) {
         return <></>;
     }
 
+    const isValidOfferName = name.length > 3;
+    const isValidOfferPrice = price > 0;
+
+    const isDisabledSubmit = !isValidOfferName || !isValidOfferPrice;
+
     return (
         <div>
             {isLoading && <Loader isAbsolute={true} />}
-            <InputString label={'Offer name'} name={'offer-name'} value={name} onChange={onNameChange} />
-            <InputNumber label={'Offer price'} name={'offer-price'} value={price} onChange={onPriceChange} />
+            <InputString label={'Offer name'} name={'offer-name'} value={name} onChange={onNameChange} isValid={isValidOfferName} isRequired={true} />
+            <InputNumber label={'Offer price'} name={'offer-price'} value={price} onChange={onPriceChange} isValid={isValidOfferPrice} isRequired={true} />
             <InputImage label={'Offer image (optional)'} name={'offer-image'} image={image} onChange={onImageChange} />
-            <SubmitButton label={'Add a new offer'} onSubmit={onSubmit} size={'small'} />
+            <SubmitButton label={'Add a new offer'} onSubmit={onSubmit} size={'small'} disabled={isDisabledSubmit} />
         </div>
     );
 }
