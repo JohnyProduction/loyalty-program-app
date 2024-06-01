@@ -62,7 +62,7 @@ export function AddCategoriesCreator() {
     return (
         <form className={styles['creator-form']} onSubmit={(e) => e.preventDefault()} ref={formRef}>
             {isLoadingObject && <Loader isAbsolute={true} />}
-            <InputString label={'Category name'} name={'category-name'} value={categoryName} onChange={onCategoryNameChange} disabled={disabled} isValid={isValidCategoryName} />
+            <InputString label={'Category name'} name={'category-name'} value={categoryName} onChange={onCategoryNameChange} disabled={disabled} isValid={isValidCategoryName} isRequired={true} />
             <InputImage label={'Category image'} name={'category-image'} image={image} onChange={onImageChange} />
             <div className={styles['navigation-box']}>
                 {image && editParam && hasImage ? <SubmitButton label={'Delete image'} onSubmit={onDeleteImage} size="small" /> : <div></div>}

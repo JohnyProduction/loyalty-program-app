@@ -68,7 +68,7 @@ export function OrganizationsCreator() {
     return (
         <form className={styles['creator-form']} onSubmit={(e) => e.preventDefault()} ref={formRef}>
             {isLoadingObject && <Loader isAbsolute={true} />}
-            <InputString label={'Name'} name={'name'} value={name} onChange={onChangeName} disabled={disabled} isValid={isValidOrganizationName} />
+            <InputString label={'Name'} name={'name'} value={name} onChange={onChangeName} disabled={disabled} isValid={isValidOrganizationName} isRequired={true} />
             <InputSelect label={'Type'} name={'type'} value={type} onChange={onChangeType} options={typeOptions} disabled={disabled} />
             <InputImage label={'Image'} name={'image'} image={image} onChange={onChangeImage} />
             <div className={styles['navigation-box']}>

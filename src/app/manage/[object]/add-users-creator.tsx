@@ -124,9 +124,9 @@ export function AddUsersCreator() {
 
     return (
         <form className={styles['creator-form']}  onSubmit={(e) => e.preventDefault()} ref={formRef}>
-            <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} isValid={isValidUsername} />
-            {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} isValid={isValidPassword} />}
-            <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} isValid={isValidEmail} />
+            <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} isValid={isValidUsername} isRequired={true} />
+            {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} isValid={isValidPassword} isRequired={true} />}
+            <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} isValid={isValidEmail} isRequired={true} />
             {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />}
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={currentUser?.type === AccountType.ADMINISTRATOR ? roleOptions : roleOptions.slice(1)} disabled={disabled} />
             <div className={styles['navigation-box']}>
