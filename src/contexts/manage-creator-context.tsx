@@ -13,9 +13,9 @@ interface ManageCreatorProviderType {
     forceRefreshForm: () => void;
 }
 
-export const ManageCreatorContext: Context<ManageCreatorProviderType> = createContext(null);
+export const ManageCreatorContext: Context<ManageCreatorProviderType> = createContext(null as any);
 
-export function ManageCreatorProvider({ children }) {
+export function ManageCreatorProvider({ children }: {children: any}) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [edit, setEdit] = useState<string>();
     const [isReFetched, setIsReFetched] = useState<boolean>(false);

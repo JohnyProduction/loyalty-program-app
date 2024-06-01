@@ -8,9 +8,9 @@ interface ProfileProviderType {
     setProfile: Dispatch<SetStateAction<UserDbModel | undefined>>;
 }
 
-export const ProfileContext: Context<ProfileProviderType> = createContext(null);
+export const ProfileContext: Context<ProfileProviderType> = createContext(null as any);
 
-export function ProfileProvider({ children }) {
+export function ProfileProvider({ children }: {children: any}) {
     const [profile, setProfile] = useState<UserDbModel>();
 
     const contextValue = {

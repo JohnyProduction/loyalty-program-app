@@ -18,8 +18,7 @@ export default function ManagePage() {
 
     useEffect(() => {
         User.getCurrentUserEnd()
-            .then(data => setUser(data))
-            .catch(err => {});
+            .then(data => setUser(data));
     }, []);
 
     const renderLinks = () => {

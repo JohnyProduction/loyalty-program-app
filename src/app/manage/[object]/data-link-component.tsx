@@ -20,7 +20,7 @@ export function DataLinkComponent({ object, label, organization }: DataLinkCompo
     const { reFetch, forceRefreshForm } = useContext(ManageCreatorContext);
     const router = useRouter();
 
-    const onDelete = (e: any) => {
+    const onDelete = () => {
         const result = confirm('Are you sure to delete this object?');
 
         if (result) {
