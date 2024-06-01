@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.35.0] - 2024-06-01
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Checking validity of inputs' form.
+- [Marek Kurańda](https://github.com/mjkuranda): Links to `Categories` and `Shops` at `TopBar`.
 
 ### Changed
 - [Marek Kurańda](https://github.com/mjkuranda): Visibility of transaction table when no transactions.
