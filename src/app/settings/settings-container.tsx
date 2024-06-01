@@ -13,6 +13,8 @@ export function SettingsContainer() {
         isFetchingUser
     } = useUserSettings();
 
+    const emailRegexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     return (
         <div className={styles['settings-container']}>
             {(isProceedingEmail || isProceedingPassword) && <Loader isAbsolute={true} />}
@@ -20,7 +22,7 @@ export function SettingsContainer() {
             <div>
                 <h3>User's settings</h3>
                 <div className={styles['settings-section']}>
-                    <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} width={'500px'} />
+                    <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} width={'500px'} isValid={emailRegexp.test(email)} />
                     <div className={styles['settings-section__button']}>
                         <SubmitButton label={'Change email'} onSubmit={onSubmitEmail} size={'small'} />
                     </div>
