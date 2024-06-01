@@ -71,6 +71,7 @@ export function AddUsersCreator() {
     const onSubmit = () => {
         if (editParam) {
             const { editUserMailEnd } = User;
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             const newUser: UserDbModel = { ...user, email };
 
@@ -98,6 +99,7 @@ export function AddUsersCreator() {
             };
 
             if (currentUser?.type === AccountType.ADMINISTRATOR) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 delete props.organizationName;
             }
