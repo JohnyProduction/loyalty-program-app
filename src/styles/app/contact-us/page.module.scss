@@ -8,12 +8,17 @@
         display: flex;
         justify-content: space-around;
         $additional-margin: 2rem;
+        margin-bottom: 2rem;
 
         padding-left: calc($additional-margin);
         padding-top: calc($page-box-margin + $additional-margin);
 
         .contact-us-page__form-container__text-container {
-            width: 25%;
+            width: 30%;
+
+            ul {
+                padding: 0;
+            }
 
             > p {
                 margin: 1rem 0 2rem 0;

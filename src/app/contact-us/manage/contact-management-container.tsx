@@ -5,8 +5,12 @@ import { ContactCreator } from '@/app/contact-us/manage/contact-creator';
 export function ContactManagementContainer() {
     return (
         <div className={styles['contact-management-container']}>
-            <ContactCreator />
-            <ContactRequestList />
+            <div className={styles['creator-container']}>
+                <ContactCreator />
+            </div>
+            <div className={styles['contact-request-list-container']}>
+                <ContactRequestList />
+            </div>
         </div>
     );
 }

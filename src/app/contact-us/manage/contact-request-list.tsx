@@ -57,7 +57,7 @@ export function ContactRequestList() {
                     })
                 }
             </ul>
-            {!isFetching && <p>Found {requests.length} request{requests.length === 0 ? '' : 's'}.</p>}
+            {!isFetching && <p className={styles['request-count']}>Found {requests.length} request{requests.length === 0 ? '' : 's'}.</p>}
         </div>
     );
 }

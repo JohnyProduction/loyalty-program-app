@@ -1,17 +1,49 @@
 .manage-contact-us-page {
     .contact-management-container {
-        .contact-request-list {
-            li {
-                display: flex;
-                align-items: center;
+        .creator-container {
+            display: flex;
+            justify-content: center;
 
-                p {
-                    margin: 0 0 0 1rem;
-                }
+            > div {
+                width: 50%;
             }
 
-            li + li {
-                margin-top: 1rem;
+            .contact-creator {
+                .contact-submit {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin: 1rem 0;
+                }
+            }
+        }
+
+        .contact-request-list-container {
+            display: flex;
+            justify-content: center;
+
+            ul {
+                padding: 0;
+            }
+
+            .contact-request-list {
+                width: 50%;
+
+                li {
+                    display: flex;
+                    align-items: center;
+
+                    p {
+                        margin: 0 0 0 1rem;
+                    }
+                }
+
+                li + li {
+                    margin-top: 1rem;
+                }
+
+                .request-count {
+                    text-align: center;
+                }
             }
         }
     }

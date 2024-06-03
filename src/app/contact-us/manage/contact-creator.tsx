@@ -17,11 +17,14 @@ export function ContactCreator() {
 
     return (
         <div className={styles['contact-creator']}>
+            <h2>Contact creator</h2>
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} isRequired={true} isValid={isValidEmail} />
             <InputString label={'Name'} name={'name'} value={name} onChange={onChangeName} isValid={isValidName} />
             <InputString label={'Phone'} name={'phone'} value={phone} onChange={onChangePhone} isRequired={true} isValid={isValidPhone} />
             <InputString label={'Position'} name={'position'} value={position} onChange={onChangePosition} isValid={isValidPosition} />
-            <SubmitButton label={'Add a new contact'} onSubmit={onAddContact} size={'small'} disabled={isDisabledSubmit} />
+            <div className={styles['contact-submit']}>
+                <SubmitButton label={'Add a new contact'} onSubmit={onAddContact} size={'small'} disabled={isDisabledSubmit} />
+            </div>
         </div>
     );
 }
