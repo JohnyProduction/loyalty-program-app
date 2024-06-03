@@ -917,7 +917,7 @@ export const Contact = {
                 return response;
             });
 
-        return res.json();
+        return res.text();
     },
     /** Deletes contact from the system [Access: Administrator]
      *
