@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Contact info list at `/contact-us`.
 - [Marek Kurańda](https://github.com/mjkuranda): Capability to post new contact request information at `/contact-us`.
+- [Marek Kurańda](https://github.com/mjkuranda): New subpage containing forms for creating new contacts and listing all contact requests at `/contact-us/manage` by `Administrator` accounts.
 
 ## [0.36.0] - 2024-06-01
 ### Added

@@ -1,0 +1,18 @@
+.manage-contact-us-page {
+    .contact-management-container {
+        .contact-request-list {
+            li {
+                display: flex;
+                align-items: center;
+
+                p {
+                    margin: 0 0 0 1rem;
+                }
+            }
+
+            li + li {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
