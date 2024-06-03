@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.37.0] - 2024-06-03
+### Added
+- [Marek Kurańda](https://github.com/mjkuranda): Contact info list at `/contact-us`.
+- [Marek Kurańda](https://github.com/mjkuranda): Capability to post new contact request information at `/contact-us`.
+- [Marek Kurańda](https://github.com/mjkuranda): New subpage containing forms for creating new contacts and listing all contact requests at `/contact-us/manage` by `Administrator` accounts.
+
 ## [0.36.0] - 2024-06-01
 ### Added
 - [Marek Kurańda](https://github.com/mjkuranda): Checking validity of inputs' form.
