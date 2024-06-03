@@ -20,11 +20,15 @@ export function TopBar() {
     const profileProvider = useContext(ProfileContext);
 
     useEffect(() => {
-        if (user?.type === AccountType.WORKER && location.pathname.startsWith('/manage')) {
+        if (!user) {
+            return;
+        }
+
+        if (user.type === AccountType.WORKER && location.pathname.startsWith('/manage')) {
             router.push('/');
         }
 
-        if (user?.type !== AccountType.ADMINISTRATOR && location.pathname === '/contact-us/manage') {
+        if (user.type !== AccountType.ADMINISTRATOR && location.pathname === '/contact-us/manage') {
             router.push('/');
         }
 

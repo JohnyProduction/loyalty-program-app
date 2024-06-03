@@ -59,6 +59,7 @@ export function ContactManagementContainer() {
                         })
                     }
                 </ul>
+                {!isFetching && <p>Found {requests.length} request{requests.length === 0 ? '' : 's'}.</p>}
             </div>
         </div>
     );
