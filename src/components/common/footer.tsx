@@ -12,11 +12,11 @@ export function Footer() {
             paragraphs: [
                 {
                     label: 'Categories',
-                    link: '#'
+                    link: '/categories'
                 },
                 {
                     label: 'Shops',
-                    link: '#'
+                    link: '/shops'
                 },
             ]
         },
