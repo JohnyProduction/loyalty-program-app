@@ -983,7 +983,7 @@ export const Contact = {
      * id - Id of contact request to delete
      */
     async deleteContactRequestEnd(id: number): Promise<string> {
-        const res = await fetch(`${API_BASE_URL}/Conctact/DeleteContactRequest`, {
+        const res = await fetch(`${API_BASE_URL}/Contact/DeleteContactRequest`, {
             mode: 'cors',
             method: 'DELETE',
             credentials: 'include',

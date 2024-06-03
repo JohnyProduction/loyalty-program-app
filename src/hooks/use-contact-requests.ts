@@ -10,17 +10,19 @@ export function useGetContactRequests() {
     const [requests, setRequests] = useState<ContactRequestModel[]>([]);
 
     useEffect(() => {
+        refetch();
+    }, []);
+
+    const refetch = () => {
         const { getAllContactRequestsEnd } = Contact;
+
+        setIsFetching(true);
 
         getAllContactRequestsEnd()
             .then(data => setRequests(data))
             .catch(err => toastError(err.message))
             .finally(() => setIsFetching(false));
-    }, []);
+    };
 
-    const onInfo = () => {};
-
-    const onDelete = () => {};
-
-    return { isFetching, requests, onInfo, onDelete };
+    return { isFetching, requests, refetch };
 }
