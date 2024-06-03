@@ -24,6 +24,10 @@ export function TopBar() {
             router.push('/');
         }
 
+        if (user?.type !== AccountType.ADMINISTRATOR && location.pathname === '/contact-us/manage') {
+            router.push('/');
+        }
+
         User.getCurrentUserEnd()
             .then(data => {
                 setUser(data);
@@ -93,6 +97,7 @@ export function TopBar() {
                                             <ul>
                                                 <li><a href={'/settings'}>Settings</a></li>
                                                 {user.type !== AccountType.WORKER && <li><Link href={'/manage'}>Manage</Link></li>}
+                                                {user.type === AccountType.ADMINISTRATOR && <li><Link href={'/contact-us/manage'}>Contact management</Link></li>}
                                                 <li><Link href={'/transactions'}>View transactions</Link></li>
                                                 <li onClick={onLogOut}><a href='#'>Logout</a></li>
                                             </ul>
