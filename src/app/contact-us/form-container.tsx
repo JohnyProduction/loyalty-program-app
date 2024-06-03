@@ -3,19 +3,20 @@
 import styles from '@/styles/app/contact-us/page.module.scss';
 import { InputString } from '@/components/common/inputs/input-string';
 import { InputTextarea } from '@/components/common/inputs/input-textarea';
-import { OblongButton } from '@/components/common/buttons/oblong-button';
 import { useContactForm } from '@/hooks/use-contact-form';
+import { SubmitButton } from '@/components/common/buttons/submit-button';
+import { Loader } from '@/components/common/loader';
 
 export function FormContainer() {
-    const { fullName, onFullNameChange, email, onEmailChange, message, onMessageChange } = useContactForm();
+    const { subject, onSubjectChange, message, onMessageChange, onSubmit, isSending } = useContactForm();
 
     return (
         <div className={styles['contact-us-page__form-container__form-container']}>
-            <InputString label={'Full name'} name={'full-name'} value={fullName} onChange={onFullNameChange} />
-            <InputString label={'Email'} name={'email'} value={email} onChange={onEmailChange} />
+            {isSending && <Loader isAbsolute={true} />}
+            <InputString label={'Subject'} name={'subject'} value={subject} onChange={onSubjectChange} />
             <InputTextarea label={'Message'} name={'message'} value={message} onChange={onMessageChange} />
             <div className={styles['contact-us-page__form-container__navigation-box']}>
-                <OblongButton label={'Submit'} link={'/'} size="small" />
+                <SubmitButton label={'Submit'} onSubmit={onSubmit} size="small" />
             </div>
         </div>
     );

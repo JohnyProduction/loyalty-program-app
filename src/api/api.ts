@@ -860,7 +860,7 @@ export const Transactions = {
     /** Buys a code from a given offer for the current user [Access: Logged in users]
      *
      * offerID - Targeted offer ID
-     * 
+     *
      * amount - Amount of codes to buy (default is 1)
      */
     async buyCode(offerID: number, amount?: number): Promise<OfferTypes.NewCodeModel[]> {
@@ -899,7 +899,7 @@ export const Contact = {
         return res.json();
     },
     /** Adds new contact to the system [Access: Administrator]
-     * 
+     *
      * contact - New contact
      */
     async addContactEnd(contact: ContactTypes.ContactInfoModel): Promise<string> {
@@ -920,7 +920,7 @@ export const Contact = {
         return res.json();
     },
     /** Deletes contact from the system [Access: Administrator]
-     * 
+     *
      * id - ID of contact to delete
      */
     async deleteContactEnd(id: number): Promise<string> {
@@ -940,7 +940,7 @@ export const Contact = {
 
         return res.text();
     },
-    /** etrieves list of every CONTACT_REQUEST in the system [Access: Administrator] */
+    /** Retrieves list of every CONTACT_REQUEST in the system [Access: Administrator] */
     async getAllContactRequestsEnd(): Promise<ContactTypes.ContactRequestModel[]> {
         const res = await fetch(`${API_BASE_URL}/Contact/GetAllContactRequests`, {
             mode: 'cors',
@@ -958,7 +958,7 @@ export const Contact = {
         return res.json();
     },
     /** Adds new contact request to the system [Access: Everyone]
-     * 
+     *
      * contactRequest - New request for contact
      */
     async addContactRequestEnd(contactRequest: ContactTypes.ContactRequestModel): Promise<string> {
@@ -976,10 +976,10 @@ export const Contact = {
                 return response;
             });
 
-        return res.json();
+        return res.text();
     },
     /** Deletes contact from the system [Access: Administrator]
-     * 
+     *
      * id - Id of contact request to delete
      */
     async deleteContactRequestEnd(id: number): Promise<string> {
