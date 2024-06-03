@@ -24,7 +24,7 @@ export function Footer() {
             header: 'Contact',
             paragraphs: [
                 {
-                    label: 'Support 24',
+                    label: 'Support',
                     link: '/contact-us'
                 },
             ]

@@ -21,7 +21,6 @@ export function ContactList() {
                     })
                 }
             </ul>
-            {!isFetching && <p>Found {contacts.length} contact{contacts.length === 1 ? '' : 's'}.</p>}
         </div>
     );
 }
