@@ -12,7 +12,7 @@ interface InputDateProps {
 
 export function InputDate({ label, name, width = '100%', value, onChange }: InputDateProps) {
     const proceedDateValue = (value: Date) => {
-        const date = new Date(value).toISOString();
+        const date = new Date(value).toLocaleString();
 
         return date.substring(0, 16);
     };

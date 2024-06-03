@@ -24,12 +24,25 @@ export function OfferCodeForm({ offerId }: OfferCodeFormProps) {
     if (profileProvider.profile?.type !== AccountType.ADMINISTRATOR) {
         return <></>;
     }
+    const handleExpiryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newExpiry = event.target.value;
+
+        try {
+            const date = new Date(newExpiry);
+            if (isNaN(date.getTime())) {
+                throw new Error('Invalid date');
+            }
+            onExpiryChange(newExpiry);
+        } catch (error) {
+            console.error('Invalid date format', error);
+        }
+    };
 
     return (
         <div>
             {isLoading && <Loader isAbsolute={true} />}
             <InputNumber label={'Code number'} name={'code-number'} value={codeNumber} onChange={onCodeNumberChange} />
-            <InputDate label={'Code expiration'} name={'code-expiry'} value={expiry} onChange={onExpiryChange} />
+            <InputDate label={'Code expiration'} name={'code-expiry'} value={expiry} onChange={handleExpiryChange} />
             <SubmitButton label={'Add a new code'} onSubmit={onSubmit} size={'small'} />
         </div>
     );

@@ -6,3 +6,4 @@ export type TransactionModel = {
     code: NewCodeModel,
     date: Date
 };
+export type DiscountType = '%' | 'zl';

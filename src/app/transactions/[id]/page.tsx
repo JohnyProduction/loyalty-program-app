@@ -37,6 +37,7 @@ export default function TransactionsIdPage({ params }: TransactionsIdPageProps) 
                             <div>Code: {transaction?.code.code}</div>
                             <div>Expiration: {transaction?.code.expiry.toString()}</div>
                             <div>Price: {transaction?.offer.price}</div>
+                            <div>Discount: {transaction?.offer.shopDiscount?.amount} {transaction?.offer.shopDiscount?.type}</div>
                             <div>Category: {transaction?.offer.category}</div>
                             <div>Organization: {transaction?.offer.organization}</div>
                         </div>
