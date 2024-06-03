@@ -28,6 +28,10 @@
             .contact-request-list {
                 width: 50%;
 
+                dialog {
+                    z-index: 999;
+                }
+
                 li {
                     display: flex;
                     align-items: center;
@@ -45,6 +49,37 @@
                     text-align: center;
                 }
             }
+        }
+    }
+}
+
+.dialog-message {
+    position: absolute;
+    top: calc(50% - 150px);
+    left: calc(50% - 250px);
+    width: 500px;
+    min-height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+        width: 100%;
+
+        h3 {
+            text-align: center;
+        }
+
+        p {
+            margin: 0 4rem;
+        }
+
+        > div {
+            margin-top: 4rem;
+
+            display: flex;
+            justify-content: center;
         }
     }
 }

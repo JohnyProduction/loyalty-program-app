@@ -7,10 +7,14 @@ import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { Icon } from '@/components/common/icon';
 import { useGetContactRequests } from '@/hooks/use-contact-requests';
 import { useState } from 'react';
+import { DialogMessage } from '@/app/contact-us/manage/dialog-message';
+import { ContactRequestModel } from '@/types/contact-types';
 
 export function ContactRequestList() {
     const { requests, isFetching, refetch } = useGetContactRequests();
     const [, setProceeding] = useState<boolean>(false);
+    const [isDisplaying, setIsDisplaying] = useState<boolean>(false);
+    const [contact, setContact] = useState<ContactRequestModel>();
 
     return (
         <div className={styles['contact-request-list']}>
@@ -20,7 +24,14 @@ export function ContactRequestList() {
                     ? <Loader />
                     : requests.map(request => {
                         const onInfo = () => {
-                            alert(`${request.subject}: ${request.body}`);
+                            setContact(request);
+                            setIsDisplaying(true);
+
+                            const dialog = document.querySelector('dialog');
+
+                            if (dialog) {
+                                dialog.showModal();
+                            }
                         };
 
                         const onDelete = async () => {
@@ -58,6 +69,7 @@ export function ContactRequestList() {
                 }
             </ul>
             {!isFetching && <p className={styles['request-count']}>Found {requests.length} request{requests.length === 0 ? '' : 's'}.</p>}
+            {isDisplaying && contact && <DialogMessage contact={contact} setIsDisplaying={setIsDisplaying} />}
         </div>
     );
 }
