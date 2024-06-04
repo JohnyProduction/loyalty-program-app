@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.38.0] - 2024-06-04
+### Fixed
+- [Jan Pękala](https://github.com/JohnyProduction): In manage user repair organization select box
 ## [0.38.1] - 2024-06-04
 ### Fixed
 - [Marek Kurańda](https://github.com/mjkuranda): `InputDate` is type of `date`.
