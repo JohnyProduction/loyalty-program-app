@@ -46,6 +46,19 @@ export function TopBar() {
     }, []);
 
     useEffect(() => {
+        User.getCurrentUserEnd()
+            .then(data => {
+                setUser(data);
+            })
+            .catch(err => {
+                if (err.status === 401) {
+                    router.push('/login');
+                    router.refresh();
+                }
+            });
+    }, [user?.credits]);
+
+    useEffect(() => {
         if (profileProvider) {
             profileProvider.setProfile(user);
         }
