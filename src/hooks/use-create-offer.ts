@@ -40,6 +40,7 @@ export function useCreateOffer(organizationName: string) {
             setPrice(0);
             setImage(null);
             toastSuccess('New offer has been added!');
+            window.location.reload();
         } catch (err: any) {
             toastError(`Error occurred while adding a new offer: ${err.message}`);
         } finally {

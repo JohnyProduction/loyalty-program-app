@@ -9,8 +9,8 @@ interface OfferCodeTableProps {
 export function OfferCodeTable({ codes }: OfferCodeTableProps) {
     const proceedDate = (code: CodeModel) => {
         return new Date(code.expiry)
-            .toISOString()
-            .substring(0, 16)
+            .toLocaleString()
+            .substring(0, 17)
             .split('T')
             .join(' ');
     };
@@ -18,6 +18,8 @@ export function OfferCodeTable({ codes }: OfferCodeTableProps) {
     const isExpired = (code: CodeModel): boolean => {
         return new Date().getTime() > new Date(code.expiry).getTime();
     };
+
+    const sortedCodes = [...codes].sort((a, b) => new Date(b.expiry).getTime() - new Date(a.expiry).getTime());
 
     return (
         <table className={styles['table']}>
@@ -30,7 +32,7 @@ export function OfferCodeTable({ codes }: OfferCodeTableProps) {
                 </tr>
             </thead>
             <tbody>
-                {codes.map(code =>
+                {sortedCodes.map(code =>
                     <tr key={code.code} data-availability={!code.isUsed} data-is-expired={isExpired(code)}>
                         <td className={styles['code']}>{code.code}</td>
                         <td className={styles['expiration']}>{proceedDate(code)}</td>

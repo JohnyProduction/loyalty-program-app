@@ -89,13 +89,8 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         setIsSubmitting(true);
 
         try {
-            const { checkOfferCodesEnd } = Offers;
-            const id = Number(offerId);
 
-            const codes = await checkOfferCodesEnd(id);
-            const availableCodes = codes.filter(code => !code.isUsed);
-
-            if (counterProps.count > availableCodes.length) {
+            if (counterProps.count > codes) {
                 toastError('Insufficient number of available codes for this offer.');
 
                 return;
@@ -110,7 +105,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
             }
 
             const { buyCode } = Transactions;
-            await buyCode(id, counterProps.count);
+            await buyCode(parseInt(productId), counterProps.count);
 
             const newProfile: UserDbModel = {
                 ...profile as UserDbModel,

@@ -1,9 +1,27 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { UserDbModelOrg } from '@/types/user-types';
+import { User } from '@/api/api';
+import { toastError } from '@/utils/toast-utils';
 import { FooterFragment, FooterFragmentDataType } from '@/components/common/footer-fragment';
 import styles from '@/styles/components/common/footer.module.scss';
 
 export function Footer() {
+    const [user, setUser] = useState<UserDbModelOrg | null>(null);
+
+    useEffect(() => {
+        const { getCurrentUserEnd } = User;
+
+        getCurrentUserEnd()
+            .then(data => {
+                setUser(data);
+            })
+            .catch(err => toastError(`Error occurred while fetching current user: ${err.message}.`));
+
+    }, []);
+
     const company = {
-        name: 'Nazwa firmy',
+        name: user?.organization,
         description: 'Leading digital agency with solid design and development expertise. We build readymade websites, mobile applications, and elaborate online business services.'
     };
     const footerFragmentData: FooterFragmentDataType[] = [
@@ -12,11 +30,11 @@ export function Footer() {
             paragraphs: [
                 {
                     label: 'Categories',
-                    link: '#'
+                    link: '/categories'
                 },
                 {
                     label: 'Shops',
-                    link: '#'
+                    link: '/shops'
                 },
             ]
         },
