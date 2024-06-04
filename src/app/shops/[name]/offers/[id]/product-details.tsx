@@ -42,7 +42,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
     const onChangePromotion = (e: any) => setPromotion(e.target.value);
     const [promotionValue, setPromotionValue] = useState<number>(0);
     const onChangePromotionValue = (e: any) => setPromotionValue(Number(e.target.value));
-    const [promotionExpiry, setPromotionExpiry] = useState<Date>(new Date());
+    const [promotionExpiry, setPromotionExpiry] = useState<string>('');
     const onChangePromotionExpiry = (e: any) => setPromotionExpiry(e.target.value);
     const promotionOptions: OptionType[] = [
         { id: 1, label: 'Percentage', value: DiscountType.PERCENT },
@@ -54,7 +54,7 @@ export function ProductDetails({ productId }: ProductDetailsProps) {
         const discount: ShopDiscountModel = {
             amount: promotionValue,
             type: promotion,
-            expiry: promotionExpiry
+            expiry: new Date(promotionExpiry)
         };
         setIsSubmitting(true);
 
