@@ -35,7 +35,7 @@ export default function TransactionsIdPage({ params }: TransactionsIdPageProps) 
                             <div>Transaction id: {transaction?.id}</div>
                             <div>Name: {transaction?.offer.name}</div>
                             <div>Code: {transaction?.code.code}</div>
-                            <div>Expiration: {transaction?.code.expiry.toString()}</div>
+                            <div>Expiration: {new Date(transaction?.code.expiry ?? Date.now()).toLocaleString()}</div>
                             <div>Price: {
                                 (() => {
                                     const price = transaction?.offer.price || 0;
