@@ -19,7 +19,7 @@ export function OfferCodeTable({ codes }: OfferCodeTableProps) {
         return new Date().getTime() > new Date(code.expiry).getTime();
     };
 
-    const sortedCodes = [...codes].sort((a, b) => new Date(a.expiry).getTime() - new Date(b.expiry).getTime());
+    const sortedCodes = [...codes].sort((a, b) => new Date(b.expiry).getTime() - new Date(a.expiry).getTime());
 
     return (
         <table className={styles['table']}>
