@@ -9,14 +9,14 @@ import { FormRefetchContext } from '@/contexts/form-refetch-context';
 export function useCreateOfferCode(offerId: number) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [codeNumber, setCodeNumber] = useState<number>(0);
-    const [expiry, setExpiry] = useState<Date>(new Date());
+    const [expiry, setExpiry] = useState<string>('');
     const formRefetchProvider = useContext(FormRefetchContext);
 
     const onSubmit = async () => {
         const { addCodesEnd } = Offers;
         const code: NewCodeModel = {
             code: codeNumber,
-            expiry
+            expiry: new Date(expiry)
         };
 
         setIsLoading(true);
