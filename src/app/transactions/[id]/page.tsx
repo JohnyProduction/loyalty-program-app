@@ -39,7 +39,7 @@ export default function TransactionsIdPage({ params }: TransactionsIdPageProps) 
                             <div>Price: {transaction?.offer.price}</div>
                             <div>Discount: {transaction?.offer.shopDiscount?.amount} {transaction?.offer.shopDiscount?.type}</div>
                             <div>Category: {transaction?.offer.category}</div>
-                            <div>Organization: {transaction?.offer.organization}</div>
+                            <div>Shop: {transaction?.offer.organization}</div>
                         </div>
                     </div>
                 )}
