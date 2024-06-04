@@ -11,6 +11,7 @@ import { Login, User } from '@/api/api';
 import { toastError, toastSuccess } from '@/utils/toast-utils';
 import { ManageCreatorContext } from '@/contexts/manage-creator-context';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Organization } from '@/api/api';
 import { UserDbModel } from '@/types/user-types';
 
 export function AddUsersCreator() {
@@ -18,7 +19,9 @@ export function AddUsersCreator() {
     const formRef = useRef(null);
     const [user, setUser] = useState<UserDbModel>();
     const [currentUser, setCurrentUser] = useState<UserDbModel>();
-    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, organization, onChangeOrganization, organizationOptions, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef, router, user);
+    const [organizationCB, setOrganizationCB] = useState<string>('');
+    const [organizationOptionsCB, setOrganizationOptionsCB] = useState<OptionType[]>([]);
+    const { username, onChangeUsername, password, onChangePassword, email, onChangeEmail, role, onChangeRole, loadUser, resetForm } = useAddUsersCreator(formRef, router, user);
     const roleOptions: OptionType[] = [
         { id: 1, label: AccountType.ADMINISTRATOR, value: AccountType.ADMINISTRATOR },
         { id: 2, label: AccountType.MANAGER, value: AccountType.MANAGER },
@@ -30,6 +33,31 @@ export function AddUsersCreator() {
     const editParam = queryParams.get('edit');
     const organizationParam = queryParams.get('organization');
     const disabled = Boolean(editParam);
+
+    useEffect(() => {
+        const { getCurrentUserEnd } = User;
+
+        getCurrentUserEnd()
+            .then(data => {
+                setCurrentUser(data);
+            })
+            .catch(err => toastError(`Error occurred while fetching current user: ${err.message}.`));
+
+        const { getOrganizationsEnd } = Organization;
+
+        getOrganizationsEnd()
+            .then(data => {
+                const options: OptionType[] = data.map((model, idx) => ({
+                    id: idx,
+                    label: model.name,
+                    value: model.name
+                }));
+
+                setOrganizationOptionsCB(options);
+                setOrganizationCB(data[0].name);
+            })
+            .catch(() => {});
+    }, []);
 
     useEffect(() => {
         if (objectParam !== 'users') {
@@ -68,6 +96,9 @@ export function AddUsersCreator() {
         resetForm();
     }, [needsToRefreshForm]);
 
+    const onChangeOrganizationCB = (e: any) => {
+        setOrganizationCB(e.target.value);
+    };
     const onSubmit = () => {
         if (editParam) {
             const { editUserMailEnd } = User;
@@ -95,10 +126,10 @@ export function AddUsersCreator() {
                 password,
                 email,
                 accountType: role,
-                organizationName: organization
+                organizationName: organizationCB
             };
 
-            if (currentUser?.type === AccountType.ADMINISTRATOR) {
+            if (currentUser?.type === AccountType.MANAGER) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 delete props.organizationName;
@@ -127,7 +158,7 @@ export function AddUsersCreator() {
             <InputString label={'Username'} name={'username'} value={username} onChange={onChangeUsername} disabled={disabled} isValid={isValidUsername} isRequired={true} />
             {!editParam && <InputString label={'Password'} name={'password'} value={password} onChange={onChangePassword} disabled={disabled} isPassword={true} isValid={isValidPassword} isRequired={true} />}
             <InputString label={'Email'} name={'email'} value={email} onChange={onChangeEmail} isValid={isValidEmail} isRequired={true} />
-            {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organization} onChange={onChangeOrganization} options={organizationOptions} disabled={disabled} />}
+            {currentUser?.type === AccountType.ADMINISTRATOR && <InputSelect label={'Organization'} name={'organization'} value={organizationCB} onChange={onChangeOrganizationCB} options={organizationOptionsCB} disabled={disabled} />}
             <InputSelect label={'Role'} name={'role'} value={role} onChange={onChangeRole} options={currentUser?.type === AccountType.ADMINISTRATOR ? roleOptions : roleOptions.slice(1)} disabled={disabled} />
             <div className={styles['navigation-box']}>
                 {!editParam && <div></div>}
